@@ -45,6 +45,7 @@ class Convert
 
       FileUtils::Verbose.cp @backup_dir.join("#{id}/#{filename}"), @content_dir.join("#{id}/#{filename}")
     end
+    body.gsub!("__", "**")
     return body
   end
 end
