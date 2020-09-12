@@ -45,7 +45,11 @@ class Convert
 
       FileUtils::Verbose.cp @backup_dir.join("#{id}/#{filename}"), @content_dir.join("#{id}/#{filename}")
     end
-    body.gsub!("__", "**")
+
+    body.scan(/__.+__/).each do |s|
+      next if s =~ /__[[:ascii:]]+__/
+      body.sub!(s, s.sub("__", "**"))
+    end
     return body
   end
 end
