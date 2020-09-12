@@ -13,13 +13,13 @@ echo <span style=color:#e6db74>${</span>numbers[@]<span style=color:#e6db74>}</s
 </span><span style=color:#e6db74>}&#39;</span>
 
 <span style=color:#75715e>#=&gt; 11</span>
-</code></pre></div><p>この書き方のよいところは__「配列を先頭からなめていき、最小値を見つけるたびに更新する」という処理の中身が見えやすい__ところでしょうか。フローの見えやすさは応用のしやすさにもつながります。ただしやや冗長なのは欠点でしょう。</p><p>次に<code>sort</code>コマンドを利用する場合は以下のようになります。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>numbers<span style=color:#f92672>=(</span><span style=color:#ae81ff>34</span> <span style=color:#ae81ff>65</span> <span style=color:#ae81ff>112</span> <span style=color:#ae81ff>98</span> 11<span style=color:#f92672>)</span>
+</code></pre></div><p>この書き方のよいところは**「配列を先頭からなめていき、最小値を見つけるたびに更新する」という処理の中身が見えやすい**ところでしょうか。フローの見えやすさは応用のしやすさにもつながります。ただしやや冗長なのは欠点でしょう。</p><p>次に<code>sort</code>コマンドを利用する場合は以下のようになります。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>numbers<span style=color:#f92672>=(</span><span style=color:#ae81ff>34</span> <span style=color:#ae81ff>65</span> <span style=color:#ae81ff>112</span> <span style=color:#ae81ff>98</span> 11<span style=color:#f92672>)</span>
 <span style=color:#66d9ef>for</span> number in <span style=color:#e6db74>${</span>numbers[@]<span style=color:#e6db74>}</span>; <span style=color:#66d9ef>do</span>
 	echo $number
 <span style=color:#66d9ef>done</span> | sort -n | head -n <span style=color:#ae81ff>1</span>
 
 <span style=color:#75715e># =&gt; 11</span>
-</code></pre></div><p>__空白区切りの数字を改行区切りに並び替えたあと、昇順に並び替え、最後にその先頭だけを取り出しています。__最初の例に比べるとシェルスクリプト感はぐっと強くなりますが、冗長さはあまり変わっていません。awkに依存しないため、awkを可能な限り避けたい人にはお勧めです。</p><p>なお上記の例において「空白区切りの数字を改行区切りに並べ替え」る処理をawkに担わせることもできます。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>numbers<span style=color:#f92672>=(</span><span style=color:#ae81ff>34</span> <span style=color:#ae81ff>65</span> <span style=color:#ae81ff>112</span> <span style=color:#ae81ff>98</span> 11<span style=color:#f92672>)</span>
+</code></pre></div><p>**空白区切りの数字を改行区切りに並び替えたあと、昇順に並び替え、最後にその先頭だけを取り出しています。**最初の例に比べるとシェルスクリプト感はぐっと強くなりますが、冗長さはあまり変わっていません。awkに依存しないため、awkを可能な限り避けたい人にはお勧めです。</p><p>なお上記の例において「空白区切りの数字を改行区切りに並べ替え」る処理をawkに担わせることもできます。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>numbers<span style=color:#f92672>=(</span><span style=color:#ae81ff>34</span> <span style=color:#ae81ff>65</span> <span style=color:#ae81ff>112</span> <span style=color:#ae81ff>98</span> 11<span style=color:#f92672>)</span>
 echo <span style=color:#e6db74>${</span>numbers[@]<span style=color:#e6db74>}</span> | awk <span style=color:#e6db74>&#39;{while(++i &lt;= NF) print $i;}&#39;</span> | sort -n | head -n <span style=color:#ae81ff>1</span>
 
 <span style=color:#75715e>#=&gt; 11</span>

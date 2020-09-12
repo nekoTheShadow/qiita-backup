@@ -97,7 +97,7 @@ NLS_TIME_TZ_FORMAT = HH.MI.SSXFF AM TZR
         <span style=color:#f92672>}</span>
     <span style=color:#f92672>}</span>
 <span style=color:#f92672>}</span>
-</code></pre></div><p>__ここで着目してほしいのは、<code>TIMESTAMP</code>型のカラムである<code>updated_at</code>に文字列型の値(<code>"20200117"</code>)を挿入しようとしていることです。__この場合はOracle Databaseの「暗黙の型変換」機能によって、文字列型から<code>TIMESTAMP</code>型へ返還されます。そして、どのように「暗黙の型変換」されるのかについては、NLSパラメータに強く依存します。</p><p>では、この<code>Main2.java</code>をロケールを変えて実行してみましょう。まずは日本語。</p><pre><code>$ java -Duser.language=ja -Duser.country=JP -cp .:../lib/ojdbc8.jar Main2
+</code></pre></div><p>**ここで着目してほしいのは、<code>TIMESTAMP</code>型のカラムである<code>updated_at</code>に文字列型の値(<code>"20200117"</code>)を挿入しようとしていることです。**この場合はOracle Databaseの「暗黙の型変換」機能によって、文字列型から<code>TIMESTAMP</code>型へ返還されます。そして、どのように「暗黙の型変換」されるのかについては、NLSパラメータに強く依存します。</p><p>では、この<code>Main2.java</code>をロケールを変えて実行してみましょう。まずは日本語。</p><pre><code>$ java -Duser.language=ja -Duser.country=JP -cp .:../lib/ojdbc8.jar Main2
 PreparedStatement::executeUpdate = 1
 </code></pre><p>ただしくデータが挿入されたようです。次に英語で実行します。</p><pre><code>$ java -Duser.language=en -Duser.country=US -cp .:../lib/ojdbc8.jar Main2
 java.sql.SQLDataException: ORA-01843: not a valid month

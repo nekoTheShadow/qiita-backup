@@ -63,7 +63,7 @@
         <span style=color:#f92672>}</span>
     <span style=color:#f92672>}</span>
 <span style=color:#f92672>}</span>
-</code></pre></div><p>__さてこの「mainメソッドの最終行にまで行きついたにも関わらず、アプリケーションが終了しない」問題ですが、<code>EntityManagerFactory</code>を<code>close</code>することで解決することができました。__たとえばmainメソッドを以下のように書き換えてやると、mainメソッドの終了とともにeclipseは「terminated」を表示し、実行可能jarはプロセスを完了するようになりました。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java:Main.java data-lang=java:Main.java><span style=color:#f92672>import</span> javax.persistence.EntityManager<span style=color:#f92672>;</span>
+</code></pre></div><p>**さてこの「mainメソッドの最終行にまで行きついたにも関わらず、アプリケーションが終了しない」問題ですが、<code>EntityManagerFactory</code>を<code>close</code>することで解決することができました。**たとえばmainメソッドを以下のように書き換えてやると、mainメソッドの終了とともにeclipseは「terminated」を表示し、実行可能jarはプロセスを完了するようになりました。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java:Main.java data-lang=java:Main.java><span style=color:#f92672>import</span> javax.persistence.EntityManager<span style=color:#f92672>;</span>
 <span style=color:#f92672>import</span> javax.persistence.EntityManagerFactory<span style=color:#f92672>;</span>
 <span style=color:#f92672>import</span> javax.persistence.EntityTransaction<span style=color:#f92672>;</span>
 <span style=color:#f92672>import</span> javax.persistence.Persistence<span style=color:#f92672>;</span>

@@ -17,7 +17,7 @@ Java HotSpot(TM) 64-Bit Server VM (build 25.202-b08, mixed mode)
 
 C:\&gt;java -cp child.jar Child
 エラー: メイン・クラスChildが見つからなかったかロードできませんでした
-</code></pre><p><code>Child</code>クラスは確かに存在するにも関わらず「メイン・クラスChildが見つからなかったかロードできませんでした」というエラーによりJavaの実行が失敗しました。</p><h1 id=原因>原因</h1><p>__真因は<code>Child</code>の親クラス<code>Parent</code>が読み込めていないためになります。__実は<code>Parent</code>は<code>child.jar</code>とは別の<code>parent.jar</code>に格納されています。しかし上記の<code>java</code>コマンド実行方法では、<code>parent.jar</code>が読み込めていません。</p><p>そこで<code>parent.jar</code>もクラスパスに加えて、<code>java</code>を実行してやると、想定通り動作しました。</p><pre><code>C:\&gt;java -version
+</code></pre><p><code>Child</code>クラスは確かに存在するにも関わらず「メイン・クラスChildが見つからなかったかロードできませんでした」というエラーによりJavaの実行が失敗しました。</p><h1 id=原因>原因</h1><p>**真因は<code>Child</code>の親クラス<code>Parent</code>が読み込めていないためになります。**実は<code>Parent</code>は<code>child.jar</code>とは別の<code>parent.jar</code>に格納されています。しかし上記の<code>java</code>コマンド実行方法では、<code>parent.jar</code>が読み込めていません。</p><p>そこで<code>parent.jar</code>もクラスパスに加えて、<code>java</code>を実行してやると、想定通り動作しました。</p><pre><code>C:\&gt;java -version
 java version &quot;1.8.0_202&quot;
 Java(TM) SE Runtime Environment (build 1.8.0_202-b08)
 Java HotSpot(TM) 64-Bit Server VM (build 25.202-b08, mixed mode)

@@ -51,12 +51,12 @@
 p, q <span style=color:#f92672>=</span> <span style=color:#66d9ef>STDIN</span><span style=color:#f92672>.</span>gets<span style=color:#f92672>.</span>split(<span style=color:#e6db74>&#34;</span><span style=color:#ae81ff>\s</span><span style=color:#e6db74>&#34;</span>)<span style=color:#f92672>.</span>map(<span style=color:#f92672>&amp;</span><span style=color:#e6db74>:to_i</span>)
 puts f(p, q)
 
-<span style=color:#75715e>__END__
-</span><span style=color:#75715e>
-</span><span style=color:#75715e>基本方針は「幅優先探索」
-</span><span style=color:#75715e>ある素数から規則通りに素数を作ることを繰り返し、それを目的の素数にたどり着くまで続ける
-</span><span style=color:#75715e>ただし1度訪れた素数は訪問しないようにする
-</span></code></pre></div><p>基本的には何の工夫もない解答です……。与えられた規則に基づいて素数を生成し、幅優先探索で目的の素数をひたすら探すだけ。素数判定も標準添付ライブラリを使って、楽をしています。</p><p>かなりナイーブな実装でしたが、TLEを起こすこともなく、無事すべてのテストケースが通りましたので、これで良しとしましょう。終わり良ければ総て良し(｀・ω・´)ｼｬｷｰﾝ</p><div class=blog-tags><a href=https://nekotheshadow.github.io/qiita-backup/tags/ruby/>Ruby</a>&nbsp;
+<span style=color:#f92672>**</span><span style=color:#66d9ef>END</span><span style=color:#f92672>**</span>
+
+<span style=color:#960050;background-color:#1e0010>基本方針は「幅優先探索」</span>
+<span style=color:#960050;background-color:#1e0010>ある素数から規則通りに素数を作ることを繰り返し、それを目的の素数にたどり着くまで続ける</span>
+<span style=color:#960050;background-color:#1e0010>ただし</span><span style=color:#ae81ff>1</span><span style=color:#960050;background-color:#1e0010>度訪れた素数は訪問しないようにする</span>
+</code></pre></div><p>基本的には何の工夫もない解答です……。与えられた規則に基づいて素数を生成し、幅優先探索で目的の素数をひたすら探すだけ。素数判定も標準添付ライブラリを使って、楽をしています。</p><p>かなりナイーブな実装でしたが、TLEを起こすこともなく、無事すべてのテストケースが通りましたので、これで良しとしましょう。終わり良ければ総て良し(｀・ω・´)ｼｬｷｰﾝ</p><div class=blog-tags><a href=https://nekotheshadow.github.io/qiita-backup/tags/ruby/>Ruby</a>&nbsp;
 <a href=https://nekotheshadow.github.io/qiita-backup/tags/codeiq/>codeiq</a>&nbsp;</div></article><ul class="pager blog-pager"><li class=previous><a href=https://nekotheshadow.github.io/qiita-backup/blog/c3d37e32c99a43c87b3d/ data-toggle=tooltip data-placement=top title=ストゥージソートをPython3で実装(バブルソート&クイックソート)>&larr; Previous Post</a></li><li class=next><a href=https://nekotheshadow.github.io/qiita-backup/blog/0720fa0fe41260dbbf8c/ data-toggle=tooltip data-placement=top title=「モンティ・ホール問題」の簡単なシミュレーションプログラムを書いてみる>Next Post &rarr;</a></li></ul></div></div></div><footer><div class=container><div class=row><div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1"><ul class="list-inline text-center footer-links"></ul><p class="credits copyright text-muted">&nbsp;&bull;&nbsp;&copy;
 2020
 &nbsp;&bull;&nbsp;

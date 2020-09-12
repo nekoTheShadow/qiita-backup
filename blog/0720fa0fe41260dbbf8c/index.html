@@ -24,7 +24,7 @@
     <span style=color:#75715e># 2回目に選んだ扉は正解なのか?</span>
     <span style=color:#66d9ef>return</span> answer <span style=color:#f92672>==</span> second_choice
 
-<span style=color:#66d9ef>if</span> __name__ <span style=color:#f92672>==</span> <span style=color:#e6db74>&#39;__main__&#39;</span>:
+<span style=color:#66d9ef>if</span> <span style=color:#f92672>**</span>name<span style=color:#f92672>**</span> <span style=color:#f92672>==</span> <span style=color:#e6db74>&#39;**main**&#39;</span>:
     <span style=color:#66d9ef>for</span> x <span style=color:#f92672>in</span> (<span style=color:#ae81ff>10</span>, <span style=color:#ae81ff>100</span>, <span style=color:#ae81ff>1000</span>, <span style=color:#ae81ff>100000</span>):
         <span style=color:#75715e># x回の試行中、monty_hall()がTrueを返した回数を記録する。</span>
         win <span style=color:#f92672>=</span> sum(<span style=color:#ae81ff>1</span> <span style=color:#66d9ef>for</span> _ <span style=color:#f92672>in</span> range(x) <span style=color:#66d9ef>if</span> monty_hall())
@@ -44,7 +44,7 @@
     <span style=color:#75715e># 最初に選んだ扉が正解ではない =&gt; もう一つの扉が正解</span>
     <span style=color:#66d9ef>return</span> answer <span style=color:#f92672>!=</span> first_choice
 
-<span style=color:#66d9ef>if</span> __name__ <span style=color:#f92672>==</span> <span style=color:#e6db74>&#39;__main__&#39;</span>:
+<span style=color:#66d9ef>if</span> <span style=color:#f92672>**</span>name<span style=color:#f92672>**</span> <span style=color:#f92672>==</span> <span style=color:#e6db74>&#39;**main**&#39;</span>:
     <span style=color:#66d9ef>for</span> x <span style=color:#f92672>in</span> (<span style=color:#ae81ff>10</span>, <span style=color:#ae81ff>100</span>, <span style=color:#ae81ff>1000</span>, <span style=color:#ae81ff>10000</span>, <span style=color:#ae81ff>100000</span>):
         win <span style=color:#f92672>=</span> sum(<span style=color:#ae81ff>1</span> <span style=color:#66d9ef>for</span> _ <span style=color:#f92672>in</span> range(x) <span style=color:#66d9ef>if</span> refactoring_month_hall())
         print(<span style=color:#e6db74>&#34;試行回数</span><span style=color:#e6db74>{0}</span><span style=color:#e6db74>回のときの確率 : </span><span style=color:#e6db74>{1}</span><span style=color:#e6db74>&#34;</span><span style=color:#f92672>.</span>format(x, win <span style=color:#f92672>/</span> x))

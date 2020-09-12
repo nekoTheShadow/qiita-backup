@@ -13,7 +13,7 @@ npm ERR! request to https://registry.npmjs.org/vue-router failed, reason: getadd
 Address:  2408:211:605:600:5a52:8aff:fe66:f4a5
 
 *** ntt.setup が registry.npmjs.org を見つけられません: Query refused
-</code></pre><h1 id=対策>対策</h1><p>対策方法はいろいろあると思いますが、__「Dockerが利用するDNSサーバを<code>registry.npmjs.org</code>の名前解決ができるGoogle Public DNS (8.8.8.8)にする」__ことで問題が解消しました。</p><ol><li><code>%DOCKER_CERT_PATH%\config.json</code> の <code>HostOptions > EngineOptions > Dns</code>を編集し、DNSサーバとして<code>8.8.8.8</code>を登録する。</li><li>Docker Machineを再起動する (<code>docker-machine restart</code>)</li></ol><pre><code>&quot;DriverName&quot;: &quot;virtualbox&quot;,
+</code></pre><h1 id=対策>対策</h1><p>対策方法はいろいろあると思いますが、**「Dockerが利用するDNSサーバを<code>registry.npmjs.org</code>の名前解決ができるGoogle Public DNS (8.8.8.8)にする」**ことで問題が解消しました。</p><ol><li><code>%DOCKER_CERT_PATH%\config.json</code> の <code>HostOptions > EngineOptions > Dns</code>を編集し、DNSサーバとして<code>8.8.8.8</code>を登録する。</li><li>Docker Machineを再起動する (<code>docker-machine restart</code>)</li></ol><pre><code>&quot;DriverName&quot;: &quot;virtualbox&quot;,
 &quot;HostOptions&quot;: {
     &quot;Driver&quot;: &quot;&quot;,
     &quot;Memory&quot;: 0,
