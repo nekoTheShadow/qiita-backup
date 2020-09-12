@@ -1,0 +1,82 @@
+<!doctype html><html lang=en itemscope itemtype=http://schema.org/WebPage><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1"><title>SQLで素数列挙を行う - Qiita Backup</title><meta name=description content="注意: 以下のクエリはPostgresSQLで動作確認を行っています。 postgres=# select version(); version ------------------------------------------------------------- PostgreSQL 9.6.1, compiled by Visual C++ build 1800, 64-bit (1 行) いつものように仕事をさぼっていたときの"><script type=application/ld+json>{"@context":"http://schema.org","@type":"WebSite","name":"Qiita Backup","url":"https:\/\/nekotheshadow.github.io\/qiita-backup"}</script><script type=application/ld+json>{"@context":"http://schema.org","@type":"Organization","name":"","url":"https:\/\/nekotheshadow.github.io\/qiita-backup"}</script><script type=application/ld+json>{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https:\/\/nekotheshadow.github.io\/qiita-backup","name":"home"}},{"@type":"ListItem","position":3,"item":{"@id":"https:\/\/nekotheshadow.github.io\/qiita-backup\/blog\/18348d38eb3f350a9d2e\/","name":"S q lで素数列挙を行う"}}]}</script><script type=application/ld+json>{"@context":"http://schema.org","@type":"Article","author":{"name":""},"headline":"SQLで素数列挙を行う","description":"注意: 以下のクエリはPostgresSQLで動作確認を行っています。 postgres=# select version(); version ------------------------------------------------------------- PostgreSQL 9.6.1, compiled by Visual C\u002b\u002b build 1800, 64-bit (1 行) いつものように仕事をさぼっていたときの","inLanguage":"en","wordCount":817,"datePublished":"2017-01-08T00:01:18","dateModified":"2017-01-08T00:01:18","image":"https:\/\/nekotheshadow.github.io\/qiita-backup","keywords":["SQL, PostgreSQL"],"mainEntityOfPage":"https:\/\/nekotheshadow.github.io\/qiita-backup\/blog\/18348d38eb3f350a9d2e\/","publisher":{"@type":"Organization","name":"https:\/\/nekotheshadow.github.io\/qiita-backup","logo":{"@type":"ImageObject","url":"https:\/\/nekotheshadow.github.io\/qiita-backup","height":60,"width":60}}}</script><meta property="og:title" content="SQLで素数列挙を行う"><meta property="og:description" content="注意: 以下のクエリはPostgresSQLで動作確認を行っています。 postgres=# select version(); version ------------------------------------------------------------- PostgreSQL 9.6.1, compiled by Visual C++ build 1800, 64-bit (1 行) いつものように仕事をさぼっていたときの"><meta property="og:url" content="https://nekotheshadow.github.io/qiita-backup/blog/18348d38eb3f350a9d2e/"><meta property="og:type" content="website"><meta property="og:site_name" content="Qiita Backup"><meta name=twitter:title content="SQLで素数列挙を行う"><meta name=twitter:description content="注意: 以下のクエリはPostgresSQLで動作確認を行っています。 postgres=# select version(); version ------------------------------------------------------------- PostgreSQL 9.6.1, compiled by Visual C++ build 1800, 64-bit (1 行) …"><meta name=twitter:card content="summary"><meta name=generator content="Hugo 0.74.3"><link rel=alternate href=https://nekotheshadow.github.io/qiita-backup/index.xml type=application/rss+xml title="Qiita Backup"><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css integrity=sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y crossorigin=anonymous><link rel=stylesheet href=https://use.fontawesome.com/releases/v5.5.0/css/all.css integrity=sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU crossorigin=anonymous><link rel=stylesheet href=https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css integrity=sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u crossorigin=anonymous><link rel=stylesheet href=https://nekotheshadow.github.io/qiita-backup/css/main.css><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic"><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800"><link rel=stylesheet href=https://nekotheshadow.github.io/qiita-backup/css/syntax.css><link rel=stylesheet href=https://nekotheshadow.github.io/qiita-backup/css/codeblock.css><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css integrity=sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh crossorigin=anonymous><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css integrity=sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R crossorigin=anonymous></head><body><nav class="navbar navbar-default navbar-fixed-top navbar-custom"><div class=container-fluid><div class=navbar-header><button type=button class=navbar-toggle data-toggle=collapse data-target=#main-navbar>
+<span class=sr-only>Toggle navigation</span>
+<span class=icon-bar></span><span class=icon-bar></span><span class=icon-bar></span></button>
+<a class=navbar-brand href=https://nekotheshadow.github.io/qiita-backup>Qiita Backup</a></div><div class="collapse navbar-collapse" id=main-navbar><ul class="nav navbar-nav navbar-right"></ul></div></div></nav><div class=pswp tabindex=-1 role=dialog aria-hidden=true><div class=pswp__bg></div><div class=pswp__scroll-wrap><div class=pswp__container><div class=pswp__item></div><div class=pswp__item></div><div class=pswp__item></div></div><div class="pswp__ui pswp__ui--hidden"><div class=pswp__top-bar><div class=pswp__counter></div><button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+<button class="pswp__button pswp__button--share" title=Share></button>
+<button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+<button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button><div class=pswp__preloader><div class=pswp__preloader__icn><div class=pswp__preloader__cut><div class=pswp__preloader__donut></div></div></div></div></div><div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap"><div class=pswp__share-tooltip></div></div><button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)"></button>
+<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button><div class=pswp__caption><div class=pswp__caption__center></div></div></div></div></div><header class=header-section><div class="intro-header no-img"><div class=container><div class=row><div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1"><div class=blog-heading><h1>SQLで素数列挙を行う</h1><hr class=small></div></div></div></div></div></header><div class=container role=main><div class=row><div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1"><article role=main class=blog-post><p><strong>注意:</strong> 以下のクエリはPostgresSQLで動作確認を行っています。</p><pre><code class=language-psql data-lang=psql>postgres=# select version();
+                           version
+-------------------------------------------------------------
+ PostgreSQL 9.6.1, compiled by Visual C++ build 1800, 64-bit
+(1 行)
+</code></pre><hr><p>いつものように仕事をさぼっていたときのこと。「さぼるにしても何かしら手を動かしておかないと周りから怪しまれるな……」なんて考えていたところ、SQLで素数列挙をしてみることを思いつきました。アリバイ工作というか偽装工作にもってこいということで、さっそく取り掛かることに。</p><p>まず自分が思いついた方法から。素数とは「1と自分以外の素数を持たない自然数」です。つまり約数の数を数えることにより素数かそうでないかを判定することができます。以下では「割る数」と「割られる数」の組み合わせを直積により求めたあと、「割る数」を約数としてその個数を数え、素数判定を行っています。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sql data-lang=sql><span style=color:#66d9ef>with</span> <span style=color:#66d9ef>recursive</span> numbers (x) <span style=color:#66d9ef>as</span> (
+        <span style=color:#66d9ef>select</span> <span style=color:#ae81ff>1</span>
+    <span style=color:#66d9ef>union</span> <span style=color:#66d9ef>all</span>
+        <span style=color:#66d9ef>select</span> x <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span> <span style=color:#66d9ef>from</span> numbers <span style=color:#66d9ef>where</span> x <span style=color:#f92672>&lt;</span> <span style=color:#ae81ff>50</span>) <span style=color:#75715e>-- 1..50の自然数を生成している。
+</span><span style=color:#75715e></span><span style=color:#66d9ef>select</span> dividends.x <span style=color:#66d9ef>as</span> prime
+<span style=color:#66d9ef>from</span> numbers <span style=color:#66d9ef>as</span> dividends, numbers <span style=color:#66d9ef>as</span> divisors
+<span style=color:#66d9ef>where</span> divisors.x <span style=color:#f92672>&lt;=</span> sqrt(dividends.x) <span style=color:#75715e>-- 試し割り: 平方根以下まで調べれば十分
+</span><span style=color:#75715e></span><span style=color:#66d9ef>and</span> dividends.x <span style=color:#f92672>&lt;&gt;</span> <span style=color:#ae81ff>1</span> <span style=color:#75715e>-- 定義上1は素数ではない
+</span><span style=color:#75715e></span><span style=color:#66d9ef>group</span> <span style=color:#66d9ef>by</span> dividends.x
+<span style=color:#66d9ef>having</span> <span style=color:#66d9ef>sum</span>(<span style=color:#66d9ef>case</span> <span style=color:#66d9ef>when</span> <span style=color:#66d9ef>mod</span>(dividends.x, divisors.x) <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>
+                <span style=color:#66d9ef>then</span> <span style=color:#ae81ff>1</span>
+                <span style=color:#66d9ef>else</span> <span style=color:#ae81ff>0</span> <span style=color:#66d9ef>end</span>) <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span> <span style=color:#75715e>-- 1以外の約数を持たない
+</span><span style=color:#75715e></span><span style=color:#66d9ef>order</span> <span style=color:#66d9ef>by</span> dividends.x;
+
+<span style=color:#75715e>/*
+</span><span style=color:#75715e> prime
+</span><span style=color:#75715e>-------
+</span><span style=color:#75715e>     2
+</span><span style=color:#75715e>     3
+</span><span style=color:#75715e>     5
+</span><span style=color:#75715e>     7
+</span><span style=color:#75715e>    11
+</span><span style=color:#75715e>    13
+</span><span style=color:#75715e>    17
+</span><span style=color:#75715e>    19
+</span><span style=color:#75715e>    23
+</span><span style=color:#75715e>    29
+</span><span style=color:#75715e>    31
+</span><span style=color:#75715e>    37
+</span><span style=color:#75715e>    41
+</span><span style=color:#75715e>    43
+</span><span style=color:#75715e>    47
+</span><span style=color:#75715e>*/</span>
+</code></pre></div><p>さて意外にも早く書きあがってしまったため、同じことをしている人がいないかどうかを調べるべく、ネットサーフィンを始めたところ――<a href=http://www.geocities.jp/mickindex/database/db_puzzle_math_a.html#LocalLink-prime>日本でSQLを書くにあたっては避けては通れないミックさんのウェブサイトに到達</a>。そこで示されていた解答がシンプルかつ効率もよさげだったので、自分なりに書き直してみることにしました。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sql data-lang=sql><span style=color:#66d9ef>with</span> <span style=color:#66d9ef>recursive</span> numbers (x) <span style=color:#66d9ef>as</span> (
+        <span style=color:#66d9ef>select</span> <span style=color:#ae81ff>2</span>
+    <span style=color:#66d9ef>union</span> <span style=color:#66d9ef>all</span>
+        <span style=color:#66d9ef>select</span> x <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span> <span style=color:#66d9ef>from</span> numbers <span style=color:#66d9ef>where</span> x <span style=color:#f92672>&lt;</span> <span style=color:#ae81ff>50</span>) <span style=color:#75715e>-- 2..50の自然数を生成している
+</span><span style=color:#75715e></span><span style=color:#66d9ef>select</span> dividends.x <span style=color:#66d9ef>as</span> prime
+<span style=color:#66d9ef>from</span> numbers <span style=color:#66d9ef>as</span> dividends
+<span style=color:#66d9ef>where</span> <span style=color:#66d9ef>not</span> <span style=color:#66d9ef>exists</span>(
+    <span style=color:#66d9ef>select</span> <span style=color:#f92672>*</span> 
+    <span style=color:#66d9ef>from</span> numbers <span style=color:#66d9ef>as</span> divisors
+    <span style=color:#66d9ef>where</span> divisors.x <span style=color:#f92672>&lt;=</span> sqrt(dividends.x) <span style=color:#75715e>-- 試し割り: 平方根以下まで調べれば十分
+</span><span style=color:#75715e></span>    <span style=color:#66d9ef>and</span> <span style=color:#66d9ef>mod</span>(dividends.x, divisors.x) <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span> )
+<span style=color:#66d9ef>order</span> <span style=color:#66d9ef>by</span> dividends.x;
+
+<span style=color:#75715e>/*
+</span><span style=color:#75715e> prime
+</span><span style=color:#75715e>-------
+</span><span style=color:#75715e>     2
+</span><span style=color:#75715e>     3
+</span><span style=color:#75715e>     5
+</span><span style=color:#75715e>     7
+</span><span style=color:#75715e>    11
+</span><span style=color:#75715e>    13
+</span><span style=color:#75715e>    17
+</span><span style=color:#75715e>    19
+</span><span style=color:#75715e>    23
+</span><span style=color:#75715e>    29
+</span><span style=color:#75715e>    31
+</span><span style=color:#75715e>    37
+</span><span style=color:#75715e>    41
+</span><span style=color:#75715e>    43
+</span><span style=color:#75715e>    47
+</span><span style=color:#75715e>*/</span>
+</code></pre></div><p>素数判定=約数の個数判定を<code>not exists</code>を利用することにより、読みやすく、かつ効率のいいクエリになっています。まだまだSQLも奥が深いですね。もっとべんきょうせねば(´・ω・｀)</p><div class=blog-tags><a href=https://nekotheshadow.github.io/qiita-backup/tags/sql/>SQL</a>&nbsp;
+<a href=https://nekotheshadow.github.io/qiita-backup/tags/postgresql/>PostgreSQL</a>&nbsp;</div></article><ul class="pager blog-pager"><li class=previous><a href=https://nekotheshadow.github.io/qiita-backup/blog/b1a946baadaeee92c7ca/ data-toggle=tooltip data-placement=top title=SQLでFizzBuzzを書いた>&larr; Previous Post</a></li><li class=next><a href=https://nekotheshadow.github.io/qiita-backup/blog/d401e0c23892b0d53c2a/ data-toggle=tooltip data-placement=top title=木構造の親または子を再帰的に取得する>Next Post &rarr;</a></li></ul></div></div></div><footer><div class=container><div class=row><div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1"><ul class="list-inline text-center footer-links"></ul><p class="credits copyright text-muted">&nbsp;&bull;&nbsp;&copy;
+2020
+&nbsp;&bull;&nbsp;
+<a href=https://nekotheshadow.github.io/qiita-backup>Qiita Backup</a></p><p class="credits theme-by text-muted"><a href=https://gohugo.io>Hugo v0.74.3</a> powered &nbsp;&bull;&nbsp; Theme <a href=https://github.com/halogenica/beautifulhugo>Beautiful Hugo</a> adapted from <a href=https://deanattali.com/beautiful-jekyll/>Beautiful Jekyll</a></p></div></div></div></footer><script src=https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.js integrity=sha384-K3vbOmF2BtaVai+Qk37uypf7VrgBubhQreNQe9aGsz9lB63dIFiQVlJbr92dw2Lx crossorigin=anonymous></script><script src=https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/contrib/auto-render.min.js integrity=sha384-kmZOZB5ObwgQnS/DuDg6TScgOiWWBiVt0plIRkZCmE6rDZGrEOQeHM5PcHi+nyqe crossorigin=anonymous></script><script src=https://code.jquery.com/jquery-1.12.4.min.js integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin=anonymous></script><script src=https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js integrity=sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa crossorigin=anonymous></script><script src=https://nekotheshadow.github.io/qiita-backup/js/main.js></script><script>renderMathInElement(document.body);</script><script src=https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js integrity=sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy crossorigin=anonymous></script><script src=https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js integrity=sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q crossorigin=anonymous></script><script src=https://nekotheshadow.github.io/qiita-backup/js/load-photoswipe.js></script></body></html>

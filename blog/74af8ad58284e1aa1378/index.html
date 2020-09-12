@@ -1,0 +1,67 @@
+<!doctype html><html lang=en itemscope itemtype=http://schema.org/WebPage><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1"><title>trapがどんどん上書きされてしまう - Qiita Backup</title><meta name=description content="受け取ったシグナルに合わせて、指定した処理を実行してくれるtrap、とても便利ですよね(´・ω・｀) 個人的には「作成した一時ファイルを終了後"><script type=application/ld+json>{"@context":"http://schema.org","@type":"WebSite","name":"Qiita Backup","url":"https:\/\/nekotheshadow.github.io\/qiita-backup"}</script><script type=application/ld+json>{"@context":"http://schema.org","@type":"Organization","name":"","url":"https:\/\/nekotheshadow.github.io\/qiita-backup"}</script><script type=application/ld+json>{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https:\/\/nekotheshadow.github.io\/qiita-backup","name":"home"}},{"@type":"ListItem","position":3,"item":{"@id":"https:\/\/nekotheshadow.github.io\/qiita-backup\/blog\/74af8ad58284e1aa1378\/","name":"Trapがどんどん上書きされてしまう"}}]}</script><script type=application/ld+json>{"@context":"http://schema.org","@type":"Article","author":{"name":""},"headline":"trapがどんどん上書きされてしまう","description":"受け取ったシグナルに合わせて、指定した処理を実行してくれるtrap、とても便利ですよね(´・ω・｀) 個人的には「作成した一時ファイルを終了後","inLanguage":"en","wordCount":650,"datePublished":"2018-03-01T23:01:14","dateModified":"2018-03-01T23:01:14","image":"https:\/\/nekotheshadow.github.io\/qiita-backup","keywords":["Bash, trap, signal"],"mainEntityOfPage":"https:\/\/nekotheshadow.github.io\/qiita-backup\/blog\/74af8ad58284e1aa1378\/","publisher":{"@type":"Organization","name":"https:\/\/nekotheshadow.github.io\/qiita-backup","logo":{"@type":"ImageObject","url":"https:\/\/nekotheshadow.github.io\/qiita-backup","height":60,"width":60}}}</script><meta property="og:title" content="trapがどんどん上書きされてしまう"><meta property="og:description" content="受け取ったシグナルに合わせて、指定した処理を実行してくれるtrap、とても便利ですよね(´・ω・｀) 個人的には「作成した一時ファイルを終了後"><meta property="og:url" content="https://nekotheshadow.github.io/qiita-backup/blog/74af8ad58284e1aa1378/"><meta property="og:type" content="website"><meta property="og:site_name" content="Qiita Backup"><meta name=twitter:title content="trapがどんどん上書きされてしまう"><meta name=twitter:description content="受け取ったシグナルに合わせて、指定した処理を実行してくれるtrap、とても便利ですよね(´・ω・｀) 個人的には「作成した一時ファイルを終了後"><meta name=twitter:card content="summary"><meta name=generator content="Hugo 0.74.3"><link rel=alternate href=https://nekotheshadow.github.io/qiita-backup/index.xml type=application/rss+xml title="Qiita Backup"><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css integrity=sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y crossorigin=anonymous><link rel=stylesheet href=https://use.fontawesome.com/releases/v5.5.0/css/all.css integrity=sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU crossorigin=anonymous><link rel=stylesheet href=https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css integrity=sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u crossorigin=anonymous><link rel=stylesheet href=https://nekotheshadow.github.io/qiita-backup/css/main.css><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic"><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800"><link rel=stylesheet href=https://nekotheshadow.github.io/qiita-backup/css/syntax.css><link rel=stylesheet href=https://nekotheshadow.github.io/qiita-backup/css/codeblock.css><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css integrity=sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh crossorigin=anonymous><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css integrity=sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R crossorigin=anonymous></head><body><nav class="navbar navbar-default navbar-fixed-top navbar-custom"><div class=container-fluid><div class=navbar-header><button type=button class=navbar-toggle data-toggle=collapse data-target=#main-navbar>
+<span class=sr-only>Toggle navigation</span>
+<span class=icon-bar></span><span class=icon-bar></span><span class=icon-bar></span></button>
+<a class=navbar-brand href=https://nekotheshadow.github.io/qiita-backup>Qiita Backup</a></div><div class="collapse navbar-collapse" id=main-navbar><ul class="nav navbar-nav navbar-right"></ul></div></div></nav><div class=pswp tabindex=-1 role=dialog aria-hidden=true><div class=pswp__bg></div><div class=pswp__scroll-wrap><div class=pswp__container><div class=pswp__item></div><div class=pswp__item></div><div class=pswp__item></div></div><div class="pswp__ui pswp__ui--hidden"><div class=pswp__top-bar><div class=pswp__counter></div><button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+<button class="pswp__button pswp__button--share" title=Share></button>
+<button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+<button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button><div class=pswp__preloader><div class=pswp__preloader__icn><div class=pswp__preloader__cut><div class=pswp__preloader__donut></div></div></div></div></div><div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap"><div class=pswp__share-tooltip></div></div><button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)"></button>
+<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button><div class=pswp__caption><div class=pswp__caption__center></div></div></div></div></div><header class=header-section><div class="intro-header no-img"><div class=container><div class=row><div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1"><div class=blog-heading><h1>trapがどんどん上書きされてしまう</h1><hr class=small></div></div></div></div></div></header><div class=container role=main><div class=row><div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1"><article role=main class=blog-post><p>受け取ったシグナルに合わせて、指定した処理を実行してくれる<code>trap</code>、とても便利ですよね(´・ω・｀) 個人的には「作成した一時ファイルを終了後に必ず破棄する」という処理を実装する際によく利用しています。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>path<span style=color:#f92672>=</span><span style=color:#66d9ef>$(</span>mktemp<span style=color:#66d9ef>)</span>
+trap <span style=color:#e6db74>&#34;rm -f </span><span style=color:#e6db74>${</span>path<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span> EXIT
+</code></pre></div><p>ひとつのシグナルに対する処理はそのスクリプト内において1回しか定義できない、つまりtrapを呼び出すたびにどんどん上書きされてしまうことに注意する必要があります。たとえば「複数の一時ファイルを作成し、処理終了後にそれらをすべて破棄する」とき、ついつい次のようなコードを書きがちです。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash:trap_test.sh data-lang=bash:trap_test.sh><span style=color:#75715e>#!/bin/bash
+</span><span style=color:#75715e></span>
+set -x
+
+path1<span style=color:#f92672>=</span><span style=color:#66d9ef>$(</span>mktemp<span style=color:#66d9ef>)</span>
+path2<span style=color:#f92672>=</span><span style=color:#66d9ef>$(</span>mktemp<span style=color:#66d9ef>)</span>
+path3<span style=color:#f92672>=</span><span style=color:#66d9ef>$(</span>mktemp<span style=color:#66d9ef>)</span>
+
+<span style=color:#66d9ef>for</span> path in <span style=color:#e6db74>${</span>path1<span style=color:#e6db74>}</span> <span style=color:#e6db74>${</span>path2<span style=color:#e6db74>}</span> <span style=color:#e6db74>${</span>path3<span style=color:#e6db74>}</span>; <span style=color:#66d9ef>do</span>
+  trap <span style=color:#e6db74>&#34;rm -f </span><span style=color:#e6db74>${</span>path<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span> EXIT
+<span style=color:#66d9ef>done</span>
+
+<span style=color:#75715e># === do_something ===</span>
+
+exit <span style=color:#ae81ff>0</span>
+</code></pre></div><p>これを実行した結果が以下の通りになります。trapを3回呼び出して、作成した3つの一時ファイルを処理終了後に削除することを意図していますが、<code>rm</code>は一度しか呼ばれていません。また少しわかりづらいのですが、trapにより呼ばれた<code>rm</code>は<code>path3</code>を削除しています。つまり<code>trap</code>は呼び出すごとに指定した処理を上書きしているとわかります。</p><pre><code>$ bash trap_test.sh
+++ mktemp
++ path1=/tmp/tmp.0dzHkNQP8n
+++ mktemp
++ path2=/tmp/tmp.CtuP5ZdxyW
+++ mktemp
++ path3=/tmp/tmp.8TZD5DRKKI
++ for path in '${path1}' '${path2}' '${path3}'
++ trap 'rm -f /tmp/tmp.0dzHkNQP8n' EXIT
++ for path in '${path1}' '${path2}' '${path3}'
++ trap 'rm -f /tmp/tmp.CtuP5ZdxyW' EXIT
++ for path in '${path1}' '${path2}' '${path3}'
++ trap 'rm -f /tmp/tmp.8TZD5DRKKI' EXIT
++ exit 0
++ rm -f /tmp/tmp.8TZD5DRKKI
+</code></pre><p>したがって意図通りにするためには、<code>trap_test.sh</code>を次のように修正する必要があります。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash:trap_test.sh data-lang=bash:trap_test.sh><span style=color:#75715e>#!/bin/bash
+</span><span style=color:#75715e></span>
+set -x
+
+path1<span style=color:#f92672>=</span><span style=color:#66d9ef>$(</span>mktemp<span style=color:#66d9ef>)</span>
+path2<span style=color:#f92672>=</span><span style=color:#66d9ef>$(</span>mktemp<span style=color:#66d9ef>)</span>
+path3<span style=color:#f92672>=</span><span style=color:#66d9ef>$(</span>mktemp<span style=color:#66d9ef>)</span>
+trap <span style=color:#e6db74>&#34;rm -f </span><span style=color:#e6db74>${</span>path1<span style=color:#e6db74>}</span><span style=color:#e6db74> </span><span style=color:#e6db74>${</span>path2<span style=color:#e6db74>}</span><span style=color:#e6db74> </span><span style=color:#e6db74>${</span>path3<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span> EXIT
+
+<span style=color:#75715e># === do_something ===</span>
+
+exit <span style=color:#ae81ff>0</span>
+</code></pre></div><p>この実行結果は以下の通りです。作成した3つの一時ファイルが<code>rm</code>の対象になっていることが確認できます(´・ω・｀)</p><pre><code>$ bash trap_test.sh
+++ mktemp
++ path1=/tmp/tmp.vrVWvDvk9P
+++ mktemp
++ path2=/tmp/tmp.i2aLRF3WMr
+++ mktemp
++ path3=/tmp/tmp.Y6LOH2QYnw
++ trap 'rm -f /tmp/tmp.vrVWvDvk9P /tmp/tmp.i2aLRF3WMr /tmp/tmp.Y6LOH2QYnw' EXIT
++ exit 0
++ rm -f /tmp/tmp.vrVWvDvk9P /tmp/tmp.i2aLRF3WMr /tmp/tmp.Y6LOH2QYnw
+</code></pre><div class=blog-tags><a href=https://nekotheshadow.github.io/qiita-backup/tags/bash/>Bash</a>&nbsp;
+<a href=https://nekotheshadow.github.io/qiita-backup/tags/trap/>trap</a>&nbsp;
+<a href=https://nekotheshadow.github.io/qiita-backup/tags/signal/>signal</a>&nbsp;</div></article><ul class="pager blog-pager"><li class=previous><a href=https://nekotheshadow.github.io/qiita-backup/blog/ac70d89bc7797e554967/ data-toggle=tooltip data-placement=top title=WebDriverでアクセスしたWebサイトのソースコードを取り出したい>&larr; Previous Post</a></li><li class=next><a href=https://nekotheshadow.github.io/qiita-backup/blog/bc4a399b9e4a298d28c6/ data-toggle=tooltip data-placement=top title=Python3で整数の最大値や小数の無限大を扱いたい>Next Post &rarr;</a></li></ul></div></div></div><footer><div class=container><div class=row><div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1"><ul class="list-inline text-center footer-links"></ul><p class="credits copyright text-muted">&nbsp;&bull;&nbsp;&copy;
+2020
+&nbsp;&bull;&nbsp;
+<a href=https://nekotheshadow.github.io/qiita-backup>Qiita Backup</a></p><p class="credits theme-by text-muted"><a href=https://gohugo.io>Hugo v0.74.3</a> powered &nbsp;&bull;&nbsp; Theme <a href=https://github.com/halogenica/beautifulhugo>Beautiful Hugo</a> adapted from <a href=https://deanattali.com/beautiful-jekyll/>Beautiful Jekyll</a></p></div></div></div></footer><script src=https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.js integrity=sha384-K3vbOmF2BtaVai+Qk37uypf7VrgBubhQreNQe9aGsz9lB63dIFiQVlJbr92dw2Lx crossorigin=anonymous></script><script src=https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/contrib/auto-render.min.js integrity=sha384-kmZOZB5ObwgQnS/DuDg6TScgOiWWBiVt0plIRkZCmE6rDZGrEOQeHM5PcHi+nyqe crossorigin=anonymous></script><script src=https://code.jquery.com/jquery-1.12.4.min.js integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin=anonymous></script><script src=https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js integrity=sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa crossorigin=anonymous></script><script src=https://nekotheshadow.github.io/qiita-backup/js/main.js></script><script>renderMathInElement(document.body);</script><script src=https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js integrity=sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy crossorigin=anonymous></script><script src=https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js integrity=sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q crossorigin=anonymous></script><script src=https://nekotheshadow.github.io/qiita-backup/js/load-photoswipe.js></script></body></html>
