@@ -40,7 +40,7 @@ jobs:
         cd public
         if [[ $(git status -s | wc -l) -ne 0 ]]; then
           git add -A
-          git commit -m "Commit by Github Actions (last commit: `${msg}`)"
+          git commit -m "Commit by Github Actions (last commit: ${msg})"
           git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/nekoTheShadow/qiita-backup.git doc
         fi
 
@@ -48,6 +48,6 @@ jobs:
         cd backup
         if [[ $(git status -s | wc -l) -ne 0 ]]; then
           git add -A
-          git commit -m "Commit by Github Actions (last commit: `${msg}`)"
+          git commit -m "Commit by Github Actions (last commit: ${msg})"
           git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/nekoTheShadow/qiita-backup.git backup
         fi
