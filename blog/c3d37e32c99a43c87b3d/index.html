@@ -18,7 +18,7 @@
             t <span style=color:#f92672>=</span> (j <span style=color:#f92672>-</span> i <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span>) <span style=color:#f92672>//</span> <span style=color:#ae81ff>3</span>
             stack<span style=color:#f92672>.</span>extend(((i, j <span style=color:#f92672>-</span> t), (i <span style=color:#f92672>+</span> t, j), (i, j <span style=color:#f92672>-</span> t)))
 
-<span style=color:#66d9ef>if</span> <span style=color:#f92672>**</span>name<span style=color:#f92672>**</span> <span style=color:#f92672>==</span> <span style=color:#e6db74>&#39;**main**&#39;</span>:
+<span style=color:#66d9ef>if</span> __name__ <span style=color:#f92672>==</span> <span style=color:#e6db74>&#39;__main__&#39;</span>:
     <span style=color:#f92672>import</span> random
 
     ls <span style=color:#f92672>=</span> list(range(<span style=color:#ae81ff>30</span>))
@@ -74,7 +74,7 @@
 
         stack<span style=color:#f92672>.</span>extend(((j <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span>, right), (left, i <span style=color:#f92672>-</span> <span style=color:#ae81ff>1</span>)))
 
-<span style=color:#66d9ef>if</span> <span style=color:#f92672>**</span>name<span style=color:#f92672>**</span> <span style=color:#f92672>==</span> <span style=color:#e6db74>&#39;**main**&#39;</span>:
+<span style=color:#66d9ef>if</span> __name__ <span style=color:#f92672>==</span> <span style=color:#e6db74>&#39;__main__&#39;</span>:
     <span style=color:#f92672>import</span> random<span style=color:#f92672>,</span> copy<span style=color:#f92672>,</span> time
 
     ls <span style=color:#f92672>=</span> list(range(<span style=color:#ae81ff>1000</span>))

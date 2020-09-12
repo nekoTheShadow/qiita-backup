@@ -17,7 +17,7 @@
     
     <span style=color:#66d9ef>return</span> <span style=color:#e6db74>&#39;</span><span style=color:#ae81ff>\n</span><span style=color:#e6db74>&#39;</span><span style=color:#f92672>.</span>join(<span style=color:#e6db74>&#39;&#39;</span><span style=color:#f92672>.</span>join(row) <span style=color:#66d9ef>for</span> row <span style=color:#f92672>in</span> matrix)
 
-<span style=color:#66d9ef>if</span> <span style=color:#f92672>**</span>name<span style=color:#f92672>**</span> <span style=color:#f92672>==</span> <span style=color:#e6db74>&#39;**main**&#39;</span>:
+<span style=color:#66d9ef>if</span> __name__ <span style=color:#f92672>==</span> <span style=color:#e6db74>&#39;__main__&#39;</span>:
     n <span style=color:#f92672>=</span> int(input())
     <span style=color:#66d9ef>print</span>(draw(n))
 </code></pre></div><p>次はPython3の「ふつう」ではない解答、つまり1行野郎で解いたものが以下になります。これも「ふつう」の解答と同様に標準入力の1行目をnとします。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#66d9ef>print</span>((<span style=color:#66d9ef>lambda</span> n : <span style=color:#e6db74>&#39;invalid&#39;</span> <span style=color:#66d9ef>if</span> n <span style=color:#f92672>%</span> <span style=color:#ae81ff>2</span> <span style=color:#f92672>==</span> <span style=color:#ae81ff>0</span> <span style=color:#66d9ef>else</span> <span style=color:#e6db74>&#39;</span><span style=color:#ae81ff>\n</span><span style=color:#e6db74>&#39;</span><span style=color:#f92672>.</span>join(<span style=color:#e6db74>&#39;&#39;</span><span style=color:#f92672>.</span>join(ch <span style=color:#66d9ef>if</span> y <span style=color:#f92672>in</span> (abs(n <span style=color:#f92672>//</span> <span style=color:#ae81ff>2</span> <span style=color:#f92672>-</span> x), (n <span style=color:#f92672>-</span> <span style=color:#ae81ff>1</span>) <span style=color:#f92672>-</span> abs(n <span style=color:#f92672>//</span> <span style=color:#ae81ff>2</span> <span style=color:#f92672>-</span> x)) <span style=color:#66d9ef>else</span> <span style=color:#e6db74>&#39;_&#39;</span> <span style=color:#66d9ef>for</span> y <span style=color:#f92672>in</span> range(n)) <span style=color:#66d9ef>for</span> x, ch <span style=color:#f92672>in</span> zip(range(n), <span style=color:#e6db74>&#39;abcdefghijklmnopqrstuvwxyz&#39;</span>)))(int(input())))
@@ -27,11 +27,11 @@ Python 3.6.5 (default, Apr  1 2018, 05:46:30)
 Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.
 &gt;&gt;&gt; print((lambda n : 'invalid' if n % 2 == 0 else '\n'.join(''.join(ch if y in (abs(n // 2 - x), (n - 1) - abs(n // 2 - x)) else '_' for y in range(n)) for x, ch in zip(range(n), 'abcdefghijklmnopqrstuvwxyz')))(int(input())))
 5
-**a**
+__a__
 _b_b_
-c**_c
+c___c
 _d_d_
-**e**
+__e__
 &gt;&gt;&gt; print((lambda n : 'invalid' if n % 2 == 0 else '\n'.join(''.join(ch if y in (abs(n // 2 - x), (n - 1) - abs(n // 2 - x)) else '_' for y in range(n)) for x, ch in zip(range(n), 'abcdefghijklmnopqrstuvwxyz')))(int(input())))
 2
 invalid
@@ -72,31 +72,31 @@ invalid
 $ psql -d sandbox -U postgres -v N=25 -f zunda.sql
           answer
 ---------------------------
- ************a************+
- **********_b_b**********_+
- **********c**_c**********+
- ********_d****_d********_+
- ********e******_e********+
- ******_f********_f******_+
- ******g**********_g******+
- ****_h************_h****_+
- ****i**************_i****+
- **_j****************_j**_+
- **k******************_k**+
- _l********************_l_+
- m**********************_m+
- _n********************_n_+
- **o******************_o**+
- **_p****************_p**_+
- ****q**************_q****+
- ****_r************_r****_+
- ******s**********_s******+
- ******_t********_t******_+
- ********u******_u********+
- ********_v****_v********_+
- **********w**_w**********+
- **********_x_x**********_+
- ************y************
+ ____________a____________+
+ ___________b_b___________+
+ __________c___c__________+
+ _________d_____d_________+
+ ________e_______e________+
+ _______f_________f_______+
+ ______g___________g______+
+ _____h_____________h_____+
+ ____i_______________i____+
+ ___j_________________j___+
+ __k___________________k__+
+ _l_____________________l_+
+ m_______________________m+
+ _n_____________________n_+
+ __o___________________o__+
+ ___p_________________p___+
+ ____q_______________q____+
+ _____r_____________r_____+
+ ______s___________s______+
+ _______t_________t_______+
+ ________u_______u________+
+ _________v_____v_________+
+ __________w___w__________+
+ ___________x_x___________+
+ ____________y____________
 (1 row)
 </code></pre><div class=blog-tags><a href=https://nekotheshadow.github.io/qiita-backup/tags/sql/>SQL</a>&nbsp;
 <a href=https://nekotheshadow.github.io/qiita-backup/tags/python3/>Python3</a>&nbsp;</div></article><ul class="pager blog-pager"><li class=previous><a href=https://nekotheshadow.github.io/qiita-backup/blog/8d7c77587519d357e1dd/ data-toggle=tooltip data-placement=top title="ずんだのMARQUEE問題 C#編">&larr; Previous Post</a></li><li class=next><a href=https://nekotheshadow.github.io/qiita-backup/blog/e6a931b8a9193b47fcd3/ data-toggle=tooltip data-placement=top title=C#でサイズnの順列をすべて生成したい。>Next Post &rarr;</a></li></ul></div></div></div><footer><div class=container><div class=row><div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1"><ul class="list-inline text-center footer-links"></ul><p class="credits copyright text-muted">&nbsp;&bull;&nbsp;&copy;

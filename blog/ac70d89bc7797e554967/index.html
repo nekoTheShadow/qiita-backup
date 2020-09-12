@@ -9,7 +9,7 @@
 <span style=color:#f92672>from</span> bs4 <span style=color:#f92672>import</span> BeautifulSoup
 
 
-<span style=color:#66d9ef>if</span> <span style=color:#f92672>**</span>name<span style=color:#f92672>**</span> <span style=color:#f92672>==</span> <span style=color:#e6db74>&#39;**main**&#39;</span>: 
+<span style=color:#66d9ef>if</span> __name__ <span style=color:#f92672>==</span> <span style=color:#e6db74>&#39;__main__&#39;</span>: 
     driver <span style=color:#f92672>=</span> webdriver<span style=color:#f92672>.</span>Firefox()
     driver<span style=color:#f92672>.</span>get(<span style=color:#e6db74>&#39;https://helloworld.jp/hello/world&#39;</span>)
     soup <span style=color:#f92672>=</span> BeautifulSoup(driver<span style=color:#f92672>.</span>page_source, <span style=color:#e6db74>&#39;html.parser&#39;</span>)

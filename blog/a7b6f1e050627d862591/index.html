@@ -9,7 +9,7 @@
 <span style=color:#f92672>import</span> itertools
 
 <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Sudoku</span>(object):
-    <span style=color:#66d9ef>def</span> <span style=color:#960050;background-color:#1e0010>**</span><span style=color:#a6e22e>init</span><span style=color:#f92672>**</span>(self):
+    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>__init__</span>(self):
         self<span style=color:#f92672>.</span>matrix <span style=color:#f92672>=</span> [[<span style=color:#ae81ff>0</span> <span style=color:#66d9ef>for</span> _ <span style=color:#f92672>in</span> range(<span style=color:#ae81ff>9</span>)] <span style=color:#66d9ef>for</span> _ <span style=color:#f92672>in</span> range(<span style=color:#ae81ff>9</span>)] <span style=color:#75715e># 空白の場合は0</span>
     
     <span style=color:#75715e># 与えられた数独パズルを解く</span>
@@ -21,7 +21,7 @@
             <span style=color:#66d9ef>for</span> i, j <span style=color:#f92672>in</span> itertools<span style=color:#f92672>.</span>product(range(<span style=color:#ae81ff>9</span>), repeat<span style=color:#f92672>=</span><span style=color:#ae81ff>2</span>):
                 <span style=color:#66d9ef>if</span> self<span style=color:#f92672>.</span>matrix[i][j] <span style=color:#f92672>!=</span> <span style=color:#ae81ff>0</span>: <span style=color:#66d9ef>continue</span>
 
-                numbers <span style=color:#f92672>=</span> self<span style=color:#f92672>.**</span>find_numbers(i, j)
+                numbers <span style=color:#f92672>=</span> self<span style=color:#f92672>.</span>__find_numbers(i, j)
                 <span style=color:#66d9ef>if</span> len(numbers) <span style=color:#f92672>==</span> <span style=color:#ae81ff>1</span>: ls<span style=color:#f92672>.</span>append((i, j, numbers[<span style=color:#ae81ff>0</span>]))
 
             <span style=color:#66d9ef>if</span> len(ls) <span style=color:#f92672>==</span> <span style=color:#ae81ff>0</span>: <span style=color:#66d9ef>break</span>
@@ -32,7 +32,7 @@
         <span style=color:#66d9ef>if</span> len(blanks) <span style=color:#f92672>==</span> <span style=color:#ae81ff>0</span>: <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>True</span> <span style=color:#75715e># すでにすべてのマスが埋められている場合</span>
 
         first_i, first_j <span style=color:#f92672>=</span> blanks[<span style=color:#ae81ff>0</span>]
-        stack <span style=color:#f92672>=</span> [(<span style=color:#ae81ff>0</span>, first_number) <span style=color:#66d9ef>for</span> first_number <span style=color:#f92672>in</span> self<span style=color:#f92672>.**</span>find_numbers(first_i, first_j)]
+        stack <span style=color:#f92672>=</span> [(<span style=color:#ae81ff>0</span>, first_number) <span style=color:#66d9ef>for</span> first_number <span style=color:#f92672>in</span> self<span style=color:#f92672>.</span>__find_numbers(first_i, first_j)]
 
         <span style=color:#75715e># バックトラック法:</span>
         <span style=color:#75715e>#     1. 空白のマスに数字を入れる</span>
@@ -46,7 +46,7 @@
             <span style=color:#66d9ef>if</span> idx <span style=color:#f92672>==</span> len(blanks) <span style=color:#f92672>-</span> <span style=color:#ae81ff>1</span>: <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>True</span>
 
             next_i, next_j <span style=color:#f92672>=</span> blanks[idx <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span>]
-            next_numbers <span style=color:#f92672>=</span> self<span style=color:#f92672>.**</span>find_numbers(next_i, next_j)
+            next_numbers <span style=color:#f92672>=</span> self<span style=color:#f92672>.</span>__find_numbers(next_i, next_j)
 
             <span style=color:#75715e># バックトラック</span>
             <span style=color:#66d9ef>if</span> len(next_numbers) <span style=color:#f92672>==</span> <span style=color:#ae81ff>0</span>:
@@ -60,7 +60,7 @@
         <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>False</span>
 
     <span style=color:#75715e># とあるマスに入れることができる数字をsetに格納する</span>
-    <span style=color:#66d9ef>def</span> <span style=color:#960050;background-color:#1e0010>**</span><span style=color:#a6e22e>find_numbers</span>(self, i, j):
+    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>__find_numbers</span>(self, i, j):
         used_numbers <span style=color:#f92672>=</span> set()
         <span style=color:#75715e># 同じ行と同じ列を調べる</span>
         <span style=color:#66d9ef>for</span> x <span style=color:#f92672>in</span> range(<span style=color:#ae81ff>9</span>): used_numbers <span style=color:#f92672>|=</span> {self<span style=color:#f92672>.</span>matrix[x][j], self<span style=color:#f92672>.</span>matrix[i][x]}
@@ -73,10 +73,10 @@
 
         <span style=color:#66d9ef>return</span> set(range(<span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>10</span>)) <span style=color:#f92672>-</span> used_numbers
 
-    <span style=color:#66d9ef>def</span> <span style=color:#960050;background-color:#1e0010>**</span><span style=color:#a6e22e>str</span><span style=color:#f92672>**</span>(self):
+    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>__str__</span>(self):
         <span style=color:#66d9ef>return</span> <span style=color:#e6db74>&#34;</span><span style=color:#ae81ff>\n</span><span style=color:#e6db74>&#34;</span><span style=color:#f92672>.</span>join(<span style=color:#e6db74>&#34;&#34;</span><span style=color:#f92672>.</span>join(map(str, row)) <span style=color:#66d9ef>for</span> row <span style=color:#f92672>in</span> self<span style=color:#f92672>.</span>matrix)
 
-<span style=color:#66d9ef>if</span> <span style=color:#f92672>**</span>name<span style=color:#f92672>**</span> <span style=color:#f92672>==</span> <span style=color:#e6db74>&#34;**main**&#34;</span>:
+<span style=color:#66d9ef>if</span> __name__ <span style=color:#f92672>==</span> <span style=color:#e6db74>&#34;__main__&#34;</span>:
     matrix <span style=color:#f92672>=</span> <span style=color:#e6db74>&#39;&#39;&#39;
 </span><span style=color:#e6db74>        ..53.....
 </span><span style=color:#e6db74>        8......2.
