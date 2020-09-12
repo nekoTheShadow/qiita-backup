@@ -9,7 +9,7 @@ class Convert
     @root_dir = Pathname(__dir__).parent
     @backup_dir = @root_dir.join('backup')
     @content_dir = @root_dir.join("content/blog")
-    FileUtils.rm_rf @content_dir
+    FileUtils::Verbose.rm_rf @content_dir
   end
 
   def run
@@ -23,7 +23,7 @@ class Convert
       body = item["body"]
     
       path = @content_dir.join("#{id}/index.md")
-      FileUtils.mkdir_p path.parent
+      FileUtils::Verbose.mkdir_p path.parent
       path.open("w") do |file|
         YAML.dump({"title" => title, "date" => date, "tags" => tags}, file)
         file << "---"
@@ -43,7 +43,7 @@ class Convert
       t = "![#{caption}](#{filename})"
       body.sub!(s, t)
 
-      FileUtils.cp @backup_dir.join("#{id}/#{filename}"), @content_dir.join("#{id}/#{filename}")
+      FileUtils::Verbose.cp @backup_dir.join("#{id}/#{filename}"), @content_dir.join("#{id}/#{filename}")
     end
     return body
   end
