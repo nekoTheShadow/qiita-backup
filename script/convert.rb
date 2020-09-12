@@ -48,7 +48,7 @@ class Convert
 
     body.scan(/__.+__/).each do |s|
       next if s =~ /__[[:ascii:]]+__/
-      body.sub!(s, s.sub("__", "**"))
+      body.sub!(s, s.gsub("__", "**"))
     end
     return body
   end
