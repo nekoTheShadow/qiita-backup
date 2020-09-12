@@ -29,7 +29,6 @@ jobs:
       run: |
         git config --global user.email "h.nakamura0903@gmail.com"
         git config --global user.name "nekoTheShadow"
-        cd ${GITHUB_WORKSPACE}/qiita-backup
         msg=$(git log -1 --pretty="%H %s")
 
         git clone --recursive -b doc    https://github.com/nekoTheShadow/qiita-backup.git public
@@ -38,14 +37,15 @@ jobs:
         ruby script/convert.rb
         hugo --minify
 
-        cd ${GITHUB_WORKSPACE}/qiita-backup/public
+        cd public
         if [[ $(git status -s | wc -l) -ne 0 ]]; then
           git add -A
           git commit -m "Commit by Github Actions (last commit: `${msg}`)"
           git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/nekoTheShadow/qiita-backup.git doc
         fi
 
-        cd ${GITHUB_WORKSPACE}/qiita-backup/backup
+        cd ..
+        cd backup
         if [[ $(git status -s | wc -l) -ne 0 ]]; then
           git add -A
           git commit -m "Commit by Github Actions (last commit: `${msg}`)"
