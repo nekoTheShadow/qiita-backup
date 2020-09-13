@@ -16,4 +16,4 @@ Qiitaに投稿した記事のバックアップを取得し、内容をGithub Pa
 # URL
 
 - https://github.com/nekoTheShadow/qiita-backup
-- https://nekotheshadow.github.io/qiita-backup/blog/52a1e7320c29275d5580/
+- https://nekotheshadow.github.io/qiita-backup
