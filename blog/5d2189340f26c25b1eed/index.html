@@ -13,7 +13,7 @@ java.util.logging.FileHandler.formatter = java.util.logging.SimpleFormatter
 
 java.util.logging.ConsoleHandler.level = INFO
 java.util.logging.ConsoleHandler.formatter = java.util.logging.SimpleFormatter
-</code></pre><p>たとえば上記のような<code>logging.properties</code>があって、これを<code>UtilLoggingJdbcLogger</code>の設定としたい場合、<code>-Djava.util.logging.config.file=\path\to\logging.properties</code>とすればよいです。</p><h1 id=2-javautilloggingconfigfileを利用する>2. java.util.logging.config.fileを利用する</h1><p>システムプロパティファイルを使わず、自分で<code>UtilLoggingJdbcLogger</code>を拡張することもできます。</p><p>まず<code>UtilLoggingJdbcLogger</code>を継承したクラスを作成します。このときログ出力の設定は<code>super.logger</code> (JULのインスタンス) に対して実施します。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>MyUtilLoggingJdbcLogger</span> <span style=color:#66d9ef>extends</span> UtilLoggingJdbcLogger <span style=color:#f92672>{</span>
+</code></pre><p>たとえば上記のような<code>logging.properties</code>があって、これを<code>UtilLoggingJdbcLogger</code>の設定としたい場合、<code>-Djava.util.logging.config.file=\path\to\logging.properties</code>とすればよいです。</p><h1 id=2-javautilloggingconfigfileを利用する>2. java.util.logging.config.fileを利用する</h1><p>システムプロパティファイルを使わず、自分で<code>UtilLoggingJdbcLogger</code>を拡張することもできます。</p><p>まず<code>UtilLoggingJdbcLogger</code>を継承したクラスを作成します。このときログ出力の設定は<code>super.logger</code> (JULのインスタンス) に対して実施します。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java:MyUtilLoggingJdbcLogger.java data-lang=java:MyUtilLoggingJdbcLogger.java><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>MyUtilLoggingJdbcLogger</span> <span style=color:#66d9ef>extends</span> UtilLoggingJdbcLogger <span style=color:#f92672>{</span>
     <span style=color:#66d9ef>public</span> <span style=color:#a6e22e>MyUtilLoggingJdbcLogger</span><span style=color:#f92672>()</span> <span style=color:#f92672>{</span>
         <span style=color:#66d9ef>try</span> <span style=color:#f92672>{</span>
             Formatter formatter <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> SimpleFormatter<span style=color:#f92672>();</span>
@@ -33,21 +33,21 @@ java.util.logging.ConsoleHandler.formatter = java.util.logging.SimpleFormatter
         <span style=color:#f92672>}</span>
     <span style=color:#f92672>}</span>
 <span style=color:#f92672>}</span>
-</code></pre></div><p>あとはDoma2のConfigクラスに作成した<code>MyUtilLoggingJdbcLogger</code>を使うよう設定します。具体的には<code>getJdbcLogger</code>メソッドをオーバライドして、<code>MyUtilLoggingJdbcLogger</code>インスタンスを戻り値とするだけです。</p><pre><code class=language-java:AppConfig data-lang=java:AppConfig>@SingletonConfig
-public class AppConfig implements Config {
-    private final JdbcLogger logger;
+</code></pre></div><p>あとはDoma2のConfigクラスに作成した<code>MyUtilLoggingJdbcLogger</code>を使うよう設定します。具体的には<code>getJdbcLogger</code>メソッドをオーバライドして、<code>MyUtilLoggingJdbcLogger</code>インスタンスを戻り値とするだけです。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java:AppConfig.java data-lang=java:AppConfig.java><span style=color:#a6e22e>@SingletonConfig</span>
+<span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>AppConfig</span> <span style=color:#66d9ef>implements</span> Config <span style=color:#f92672>{</span>
+    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>final</span> JdbcLogger logger<span style=color:#f92672>;</span>
 
-    private AppConfig() {
-        logger = new MyUtilLoggingJdbcLogger();
-    }
+    <span style=color:#66d9ef>private</span> <span style=color:#a6e22e>AppConfig</span><span style=color:#f92672>()</span> <span style=color:#f92672>{</span>
+        logger <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> MyUtilLoggingJdbcLogger<span style=color:#f92672>();</span>
+    <span style=color:#f92672>}</span>
 
-    @Override
-    public JdbcLogger getJdbcLogger() {
-        return logger;
-    }
-}
+    <span style=color:#a6e22e>@Override</span>
+    <span style=color:#66d9ef>public</span> JdbcLogger <span style=color:#a6e22e>getJdbcLogger</span><span style=color:#f92672>()</span> <span style=color:#f92672>{</span>
+        <span style=color:#66d9ef>return</span> logger<span style=color:#f92672>;</span>
+    <span style=color:#f92672>}</span>
+<span style=color:#f92672>}</span>
 
-</code></pre><h1 id=環境情報>環境情報</h1><ul><li>java: openjdk version &ldquo;11.0.3&rdquo; 2019-04-16</li><li>doma: 2.42.0</li></ul><div class=blog-tags><a href=https://nekotheshadow.github.io/qiita-backup/tags/java/>Java</a>&nbsp;
+</code></pre></div><h1 id=環境情報>環境情報</h1><ul><li>java: openjdk version &ldquo;11.0.3&rdquo; 2019-04-16</li><li>doma: 2.42.0</li></ul><div class=blog-tags><a href=https://nekotheshadow.github.io/qiita-backup/tags/java/>Java</a>&nbsp;
 <a href=https://nekotheshadow.github.io/qiita-backup/tags/doma2/>doma2</a>&nbsp;</div></article><ul class="pager blog-pager"><li class=previous><a href=https://nekotheshadow.github.io/qiita-backup/blog/f53ba312bad7b6dc2151/ data-toggle=tooltip data-placement=top title=指定した文字列が、対象の文字コードにおいてサポートされているかを調べたい>&larr; Previous Post</a></li></ul></div></div></div><footer><div class=container><div class=row><div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1"><ul class="list-inline text-center footer-links"></ul><p class="credits copyright text-muted">&nbsp;&bull;&nbsp;&copy;
 2020
 &nbsp;&bull;&nbsp;
