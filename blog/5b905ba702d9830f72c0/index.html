@@ -1,128 +1,135 @@
-<!doctype html><html lang=en itemscope itemtype=http://schema.org/WebPage><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1"><title>SQLでフィボナッチ数列を書いた - Qiita Backup</title><meta name=description content="以下のクエリはPostgreSQLで動作確認を行っています。 postgres=# select version(); version ------------------------------------------------------------- PostgreSQL 9.6.1, compiled by Visual C++ build 1800, 64-bit (1 行) 再帰呼び出しの課題としてよく利用されるのがフィ"><script type=application/ld+json>{"@context":"http://schema.org","@type":"WebSite","name":"Qiita Backup","url":"https:\/\/nekotheshadow.github.io\/qiita-backup"}</script><script type=application/ld+json>{"@context":"http://schema.org","@type":"Organization","name":"","url":"https:\/\/nekotheshadow.github.io\/qiita-backup"}</script><script type=application/ld+json>{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https:\/\/nekotheshadow.github.io\/qiita-backup","name":"home"}},{"@type":"ListItem","position":3,"item":{"@id":"https:\/\/nekotheshadow.github.io\/qiita-backup\/blog\/5b905ba702d9830f72c0\/","name":"S q lでフィボナッチ数列を書いた"}}]}</script><script type=application/ld+json>{"@context":"http://schema.org","@type":"Article","author":{"name":""},"headline":"SQLでフィボナッチ数列を書いた","description":"以下のクエリはPostgreSQLで動作確認を行っています。 postgres=# select version(); version ------------------------------------------------------------- PostgreSQL 9.6.1, compiled by Visual C\u002b\u002b build 1800, 64-bit (1 行) 再帰呼び出しの課題としてよく利用されるのがフィ","inLanguage":"en","wordCount":582,"datePublished":"2017-01-19T00:40:36","dateModified":"2017-01-19T00:40:36","image":"https:\/\/nekotheshadow.github.io\/qiita-backup","keywords":["SQL, PostgreSQL"],"mainEntityOfPage":"https:\/\/nekotheshadow.github.io\/qiita-backup\/blog\/5b905ba702d9830f72c0\/","publisher":{"@type":"Organization","name":"https:\/\/nekotheshadow.github.io\/qiita-backup","logo":{"@type":"ImageObject","url":"https:\/\/nekotheshadow.github.io\/qiita-backup","height":60,"width":60}}}</script><meta property="og:title" content="SQLでフィボナッチ数列を書いた"><meta property="og:description" content="以下のクエリはPostgreSQLで動作確認を行っています。 postgres=# select version(); version ------------------------------------------------------------- PostgreSQL 9.6.1, compiled by Visual C++ build 1800, 64-bit (1 行) 再帰呼び出しの課題としてよく利用されるのがフィ"><meta property="og:url" content="https://nekotheshadow.github.io/qiita-backup/blog/5b905ba702d9830f72c0/"><meta property="og:type" content="website"><meta property="og:site_name" content="Qiita Backup"><meta name=twitter:title content="SQLでフィボナッチ数列を書いた"><meta name=twitter:description content="以下のクエリはPostgreSQLで動作確認を行っています。 postgres=# select version(); version ------------------------------------------------------------- PostgreSQL 9.6.1, compiled by Visual C++ build 1800, 64-bit (1 行) 再帰呼び …"><meta name=twitter:card content="summary"><meta name=generator content="Hugo 0.74.3"><link rel=alternate href=https://nekotheshadow.github.io/qiita-backup/index.xml type=application/rss+xml title="Qiita Backup"><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css integrity=sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y crossorigin=anonymous><link rel=stylesheet href=https://use.fontawesome.com/releases/v5.5.0/css/all.css integrity=sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU crossorigin=anonymous><link rel=stylesheet href=https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css integrity=sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u crossorigin=anonymous><link rel=stylesheet href=https://nekotheshadow.github.io/qiita-backup/css/main.css><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic"><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800"><link rel=stylesheet href=https://nekotheshadow.github.io/qiita-backup/css/syntax.css><link rel=stylesheet href=https://nekotheshadow.github.io/qiita-backup/css/codeblock.css><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css integrity=sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh crossorigin=anonymous><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css integrity=sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R crossorigin=anonymous></head><body><nav class="navbar navbar-default navbar-fixed-top navbar-custom"><div class=container-fluid><div class=navbar-header><button type=button class=navbar-toggle data-toggle=collapse data-target=#main-navbar>
+<!doctype html><html lang=en itemscope itemtype=http://schema.org/WebPage><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1"><title>SQLでフィボナッチ数列を書いた - Qiita Backup</title><meta name=description content="以下のクエリはPostgreSQLで動作確認を行っています。 postgres=# select version(); version ------------------------------------------------------------- PostgreSQL 9.6.1, compiled by Visual C++ build 1800, 64-bit (1 行) 再帰呼び出しの課題としてよく利用されるのがフィ"><script type=application/ld+json>{"@context":"http://schema.org","@type":"WebSite","name":"Qiita Backup","url":"https:\/\/nekotheshadow.github.io\/qiita-backup"}</script><script type=application/ld+json>{"@context":"http://schema.org","@type":"Organization","name":"","url":"https:\/\/nekotheshadow.github.io\/qiita-backup"}</script><script type=application/ld+json>{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https:\/\/nekotheshadow.github.io\/qiita-backup","name":"home"}},{"@type":"ListItem","position":3,"item":{"@id":"https:\/\/nekotheshadow.github.io\/qiita-backup\/blog\/5b905ba702d9830f72c0\/","name":"Sqlでフィボナッチ数列を書いた"}}]}</script><script type=application/ld+json>{"@context":"http://schema.org","@type":"Article","author":{"name":""},"headline":"SQLでフィボナッチ数列を書いた","description":"以下のクエリはPostgreSQLで動作確認を行っています。 postgres=# select version(); version ------------------------------------------------------------- PostgreSQL 9.6.1, compiled by Visual C\u002b\u002b build 1800, 64-bit (1 行) 再帰呼び出しの課題としてよく利用されるのがフィ","inLanguage":"en","wordCount":582,"datePublished":"2017-01-19T00:40:36","dateModified":"2017-01-19T00:40:36","image":"https:\/\/nekotheshadow.github.io\/qiita-backup","keywords":["SQL, PostgreSQL"],"mainEntityOfPage":"https:\/\/nekotheshadow.github.io\/qiita-backup\/blog\/5b905ba702d9830f72c0\/","publisher":{"@type":"Organization","name":"https:\/\/nekotheshadow.github.io\/qiita-backup","logo":{"@type":"ImageObject","url":"https:\/\/nekotheshadow.github.io\/qiita-backup","height":60,"width":60}}}</script><meta property="og:title" content="SQLでフィボナッチ数列を書いた"><meta property="og:description" content="以下のクエリはPostgreSQLで動作確認を行っています。 postgres=# select version(); version ------------------------------------------------------------- PostgreSQL 9.6.1, compiled by Visual C++ build 1800, 64-bit (1 行) 再帰呼び出しの課題としてよく利用されるのがフィ"><meta property="og:url" content="https://nekotheshadow.github.io/qiita-backup/blog/5b905ba702d9830f72c0/"><meta property="og:type" content="website"><meta property="og:site_name" content="Qiita Backup"><meta name=twitter:title content="SQLでフィボナッチ数列を書いた"><meta name=twitter:description content="以下のクエリはPostgreSQLで動作確認を行っています。 postgres=# select version(); version ------------------------------------------------------------- PostgreSQL 9.6.1, compiled by Visual C++ build 1800, 64-bit (1 行) 再帰呼び …"><meta name=twitter:card content="summary"><meta name=generator content="Hugo 0.109.0"><link rel=alternate href=https://nekotheshadow.github.io/qiita-backup/index.xml type=application/rss+xml title="Qiita Backup"><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css integrity=sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y crossorigin=anonymous><link rel=stylesheet href=https://use.fontawesome.com/releases/v5.5.0/css/all.css integrity=sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU crossorigin=anonymous><link rel=stylesheet href=https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css integrity=sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u crossorigin=anonymous><link rel=stylesheet href=https://nekotheshadow.github.io/qiita-backup/css/main.css><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic"><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800"><link rel=stylesheet href=https://nekotheshadow.github.io/qiita-backup/css/syntax.css><link rel=stylesheet href=https://nekotheshadow.github.io/qiita-backup/css/codeblock.css><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css integrity=sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh crossorigin=anonymous><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css integrity=sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R crossorigin=anonymous></head><body><nav class="navbar navbar-default navbar-fixed-top navbar-custom"><div class=container-fluid><div class=navbar-header><button type=button class=navbar-toggle data-toggle=collapse data-target=#main-navbar>
 <span class=sr-only>Toggle navigation</span>
-<span class=icon-bar></span><span class=icon-bar></span><span class=icon-bar></span></button>
+<span class=icon-bar></span>
+<span class=icon-bar></span>
+<span class=icon-bar></span></button>
 <a class=navbar-brand href=https://nekotheshadow.github.io/qiita-backup>Qiita Backup</a></div><div class="collapse navbar-collapse" id=main-navbar><ul class="nav navbar-nav navbar-right"></ul></div></div></nav><div class=pswp tabindex=-1 role=dialog aria-hidden=true><div class=pswp__bg></div><div class=pswp__scroll-wrap><div class=pswp__container><div class=pswp__item></div><div class=pswp__item></div><div class=pswp__item></div></div><div class="pswp__ui pswp__ui--hidden"><div class=pswp__top-bar><div class=pswp__counter></div><button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
 <button class="pswp__button pswp__button--share" title=Share></button>
 <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
 <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button><div class=pswp__preloader><div class=pswp__preloader__icn><div class=pswp__preloader__cut><div class=pswp__preloader__donut></div></div></div></div></div><div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap"><div class=pswp__share-tooltip></div></div><button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)"></button>
-<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button><div class=pswp__caption><div class=pswp__caption__center></div></div></div></div></div><header class=header-section><div class="intro-header no-img"><div class=container><div class=row><div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1"><div class=blog-heading><h1>SQLでフィボナッチ数列を書いた</h1><hr class=small></div></div></div></div></div></header><div class=container role=main><div class=row><div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1"><article role=main class=blog-post><p>以下のクエリはPostgreSQLで動作確認を行っています。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sql data-lang=sql>postgres<span style=color:#f92672>=#</span> <span style=color:#66d9ef>select</span> <span style=color:#66d9ef>version</span>();
-                           <span style=color:#66d9ef>version</span>
-<span style=color:#75715e>-------------------------------------------------------------
-</span><span style=color:#75715e></span> PostgreSQL <span style=color:#ae81ff>9</span>.<span style=color:#ae81ff>6</span>.<span style=color:#ae81ff>1</span>, compiled <span style=color:#66d9ef>by</span> Visual <span style=color:#66d9ef>C</span><span style=color:#f92672>++</span> build <span style=color:#ae81ff>1800</span>, <span style=color:#ae81ff>64</span><span style=color:#f92672>-</span>bit
-(<span style=color:#ae81ff>1</span> <span style=color:#960050;background-color:#1e0010>行</span>)
-</code></pre></div><hr><p>再帰呼び出しの課題としてよく利用されるのが<a href=https://ja.wikipedia.org/wiki/%E3%83%95%E3%82%A3%E3%83%9C%E3%83%8A%E3%83%83%E3%83%81%E6%95%B0>フィボナッチ数列</a>。DBMSにもよりますが、SQLでも再帰呼び出し(再帰クエリ)はサポートされているので、SQLでフィボナッチ数列を書いてみました。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sql data-lang=sql><span style=color:#66d9ef>with</span> <span style=color:#66d9ef>recursive</span> fib (x, a, b) <span style=color:#66d9ef>as</span> (
-        <span style=color:#66d9ef>select</span> <span style=color:#ae81ff>0</span>, <span style=color:#66d9ef>cast</span>(<span style=color:#ae81ff>0</span> <span style=color:#66d9ef>as</span> decimal), <span style=color:#66d9ef>cast</span>(<span style=color:#ae81ff>1</span> <span style=color:#66d9ef>as</span> decimal) 
-    <span style=color:#66d9ef>union</span> <span style=color:#66d9ef>all</span>
-        <span style=color:#66d9ef>select</span> x <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span>, b, a <span style=color:#f92672>+</span> b <span style=color:#66d9ef>from</span> fib <span style=color:#66d9ef>where</span> x <span style=color:#f92672>&lt;</span> <span style=color:#ae81ff>100</span>
-) <span style=color:#66d9ef>select</span> x, a <span style=color:#66d9ef>from</span> fib;
-
-<span style=color:#75715e>/*
-</span><span style=color:#75715e>  x  |           a
-</span><span style=color:#75715e>-----+-----------------------
-</span><span style=color:#75715e>   0 |                     0
-</span><span style=color:#75715e>   1 |                     1
-</span><span style=color:#75715e>   2 |                     1
-</span><span style=color:#75715e>   3 |                     2
-</span><span style=color:#75715e>   4 |                     3
-</span><span style=color:#75715e>   5 |                     5
-</span><span style=color:#75715e>   6 |                     8
-</span><span style=color:#75715e>   7 |                    13
-</span><span style=color:#75715e>   8 |                    21
-</span><span style=color:#75715e>   9 |                    34
-</span><span style=color:#75715e>  10 |                    55
-</span><span style=color:#75715e>  11 |                    89
-</span><span style=color:#75715e>  12 |                   144
-</span><span style=color:#75715e>  13 |                   233
-</span><span style=color:#75715e>  14 |                   377
-</span><span style=color:#75715e>  15 |                   610
-</span><span style=color:#75715e>  16 |                   987
-</span><span style=color:#75715e>  17 |                  1597
-</span><span style=color:#75715e>  18 |                  2584
-</span><span style=color:#75715e>  19 |                  4181
-</span><span style=color:#75715e>  20 |                  6765
-</span><span style=color:#75715e>  21 |                 10946
-</span><span style=color:#75715e>  22 |                 17711
-</span><span style=color:#75715e>  23 |                 28657
-</span><span style=color:#75715e>  24 |                 46368
-</span><span style=color:#75715e>  25 |                 75025
-</span><span style=color:#75715e>  26 |                121393
-</span><span style=color:#75715e>  27 |                196418
-</span><span style=color:#75715e>  28 |                317811
-</span><span style=color:#75715e>  29 |                514229
-</span><span style=color:#75715e>  30 |                832040
-</span><span style=color:#75715e>  31 |               1346269
-</span><span style=color:#75715e>  32 |               2178309
-</span><span style=color:#75715e>  33 |               3524578
-</span><span style=color:#75715e>  34 |               5702887
-</span><span style=color:#75715e>  35 |               9227465
-</span><span style=color:#75715e>  36 |              14930352
-</span><span style=color:#75715e>  37 |              24157817
-</span><span style=color:#75715e>  38 |              39088169
-</span><span style=color:#75715e>  39 |              63245986
-</span><span style=color:#75715e>  40 |             102334155
-</span><span style=color:#75715e>  41 |             165580141
-</span><span style=color:#75715e>  42 |             267914296
-</span><span style=color:#75715e>  43 |             433494437
-</span><span style=color:#75715e>  44 |             701408733
-</span><span style=color:#75715e>  45 |            1134903170
-</span><span style=color:#75715e>  46 |            1836311903
-</span><span style=color:#75715e>  47 |            2971215073
-</span><span style=color:#75715e>  48 |            4807526976
-</span><span style=color:#75715e>  49 |            7778742049
-</span><span style=color:#75715e>  50 |           12586269025
-</span><span style=color:#75715e>  51 |           20365011074
-</span><span style=color:#75715e>  52 |           32951280099
-</span><span style=color:#75715e>  53 |           53316291173
-</span><span style=color:#75715e>  54 |           86267571272
-</span><span style=color:#75715e>  55 |          139583862445
-</span><span style=color:#75715e>  56 |          225851433717
-</span><span style=color:#75715e>  57 |          365435296162
-</span><span style=color:#75715e>  58 |          591286729879
-</span><span style=color:#75715e>  59 |          956722026041
-</span><span style=color:#75715e>  60 |         1548008755920
-</span><span style=color:#75715e>  61 |         2504730781961
-</span><span style=color:#75715e>  62 |         4052739537881
-</span><span style=color:#75715e>  63 |         6557470319842
-</span><span style=color:#75715e>  64 |        10610209857723
-</span><span style=color:#75715e>  65 |        17167680177565
-</span><span style=color:#75715e>  66 |        27777890035288
-</span><span style=color:#75715e>  67 |        44945570212853
-</span><span style=color:#75715e>  68 |        72723460248141
-</span><span style=color:#75715e>  69 |       117669030460994
-</span><span style=color:#75715e>  70 |       190392490709135
-</span><span style=color:#75715e>  71 |       308061521170129
-</span><span style=color:#75715e>  72 |       498454011879264
-</span><span style=color:#75715e>  73 |       806515533049393
-</span><span style=color:#75715e>  74 |      1304969544928657
-</span><span style=color:#75715e>  75 |      2111485077978050
-</span><span style=color:#75715e>  76 |      3416454622906707
-</span><span style=color:#75715e>  77 |      5527939700884757
-</span><span style=color:#75715e>  78 |      8944394323791464
-</span><span style=color:#75715e>  79 |     14472334024676221
-</span><span style=color:#75715e>  80 |     23416728348467685
-</span><span style=color:#75715e>  81 |     37889062373143906
-</span><span style=color:#75715e>  82 |     61305790721611591
-</span><span style=color:#75715e>  83 |     99194853094755497
-</span><span style=color:#75715e>  84 |    160500643816367088
-</span><span style=color:#75715e>  85 |    259695496911122585
-</span><span style=color:#75715e>  86 |    420196140727489673
-</span><span style=color:#75715e>  87 |    679891637638612258
-</span><span style=color:#75715e>  88 |   1100087778366101931
-</span><span style=color:#75715e>  89 |   1779979416004714189
-</span><span style=color:#75715e>  90 |   2880067194370816120
-</span><span style=color:#75715e>  91 |   4660046610375530309
-</span><span style=color:#75715e>  92 |   7540113804746346429
-</span><span style=color:#75715e>  93 |  12200160415121876738
-</span><span style=color:#75715e>  94 |  19740274219868223167
-</span><span style=color:#75715e>  95 |  31940434634990099905
-</span><span style=color:#75715e>  96 |  51680708854858323072
-</span><span style=color:#75715e>  97 |  83621143489848422977
-</span><span style=color:#75715e>  98 | 135301852344706746049
-</span><span style=color:#75715e>  99 | 218922995834555169026
-</span><span style=color:#75715e> 100 | 354224848179261915075
-</span><span style=color:#75715e>*/</span>
-</code></pre></div><p>フィボナッチ数列はその性質上、爆発的に大きくなるため、<code>integer</code>ではあっという間に桁あふれを起こします。つまり最初に<code>decimal</code>へ型変換を行い、桁あふれを防いでいるというわけですね。</p><div class=blog-tags><a href=https://nekotheshadow.github.io/qiita-backup/tags/sql/>SQL</a>&nbsp;
+<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button><div class=pswp__caption><div class=pswp__caption__center></div></div></div></div></div><header class=header-section><div class="intro-header no-img"><div class=container><div class=row><div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1"><div class=blog-heading><h1>SQLでフィボナッチ数列を書いた</h1><hr class=small></div></div></div></div></div></header><div class=container role=main><div class=row><div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1"><article role=main class=blog-post><p>以下のクエリはPostgreSQLで動作確認を行っています。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sql data-lang=sql><span style=display:flex><span>postgres<span style=color:#f92672>=#</span> <span style=color:#66d9ef>select</span> <span style=color:#66d9ef>version</span>();
+</span></span><span style=display:flex><span>                           <span style=color:#66d9ef>version</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>-------------------------------------------------------------
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span> PostgreSQL <span style=color:#ae81ff>9</span>.<span style=color:#ae81ff>6</span>.<span style=color:#ae81ff>1</span>, compiled <span style=color:#66d9ef>by</span> Visual <span style=color:#66d9ef>C</span><span style=color:#f92672>++</span> build <span style=color:#ae81ff>1800</span>, <span style=color:#ae81ff>64</span><span style=color:#f92672>-</span>bit
+</span></span><span style=display:flex><span>(<span style=color:#ae81ff>1</span> <span style=color:#960050;background-color:#1e0010>行</span>)
+</span></span></code></pre></div><hr><p>再帰呼び出しの課題としてよく利用されるのが<a href=https://ja.wikipedia.org/wiki/%E3%83%95%E3%82%A3%E3%83%9C%E3%83%8A%E3%83%83%E3%83%81%E6%95%B0>フィボナッチ数列</a>。DBMSにもよりますが、SQLでも再帰呼び出し(再帰クエリ)はサポートされているので、SQLでフィボナッチ数列を書いてみました。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sql data-lang=sql><span style=display:flex><span><span style=color:#66d9ef>with</span> <span style=color:#66d9ef>recursive</span> fib (x, a, b) <span style=color:#66d9ef>as</span> (
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>select</span> <span style=color:#ae81ff>0</span>, <span style=color:#66d9ef>cast</span>(<span style=color:#ae81ff>0</span> <span style=color:#66d9ef>as</span> decimal), <span style=color:#66d9ef>cast</span>(<span style=color:#ae81ff>1</span> <span style=color:#66d9ef>as</span> decimal) 
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>union</span> <span style=color:#66d9ef>all</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>select</span> x <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span>, b, a <span style=color:#f92672>+</span> b <span style=color:#66d9ef>from</span> fib <span style=color:#66d9ef>where</span> x <span style=color:#f92672>&lt;</span> <span style=color:#ae81ff>100</span>
+</span></span><span style=display:flex><span>) <span style=color:#66d9ef>select</span> x, a <span style=color:#66d9ef>from</span> fib;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>/*
+</span></span></span><span style=display:flex><span><span style=color:#75715e>  x  |           a
+</span></span></span><span style=display:flex><span><span style=color:#75715e>-----+-----------------------
+</span></span></span><span style=display:flex><span><span style=color:#75715e>   0 |                     0
+</span></span></span><span style=display:flex><span><span style=color:#75715e>   1 |                     1
+</span></span></span><span style=display:flex><span><span style=color:#75715e>   2 |                     1
+</span></span></span><span style=display:flex><span><span style=color:#75715e>   3 |                     2
+</span></span></span><span style=display:flex><span><span style=color:#75715e>   4 |                     3
+</span></span></span><span style=display:flex><span><span style=color:#75715e>   5 |                     5
+</span></span></span><span style=display:flex><span><span style=color:#75715e>   6 |                     8
+</span></span></span><span style=display:flex><span><span style=color:#75715e>   7 |                    13
+</span></span></span><span style=display:flex><span><span style=color:#75715e>   8 |                    21
+</span></span></span><span style=display:flex><span><span style=color:#75715e>   9 |                    34
+</span></span></span><span style=display:flex><span><span style=color:#75715e>  10 |                    55
+</span></span></span><span style=display:flex><span><span style=color:#75715e>  11 |                    89
+</span></span></span><span style=display:flex><span><span style=color:#75715e>  12 |                   144
+</span></span></span><span style=display:flex><span><span style=color:#75715e>  13 |                   233
+</span></span></span><span style=display:flex><span><span style=color:#75715e>  14 |                   377
+</span></span></span><span style=display:flex><span><span style=color:#75715e>  15 |                   610
+</span></span></span><span style=display:flex><span><span style=color:#75715e>  16 |                   987
+</span></span></span><span style=display:flex><span><span style=color:#75715e>  17 |                  1597
+</span></span></span><span style=display:flex><span><span style=color:#75715e>  18 |                  2584
+</span></span></span><span style=display:flex><span><span style=color:#75715e>  19 |                  4181
+</span></span></span><span style=display:flex><span><span style=color:#75715e>  20 |                  6765
+</span></span></span><span style=display:flex><span><span style=color:#75715e>  21 |                 10946
+</span></span></span><span style=display:flex><span><span style=color:#75715e>  22 |                 17711
+</span></span></span><span style=display:flex><span><span style=color:#75715e>  23 |                 28657
+</span></span></span><span style=display:flex><span><span style=color:#75715e>  24 |                 46368
+</span></span></span><span style=display:flex><span><span style=color:#75715e>  25 |                 75025
+</span></span></span><span style=display:flex><span><span style=color:#75715e>  26 |                121393
+</span></span></span><span style=display:flex><span><span style=color:#75715e>  27 |                196418
+</span></span></span><span style=display:flex><span><span style=color:#75715e>  28 |                317811
+</span></span></span><span style=display:flex><span><span style=color:#75715e>  29 |                514229
+</span></span></span><span style=display:flex><span><span style=color:#75715e>  30 |                832040
+</span></span></span><span style=display:flex><span><span style=color:#75715e>  31 |               1346269
+</span></span></span><span style=display:flex><span><span style=color:#75715e>  32 |               2178309
+</span></span></span><span style=display:flex><span><span style=color:#75715e>  33 |               3524578
+</span></span></span><span style=display:flex><span><span style=color:#75715e>  34 |               5702887
+</span></span></span><span style=display:flex><span><span style=color:#75715e>  35 |               9227465
+</span></span></span><span style=display:flex><span><span style=color:#75715e>  36 |              14930352
+</span></span></span><span style=display:flex><span><span style=color:#75715e>  37 |              24157817
+</span></span></span><span style=display:flex><span><span style=color:#75715e>  38 |              39088169
+</span></span></span><span style=display:flex><span><span style=color:#75715e>  39 |              63245986
+</span></span></span><span style=display:flex><span><span style=color:#75715e>  40 |             102334155
+</span></span></span><span style=display:flex><span><span style=color:#75715e>  41 |             165580141
+</span></span></span><span style=display:flex><span><span style=color:#75715e>  42 |             267914296
+</span></span></span><span style=display:flex><span><span style=color:#75715e>  43 |             433494437
+</span></span></span><span style=display:flex><span><span style=color:#75715e>  44 |             701408733
+</span></span></span><span style=display:flex><span><span style=color:#75715e>  45 |            1134903170
+</span></span></span><span style=display:flex><span><span style=color:#75715e>  46 |            1836311903
+</span></span></span><span style=display:flex><span><span style=color:#75715e>  47 |            2971215073
+</span></span></span><span style=display:flex><span><span style=color:#75715e>  48 |            4807526976
+</span></span></span><span style=display:flex><span><span style=color:#75715e>  49 |            7778742049
+</span></span></span><span style=display:flex><span><span style=color:#75715e>  50 |           12586269025
+</span></span></span><span style=display:flex><span><span style=color:#75715e>  51 |           20365011074
+</span></span></span><span style=display:flex><span><span style=color:#75715e>  52 |           32951280099
+</span></span></span><span style=display:flex><span><span style=color:#75715e>  53 |           53316291173
+</span></span></span><span style=display:flex><span><span style=color:#75715e>  54 |           86267571272
+</span></span></span><span style=display:flex><span><span style=color:#75715e>  55 |          139583862445
+</span></span></span><span style=display:flex><span><span style=color:#75715e>  56 |          225851433717
+</span></span></span><span style=display:flex><span><span style=color:#75715e>  57 |          365435296162
+</span></span></span><span style=display:flex><span><span style=color:#75715e>  58 |          591286729879
+</span></span></span><span style=display:flex><span><span style=color:#75715e>  59 |          956722026041
+</span></span></span><span style=display:flex><span><span style=color:#75715e>  60 |         1548008755920
+</span></span></span><span style=display:flex><span><span style=color:#75715e>  61 |         2504730781961
+</span></span></span><span style=display:flex><span><span style=color:#75715e>  62 |         4052739537881
+</span></span></span><span style=display:flex><span><span style=color:#75715e>  63 |         6557470319842
+</span></span></span><span style=display:flex><span><span style=color:#75715e>  64 |        10610209857723
+</span></span></span><span style=display:flex><span><span style=color:#75715e>  65 |        17167680177565
+</span></span></span><span style=display:flex><span><span style=color:#75715e>  66 |        27777890035288
+</span></span></span><span style=display:flex><span><span style=color:#75715e>  67 |        44945570212853
+</span></span></span><span style=display:flex><span><span style=color:#75715e>  68 |        72723460248141
+</span></span></span><span style=display:flex><span><span style=color:#75715e>  69 |       117669030460994
+</span></span></span><span style=display:flex><span><span style=color:#75715e>  70 |       190392490709135
+</span></span></span><span style=display:flex><span><span style=color:#75715e>  71 |       308061521170129
+</span></span></span><span style=display:flex><span><span style=color:#75715e>  72 |       498454011879264
+</span></span></span><span style=display:flex><span><span style=color:#75715e>  73 |       806515533049393
+</span></span></span><span style=display:flex><span><span style=color:#75715e>  74 |      1304969544928657
+</span></span></span><span style=display:flex><span><span style=color:#75715e>  75 |      2111485077978050
+</span></span></span><span style=display:flex><span><span style=color:#75715e>  76 |      3416454622906707
+</span></span></span><span style=display:flex><span><span style=color:#75715e>  77 |      5527939700884757
+</span></span></span><span style=display:flex><span><span style=color:#75715e>  78 |      8944394323791464
+</span></span></span><span style=display:flex><span><span style=color:#75715e>  79 |     14472334024676221
+</span></span></span><span style=display:flex><span><span style=color:#75715e>  80 |     23416728348467685
+</span></span></span><span style=display:flex><span><span style=color:#75715e>  81 |     37889062373143906
+</span></span></span><span style=display:flex><span><span style=color:#75715e>  82 |     61305790721611591
+</span></span></span><span style=display:flex><span><span style=color:#75715e>  83 |     99194853094755497
+</span></span></span><span style=display:flex><span><span style=color:#75715e>  84 |    160500643816367088
+</span></span></span><span style=display:flex><span><span style=color:#75715e>  85 |    259695496911122585
+</span></span></span><span style=display:flex><span><span style=color:#75715e>  86 |    420196140727489673
+</span></span></span><span style=display:flex><span><span style=color:#75715e>  87 |    679891637638612258
+</span></span></span><span style=display:flex><span><span style=color:#75715e>  88 |   1100087778366101931
+</span></span></span><span style=display:flex><span><span style=color:#75715e>  89 |   1779979416004714189
+</span></span></span><span style=display:flex><span><span style=color:#75715e>  90 |   2880067194370816120
+</span></span></span><span style=display:flex><span><span style=color:#75715e>  91 |   4660046610375530309
+</span></span></span><span style=display:flex><span><span style=color:#75715e>  92 |   7540113804746346429
+</span></span></span><span style=display:flex><span><span style=color:#75715e>  93 |  12200160415121876738
+</span></span></span><span style=display:flex><span><span style=color:#75715e>  94 |  19740274219868223167
+</span></span></span><span style=display:flex><span><span style=color:#75715e>  95 |  31940434634990099905
+</span></span></span><span style=display:flex><span><span style=color:#75715e>  96 |  51680708854858323072
+</span></span></span><span style=display:flex><span><span style=color:#75715e>  97 |  83621143489848422977
+</span></span></span><span style=display:flex><span><span style=color:#75715e>  98 | 135301852344706746049
+</span></span></span><span style=display:flex><span><span style=color:#75715e>  99 | 218922995834555169026
+</span></span></span><span style=display:flex><span><span style=color:#75715e> 100 | 354224848179261915075
+</span></span></span><span style=display:flex><span><span style=color:#75715e>*/</span>
+</span></span></code></pre></div><p>フィボナッチ数列はその性質上、爆発的に大きくなるため、<code>integer</code>ではあっという間に桁あふれを起こします。つまり最初に<code>decimal</code>へ型変換を行い、桁あふれを防いでいるというわけですね。</p><div class=blog-tags><a href=https://nekotheshadow.github.io/qiita-backup/tags/sql/>SQL</a>&nbsp;
 <a href=https://nekotheshadow.github.io/qiita-backup/tags/postgresql/>PostgreSQL</a>&nbsp;</div></article><ul class="pager blog-pager"><li class=previous><a href=https://nekotheshadow.github.io/qiita-backup/blog/d401e0c23892b0d53c2a/ data-toggle=tooltip data-placement=top title=木構造の親または子を再帰的に取得する>&larr; Previous Post</a></li><li class=next><a href=https://nekotheshadow.github.io/qiita-backup/blog/dd98aa7669e8aadc4cbf/ data-toggle=tooltip data-placement=top title=CodeIQ「『キャリー・オーバー』問題」に参加しました。>Next Post &rarr;</a></li></ul></div></div></div><footer><div class=container><div class=row><div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1"><ul class="list-inline text-center footer-links"></ul><p class="credits copyright text-muted">&nbsp;&bull;&nbsp;&copy;
 2022
 &nbsp;&bull;&nbsp;
-<a href=https://nekotheshadow.github.io/qiita-backup>Qiita Backup</a></p><p class="credits theme-by text-muted"><a href=https://gohugo.io>Hugo v0.74.3</a> powered &nbsp;&bull;&nbsp; Theme <a href=https://github.com/halogenica/beautifulhugo>Beautiful Hugo</a> adapted from <a href=https://deanattali.com/beautiful-jekyll/>Beautiful Jekyll</a></p></div></div></div></footer><script src=https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.js integrity=sha384-K3vbOmF2BtaVai+Qk37uypf7VrgBubhQreNQe9aGsz9lB63dIFiQVlJbr92dw2Lx crossorigin=anonymous></script><script src=https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/contrib/auto-render.min.js integrity=sha384-kmZOZB5ObwgQnS/DuDg6TScgOiWWBiVt0plIRkZCmE6rDZGrEOQeHM5PcHi+nyqe crossorigin=anonymous></script><script src=https://code.jquery.com/jquery-1.12.4.min.js integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin=anonymous></script><script src=https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js integrity=sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa crossorigin=anonymous></script><script src=https://nekotheshadow.github.io/qiita-backup/js/main.js></script><script>renderMathInElement(document.body);</script><script src=https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js integrity=sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy crossorigin=anonymous></script><script src=https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js integrity=sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q crossorigin=anonymous></script><script src=https://nekotheshadow.github.io/qiita-backup/js/load-photoswipe.js></script></body></html>
+<a href=https://nekotheshadow.github.io/qiita-backup>Qiita Backup</a></p><p class="credits theme-by text-muted"><a href=https://gohugo.io>Hugo v0.109.0</a> powered &nbsp;&bull;&nbsp; Theme <a href=https://github.com/halogenica/beautifulhugo>Beautiful Hugo</a> adapted from <a href=https://deanattali.com/beautiful-jekyll/>Beautiful Jekyll</a></p></div></div></div></footer><script src=https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.js integrity=sha384-K3vbOmF2BtaVai+Qk37uypf7VrgBubhQreNQe9aGsz9lB63dIFiQVlJbr92dw2Lx crossorigin=anonymous></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/contrib/auto-render.min.js integrity=sha384-kmZOZB5ObwgQnS/DuDg6TScgOiWWBiVt0plIRkZCmE6rDZGrEOQeHM5PcHi+nyqe crossorigin=anonymous></script>
+<script src=https://code.jquery.com/jquery-1.12.4.min.js integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin=anonymous></script>
+<script src=https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js integrity=sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa crossorigin=anonymous></script>
+<script src=https://nekotheshadow.github.io/qiita-backup/js/main.js></script><script>renderMathInElement(document.body)</script><script src=https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js integrity=sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy crossorigin=anonymous></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js integrity=sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q crossorigin=anonymous></script><script src=https://nekotheshadow.github.io/qiita-backup/js/load-photoswipe.js></script></body></html>

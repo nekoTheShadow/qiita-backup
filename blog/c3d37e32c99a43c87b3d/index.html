@@ -1,109 +1,115 @@
-<!doctype html><html lang=en itemscope itemtype=http://schema.org/WebPage><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1"><title>ストゥージソートをPython3で実装(バブルソート&クイックソート) - Qiita Backup</title><meta name=description content="ストゥージソート(stooge sort)というソートがあるそうです。このソートアルゴリズムはとても効率の悪いソートアルゴリズムらしく、バブル"><script type=application/ld+json>{"@context":"http://schema.org","@type":"WebSite","name":"Qiita Backup","url":"https:\/\/nekotheshadow.github.io\/qiita-backup"}</script><script type=application/ld+json>{"@context":"http://schema.org","@type":"Organization","name":"","url":"https:\/\/nekotheshadow.github.io\/qiita-backup"}</script><script type=application/ld+json>{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https:\/\/nekotheshadow.github.io\/qiita-backup","name":"home"}},{"@type":"ListItem","position":3,"item":{"@id":"https:\/\/nekotheshadow.github.io\/qiita-backup\/blog\/c3d37e32c99a43c87b3d\/","name":"ストゥージソートを python3で実装(バブルソート\u0026クイックソート)"}}]}</script><script type=application/ld+json>{"@context":"http://schema.org","@type":"Article","author":{"name":""},"headline":"ストゥージソートをPython3で実装(バブルソート\u0026クイックソート)","description":"ストゥージソート(stooge sort)というソートがあるそうです。このソートアルゴリズムはとても効率の悪いソートアルゴリズムらしく、バブル","inLanguage":"en","wordCount":779,"datePublished":"2016-07-31T21:58:56","dateModified":"2016-07-31T21:58:56","image":"https:\/\/nekotheshadow.github.io\/qiita-backup","keywords":["Python, Python3"],"mainEntityOfPage":"https:\/\/nekotheshadow.github.io\/qiita-backup\/blog\/c3d37e32c99a43c87b3d\/","publisher":{"@type":"Organization","name":"https:\/\/nekotheshadow.github.io\/qiita-backup","logo":{"@type":"ImageObject","url":"https:\/\/nekotheshadow.github.io\/qiita-backup","height":60,"width":60}}}</script><meta property="og:title" content="ストゥージソートをPython3で実装(バブルソート&クイックソート)"><meta property="og:description" content="ストゥージソート(stooge sort)というソートがあるそうです。このソートアルゴリズムはとても効率の悪いソートアルゴリズムらしく、バブル"><meta property="og:url" content="https://nekotheshadow.github.io/qiita-backup/blog/c3d37e32c99a43c87b3d/"><meta property="og:type" content="website"><meta property="og:site_name" content="Qiita Backup"><meta name=twitter:title content="ストゥージソートをPython3で実装(バブルソート&クイックソート)"><meta name=twitter:description content="ストゥージソート(stooge sort)というソートがあるそうです。このソートアルゴリズムはとても効率の悪いソートアルゴリズムらしく、バブル"><meta name=twitter:card content="summary"><meta name=generator content="Hugo 0.74.3"><link rel=alternate href=https://nekotheshadow.github.io/qiita-backup/index.xml type=application/rss+xml title="Qiita Backup"><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css integrity=sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y crossorigin=anonymous><link rel=stylesheet href=https://use.fontawesome.com/releases/v5.5.0/css/all.css integrity=sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU crossorigin=anonymous><link rel=stylesheet href=https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css integrity=sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u crossorigin=anonymous><link rel=stylesheet href=https://nekotheshadow.github.io/qiita-backup/css/main.css><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic"><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800"><link rel=stylesheet href=https://nekotheshadow.github.io/qiita-backup/css/syntax.css><link rel=stylesheet href=https://nekotheshadow.github.io/qiita-backup/css/codeblock.css><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css integrity=sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh crossorigin=anonymous><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css integrity=sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R crossorigin=anonymous></head><body><nav class="navbar navbar-default navbar-fixed-top navbar-custom"><div class=container-fluid><div class=navbar-header><button type=button class=navbar-toggle data-toggle=collapse data-target=#main-navbar>
+<!doctype html><html lang=en itemscope itemtype=http://schema.org/WebPage><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1"><title>ストゥージソートをPython3で実装(バブルソート&クイックソート) - Qiita Backup</title><meta name=description content="ストゥージソート(stooge sort)というソートがあるそうです。このソートアルゴリズムはとても効率の悪いソートアルゴリズムらしく、バブル"><script type=application/ld+json>{"@context":"http://schema.org","@type":"WebSite","name":"Qiita Backup","url":"https:\/\/nekotheshadow.github.io\/qiita-backup"}</script><script type=application/ld+json>{"@context":"http://schema.org","@type":"Organization","name":"","url":"https:\/\/nekotheshadow.github.io\/qiita-backup"}</script><script type=application/ld+json>{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https:\/\/nekotheshadow.github.io\/qiita-backup","name":"home"}},{"@type":"ListItem","position":3,"item":{"@id":"https:\/\/nekotheshadow.github.io\/qiita-backup\/blog\/c3d37e32c99a43c87b3d\/","name":"ストゥージソートを python3で実装(バブルソート\u0026クイックソート)"}}]}</script><script type=application/ld+json>{"@context":"http://schema.org","@type":"Article","author":{"name":""},"headline":"ストゥージソートをPython3で実装(バブルソート\u0026クイックソート)","description":"ストゥージソート(stooge sort)というソートがあるそうです。このソートアルゴリズムはとても効率の悪いソートアルゴリズムらしく、バブル","inLanguage":"en","wordCount":779,"datePublished":"2016-07-31T21:58:56","dateModified":"2016-07-31T21:58:56","image":"https:\/\/nekotheshadow.github.io\/qiita-backup","keywords":["Python, Python3"],"mainEntityOfPage":"https:\/\/nekotheshadow.github.io\/qiita-backup\/blog\/c3d37e32c99a43c87b3d\/","publisher":{"@type":"Organization","name":"https:\/\/nekotheshadow.github.io\/qiita-backup","logo":{"@type":"ImageObject","url":"https:\/\/nekotheshadow.github.io\/qiita-backup","height":60,"width":60}}}</script><meta property="og:title" content="ストゥージソートをPython3で実装(バブルソート&クイックソート)"><meta property="og:description" content="ストゥージソート(stooge sort)というソートがあるそうです。このソートアルゴリズムはとても効率の悪いソートアルゴリズムらしく、バブル"><meta property="og:url" content="https://nekotheshadow.github.io/qiita-backup/blog/c3d37e32c99a43c87b3d/"><meta property="og:type" content="website"><meta property="og:site_name" content="Qiita Backup"><meta name=twitter:title content="ストゥージソートをPython3で実装(バブルソート&クイックソート)"><meta name=twitter:description content="ストゥージソート(stooge sort)というソートがあるそうです。このソートアルゴリズムはとても効率の悪いソートアルゴリズムらしく、バブル"><meta name=twitter:card content="summary"><meta name=generator content="Hugo 0.109.0"><link rel=alternate href=https://nekotheshadow.github.io/qiita-backup/index.xml type=application/rss+xml title="Qiita Backup"><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css integrity=sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y crossorigin=anonymous><link rel=stylesheet href=https://use.fontawesome.com/releases/v5.5.0/css/all.css integrity=sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU crossorigin=anonymous><link rel=stylesheet href=https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css integrity=sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u crossorigin=anonymous><link rel=stylesheet href=https://nekotheshadow.github.io/qiita-backup/css/main.css><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic"><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800"><link rel=stylesheet href=https://nekotheshadow.github.io/qiita-backup/css/syntax.css><link rel=stylesheet href=https://nekotheshadow.github.io/qiita-backup/css/codeblock.css><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css integrity=sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh crossorigin=anonymous><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css integrity=sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R crossorigin=anonymous></head><body><nav class="navbar navbar-default navbar-fixed-top navbar-custom"><div class=container-fluid><div class=navbar-header><button type=button class=navbar-toggle data-toggle=collapse data-target=#main-navbar>
 <span class=sr-only>Toggle navigation</span>
-<span class=icon-bar></span><span class=icon-bar></span><span class=icon-bar></span></button>
+<span class=icon-bar></span>
+<span class=icon-bar></span>
+<span class=icon-bar></span></button>
 <a class=navbar-brand href=https://nekotheshadow.github.io/qiita-backup>Qiita Backup</a></div><div class="collapse navbar-collapse" id=main-navbar><ul class="nav navbar-nav navbar-right"></ul></div></div></nav><div class=pswp tabindex=-1 role=dialog aria-hidden=true><div class=pswp__bg></div><div class=pswp__scroll-wrap><div class=pswp__container><div class=pswp__item></div><div class=pswp__item></div><div class=pswp__item></div></div><div class="pswp__ui pswp__ui--hidden"><div class=pswp__top-bar><div class=pswp__counter></div><button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
 <button class="pswp__button pswp__button--share" title=Share></button>
 <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
 <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button><div class=pswp__preloader><div class=pswp__preloader__icn><div class=pswp__preloader__cut><div class=pswp__preloader__donut></div></div></div></div></div><div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap"><div class=pswp__share-tooltip></div></div><button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)"></button>
-<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button><div class=pswp__caption><div class=pswp__caption__center></div></div></div></div></div><header class=header-section><div class="intro-header no-img"><div class=container><div class=row><div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1"><div class=blog-heading><h1>ストゥージソートをPython3で実装(バブルソート&クイックソート)</h1><hr class=small></div></div></div></div></div></header><div class=container role=main><div class=row><div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1"><article role=main class=blog-post><p><a href=https://ja.wikipedia.org/wiki/%E3%82%B9%E3%83%88%E3%82%A5%E3%83%BC%E3%82%B8%E3%82%BD%E3%83%BC%E3%83%88>ストゥージソート(stooge sort)というソートがあるそうです。</a>このソートアルゴリズムはとても<strong>効率の悪い</strong>ソートアルゴリズムらしく、バブルソートより効率が悪いとか。</p><p>この記事ではストゥージソートをPython3で実装してみます。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-py3 data-lang=py3>
-<span style=color:#75715e># リストを破壊的にソートする。アルゴリズムは「ストゥージソート」</span>
-<span style=color:#66d9ef>def</span> <span style=color:#a6e22e>stooge_sort</span>(ls):
-    stack <span style=color:#f92672>=</span> [(<span style=color:#ae81ff>0</span>, len(ls) <span style=color:#f92672>-</span> <span style=color:#ae81ff>1</span>)]
-    
-    <span style=color:#66d9ef>while</span> stack:
-        i, j <span style=color:#f92672>=</span> stack<span style=color:#f92672>.</span>pop()
-        <span style=color:#66d9ef>if</span> ls[i] <span style=color:#f92672>&gt;</span> ls[j]: ls[i], ls[j] <span style=color:#f92672>=</span> ls[j], ls[i]
-        
-        <span style=color:#66d9ef>if</span> j <span style=color:#f92672>-</span> i <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span> <span style=color:#f92672>&gt;=</span> <span style=color:#ae81ff>3</span>:
-            t <span style=color:#f92672>=</span> (j <span style=color:#f92672>-</span> i <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span>) <span style=color:#f92672>//</span> <span style=color:#ae81ff>3</span>
-            stack<span style=color:#f92672>.</span>extend(((i, j <span style=color:#f92672>-</span> t), (i <span style=color:#f92672>+</span> t, j), (i, j <span style=color:#f92672>-</span> t)))
-
-<span style=color:#66d9ef>if</span> __name__ <span style=color:#f92672>==</span> <span style=color:#e6db74>&#39;__main__&#39;</span>:
-    <span style=color:#f92672>import</span> random
-
-    ls <span style=color:#f92672>=</span> list(range(<span style=color:#ae81ff>30</span>))
-    random<span style=color:#f92672>.</span>shuffle(ls)
-
-    print(ls)
-    stooge_sort(ls)
-    print(ls)
-
-<span style=color:#75715e># [20, 4, 13, 28, 12, 0, 17, 19, 22, 21, 5, 23, 3, 27, 14, 2, 29, 11, 24, 7, 15, 9, 25, 6, 26, 18, 8, 1, 10, 16]</span>
-<span style=color:#75715e># [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29]</span>
-
-</code></pre></div><p>確かにちゃんとソートできているようですね。 工夫(?)としては再帰ではなく、繰り返しで実装している点ですが……効率のわるいアルゴリズムに対して、効率よく実装する意味はあるのか(´・ω・`)</p><p>次に効率ですが、<a href=https://ja.wikipedia.org/wiki/%E3%83%90%E3%83%96%E3%83%AB%E3%82%BD%E3%83%BC%E3%83%88>効率の悪い「バブルソート」</a>と<a href=https://ja.wikipedia.org/wiki/%E3%82%AF%E3%82%A4%E3%83%83%E3%82%AF%E3%82%BD%E3%83%BC%E3%83%88>効率のいい「クイックソート」</a>をそれぞれ実装し、1000個の要素を持つリストをソートする時間を計測してみたいと思います。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-py3 data-lang=py3><span style=color:#75715e># リストを破壊的にソートする。アルゴリズムは「ストゥージソート」</span>
-<span style=color:#66d9ef>def</span> <span style=color:#a6e22e>stooge_sort</span>(ls):
-    stack <span style=color:#f92672>=</span> [(<span style=color:#ae81ff>0</span>, len(ls) <span style=color:#f92672>-</span> <span style=color:#ae81ff>1</span>)]
-    
-    <span style=color:#66d9ef>while</span> stack:
-        i, j <span style=color:#f92672>=</span> stack<span style=color:#f92672>.</span>pop()
-        <span style=color:#66d9ef>if</span> ls[i] <span style=color:#f92672>&gt;</span> ls[j]: ls[i], ls[j] <span style=color:#f92672>=</span> ls[j], ls[i]
-        
-        <span style=color:#66d9ef>if</span> j <span style=color:#f92672>-</span> i <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span> <span style=color:#f92672>&gt;=</span> <span style=color:#ae81ff>3</span>:
-            t <span style=color:#f92672>=</span> (j <span style=color:#f92672>-</span> i <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span>) <span style=color:#f92672>//</span> <span style=color:#ae81ff>3</span>
-            stack<span style=color:#f92672>.</span>extend(((i, j <span style=color:#f92672>-</span> t), (i <span style=color:#f92672>+</span> t, j), (i, j <span style=color:#f92672>-</span> t)))
-
-
-<span style=color:#75715e># リストを破壊的にソートする。アルゴリズムは「バブルソート」</span>
-<span style=color:#66d9ef>def</span> <span style=color:#a6e22e>bubble_sort</span>(ls):
-    t <span style=color:#f92672>=</span> len(ls)
-
-    <span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> range(t <span style=color:#f92672>-</span> <span style=color:#ae81ff>1</span>):
-        <span style=color:#66d9ef>for</span> j <span style=color:#f92672>in</span> range(i <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span>, t):
-            <span style=color:#66d9ef>if</span> ls[i] <span style=color:#f92672>&gt;</span> ls[j]: ls[i], ls[j] <span style=color:#f92672>=</span> ls[j], ls[i]
-
-
-<span style=color:#75715e># リストを破壊的にソートする。アルゴリズムは「クイックソート」</span>
-<span style=color:#66d9ef>def</span> <span style=color:#a6e22e>quick_sort</span>(ls):
-    stack <span style=color:#f92672>=</span> [(<span style=color:#ae81ff>0</span>, len(ls) <span style=color:#f92672>-</span> <span style=color:#ae81ff>1</span>)]
-
-    <span style=color:#66d9ef>while</span> stack:
-        left, right <span style=color:#f92672>=</span> stack<span style=color:#f92672>.</span>pop()
-        <span style=color:#66d9ef>if</span> left <span style=color:#f92672>&gt;=</span> right: <span style=color:#66d9ef>continue</span>
-
-        pivot <span style=color:#f92672>=</span> ls[left <span style=color:#f92672>+</span> (right <span style=color:#f92672>-</span> left) <span style=color:#f92672>//</span> <span style=color:#ae81ff>2</span>]
-        i, j <span style=color:#f92672>=</span> left, right
-        <span style=color:#66d9ef>while</span> <span style=color:#66d9ef>True</span>:
-            <span style=color:#66d9ef>while</span> ls[i] <span style=color:#f92672>&lt;</span> pivot: i <span style=color:#f92672>+=</span> <span style=color:#ae81ff>1</span>
-            <span style=color:#66d9ef>while</span> ls[j] <span style=color:#f92672>&gt;</span> pivot: j <span style=color:#f92672>-=</span> <span style=color:#ae81ff>1</span>
-
-            <span style=color:#66d9ef>if</span> i <span style=color:#f92672>&gt;=</span> j: <span style=color:#66d9ef>break</span>
-            
-            ls[i], ls[j] <span style=color:#f92672>=</span> ls[j], ls[i]
-            i, j <span style=color:#f92672>=</span> i <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span>, j <span style=color:#f92672>-</span> <span style=color:#ae81ff>1</span>
-
-        stack<span style=color:#f92672>.</span>extend(((j <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span>, right), (left, i <span style=color:#f92672>-</span> <span style=color:#ae81ff>1</span>)))
-
-<span style=color:#66d9ef>if</span> __name__ <span style=color:#f92672>==</span> <span style=color:#e6db74>&#39;__main__&#39;</span>:
-    <span style=color:#f92672>import</span> random<span style=color:#f92672>,</span> copy<span style=color:#f92672>,</span> time
-
-    ls <span style=color:#f92672>=</span> list(range(<span style=color:#ae81ff>1000</span>))
-    random<span style=color:#f92672>.</span>shuffle(ls)
-    
-    bubble_ls <span style=color:#f92672>=</span> copy<span style=color:#f92672>.</span>deepcopy(ls)
-    bubble_start <span style=color:#f92672>=</span> time<span style=color:#f92672>.</span>time()
-    bubble_sort(bubble_ls)
-    bubble_time <span style=color:#f92672>=</span> time<span style=color:#f92672>.</span>time() <span style=color:#f92672>-</span> bubble_start
-
-    quick_ls <span style=color:#f92672>=</span> copy<span style=color:#f92672>.</span>deepcopy(ls)
-    quick_start <span style=color:#f92672>=</span> time<span style=color:#f92672>.</span>time()
-    quick_sort(quick_ls)
-    quick_time <span style=color:#f92672>=</span> time<span style=color:#f92672>.</span>time() <span style=color:#f92672>-</span> quick_start
-
-    stooge_ls <span style=color:#f92672>=</span> copy<span style=color:#f92672>.</span>deepcopy(ls)
-    stooge_start <span style=color:#f92672>=</span> time<span style=color:#f92672>.</span>time()
-    stooge_sort(stooge_ls)
-    stooge_time <span style=color:#f92672>=</span> time<span style=color:#f92672>.</span>time() <span style=color:#f92672>-</span> stooge_start
-
-    print(<span style=color:#e6db74>&#34;bubble : </span><span style=color:#e6db74>{}</span><span style=color:#e6db74>&#34;</span><span style=color:#f92672>.</span>format(bubble_time))
-    print(<span style=color:#e6db74>&#34;quick  : </span><span style=color:#e6db74>{}</span><span style=color:#e6db74>&#34;</span><span style=color:#f92672>.</span>format(quick_time))
-    print(<span style=color:#e6db74>&#34;stooge : </span><span style=color:#e6db74>{}</span><span style=color:#e6db74>&#34;</span><span style=color:#f92672>.</span>format(stooge_time))
-
-    <span style=color:#75715e># bubble : 0.0938718318939209</span>
-    <span style=color:#75715e># quick  : 0.0</span>
-    <span style=color:#75715e># stooge : 33.47836709022522</span>
-</code></pre></div><p>遅い ((((´・ω・`))))</p><div class=blog-tags><a href=https://nekotheshadow.github.io/qiita-backup/tags/python/>Python</a>&nbsp;
+<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button><div class=pswp__caption><div class=pswp__caption__center></div></div></div></div></div><header class=header-section><div class="intro-header no-img"><div class=container><div class=row><div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1"><div class=blog-heading><h1>ストゥージソートをPython3で実装(バブルソート&クイックソート)</h1><hr class=small></div></div></div></div></div></header><div class=container role=main><div class=row><div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1"><article role=main class=blog-post><p><a href=https://ja.wikipedia.org/wiki/%E3%82%B9%E3%83%88%E3%82%A5%E3%83%BC%E3%82%B8%E3%82%BD%E3%83%BC%E3%83%88>ストゥージソート(stooge sort)というソートがあるそうです。</a>このソートアルゴリズムはとても<strong>効率の悪い</strong>ソートアルゴリズムらしく、バブルソートより効率が悪いとか。</p><p>この記事ではストゥージソートをPython3で実装してみます。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-py3 data-lang=py3><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># リストを破壊的にソートする。アルゴリズムは「ストゥージソート」</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>stooge_sort</span>(ls):
+</span></span><span style=display:flex><span>    stack <span style=color:#f92672>=</span> [(<span style=color:#ae81ff>0</span>, len(ls) <span style=color:#f92672>-</span> <span style=color:#ae81ff>1</span>)]
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>while</span> stack:
+</span></span><span style=display:flex><span>        i, j <span style=color:#f92672>=</span> stack<span style=color:#f92672>.</span>pop()
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>if</span> ls[i] <span style=color:#f92672>&gt;</span> ls[j]: ls[i], ls[j] <span style=color:#f92672>=</span> ls[j], ls[i]
+</span></span><span style=display:flex><span>        
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>if</span> j <span style=color:#f92672>-</span> i <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span> <span style=color:#f92672>&gt;=</span> <span style=color:#ae81ff>3</span>:
+</span></span><span style=display:flex><span>            t <span style=color:#f92672>=</span> (j <span style=color:#f92672>-</span> i <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span>) <span style=color:#f92672>//</span> <span style=color:#ae81ff>3</span>
+</span></span><span style=display:flex><span>            stack<span style=color:#f92672>.</span>extend(((i, j <span style=color:#f92672>-</span> t), (i <span style=color:#f92672>+</span> t, j), (i, j <span style=color:#f92672>-</span> t)))
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>if</span> __name__ <span style=color:#f92672>==</span> <span style=color:#e6db74>&#39;__main__&#39;</span>:
+</span></span><span style=display:flex><span>    <span style=color:#f92672>import</span> random
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    ls <span style=color:#f92672>=</span> list(range(<span style=color:#ae81ff>30</span>))
+</span></span><span style=display:flex><span>    random<span style=color:#f92672>.</span>shuffle(ls)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    print(ls)
+</span></span><span style=display:flex><span>    stooge_sort(ls)
+</span></span><span style=display:flex><span>    print(ls)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># [20, 4, 13, 28, 12, 0, 17, 19, 22, 21, 5, 23, 3, 27, 14, 2, 29, 11, 24, 7, 15, 9, 25, 6, 26, 18, 8, 1, 10, 16]</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29]</span>
+</span></span></code></pre></div><p>確かにちゃんとソートできているようですね。 工夫(?)としては再帰ではなく、繰り返しで実装している点ですが……効率のわるいアルゴリズムに対して、効率よく実装する意味はあるのか(´・ω・`)</p><p>次に効率ですが、<a href=https://ja.wikipedia.org/wiki/%E3%83%90%E3%83%96%E3%83%AB%E3%82%BD%E3%83%BC%E3%83%88>効率の悪い「バブルソート」</a>と<a href=https://ja.wikipedia.org/wiki/%E3%82%AF%E3%82%A4%E3%83%83%E3%82%AF%E3%82%BD%E3%83%BC%E3%83%88>効率のいい「クイックソート」</a>をそれぞれ実装し、1000個の要素を持つリストをソートする時間を計測してみたいと思います。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-py3 data-lang=py3><span style=display:flex><span><span style=color:#75715e># リストを破壊的にソートする。アルゴリズムは「ストゥージソート」</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>stooge_sort</span>(ls):
+</span></span><span style=display:flex><span>    stack <span style=color:#f92672>=</span> [(<span style=color:#ae81ff>0</span>, len(ls) <span style=color:#f92672>-</span> <span style=color:#ae81ff>1</span>)]
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>while</span> stack:
+</span></span><span style=display:flex><span>        i, j <span style=color:#f92672>=</span> stack<span style=color:#f92672>.</span>pop()
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>if</span> ls[i] <span style=color:#f92672>&gt;</span> ls[j]: ls[i], ls[j] <span style=color:#f92672>=</span> ls[j], ls[i]
+</span></span><span style=display:flex><span>        
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>if</span> j <span style=color:#f92672>-</span> i <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span> <span style=color:#f92672>&gt;=</span> <span style=color:#ae81ff>3</span>:
+</span></span><span style=display:flex><span>            t <span style=color:#f92672>=</span> (j <span style=color:#f92672>-</span> i <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span>) <span style=color:#f92672>//</span> <span style=color:#ae81ff>3</span>
+</span></span><span style=display:flex><span>            stack<span style=color:#f92672>.</span>extend(((i, j <span style=color:#f92672>-</span> t), (i <span style=color:#f92672>+</span> t, j), (i, j <span style=color:#f92672>-</span> t)))
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># リストを破壊的にソートする。アルゴリズムは「バブルソート」</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>bubble_sort</span>(ls):
+</span></span><span style=display:flex><span>    t <span style=color:#f92672>=</span> len(ls)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> range(t <span style=color:#f92672>-</span> <span style=color:#ae81ff>1</span>):
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>for</span> j <span style=color:#f92672>in</span> range(i <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span>, t):
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>if</span> ls[i] <span style=color:#f92672>&gt;</span> ls[j]: ls[i], ls[j] <span style=color:#f92672>=</span> ls[j], ls[i]
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># リストを破壊的にソートする。アルゴリズムは「クイックソート」</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>quick_sort</span>(ls):
+</span></span><span style=display:flex><span>    stack <span style=color:#f92672>=</span> [(<span style=color:#ae81ff>0</span>, len(ls) <span style=color:#f92672>-</span> <span style=color:#ae81ff>1</span>)]
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>while</span> stack:
+</span></span><span style=display:flex><span>        left, right <span style=color:#f92672>=</span> stack<span style=color:#f92672>.</span>pop()
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>if</span> left <span style=color:#f92672>&gt;=</span> right: <span style=color:#66d9ef>continue</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        pivot <span style=color:#f92672>=</span> ls[left <span style=color:#f92672>+</span> (right <span style=color:#f92672>-</span> left) <span style=color:#f92672>//</span> <span style=color:#ae81ff>2</span>]
+</span></span><span style=display:flex><span>        i, j <span style=color:#f92672>=</span> left, right
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>while</span> <span style=color:#66d9ef>True</span>:
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>while</span> ls[i] <span style=color:#f92672>&lt;</span> pivot: i <span style=color:#f92672>+=</span> <span style=color:#ae81ff>1</span>
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>while</span> ls[j] <span style=color:#f92672>&gt;</span> pivot: j <span style=color:#f92672>-=</span> <span style=color:#ae81ff>1</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>if</span> i <span style=color:#f92672>&gt;=</span> j: <span style=color:#66d9ef>break</span>
+</span></span><span style=display:flex><span>            
+</span></span><span style=display:flex><span>            ls[i], ls[j] <span style=color:#f92672>=</span> ls[j], ls[i]
+</span></span><span style=display:flex><span>            i, j <span style=color:#f92672>=</span> i <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span>, j <span style=color:#f92672>-</span> <span style=color:#ae81ff>1</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        stack<span style=color:#f92672>.</span>extend(((j <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span>, right), (left, i <span style=color:#f92672>-</span> <span style=color:#ae81ff>1</span>)))
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>if</span> __name__ <span style=color:#f92672>==</span> <span style=color:#e6db74>&#39;__main__&#39;</span>:
+</span></span><span style=display:flex><span>    <span style=color:#f92672>import</span> random<span style=color:#f92672>,</span> copy<span style=color:#f92672>,</span> time
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    ls <span style=color:#f92672>=</span> list(range(<span style=color:#ae81ff>1000</span>))
+</span></span><span style=display:flex><span>    random<span style=color:#f92672>.</span>shuffle(ls)
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    bubble_ls <span style=color:#f92672>=</span> copy<span style=color:#f92672>.</span>deepcopy(ls)
+</span></span><span style=display:flex><span>    bubble_start <span style=color:#f92672>=</span> time<span style=color:#f92672>.</span>time()
+</span></span><span style=display:flex><span>    bubble_sort(bubble_ls)
+</span></span><span style=display:flex><span>    bubble_time <span style=color:#f92672>=</span> time<span style=color:#f92672>.</span>time() <span style=color:#f92672>-</span> bubble_start
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    quick_ls <span style=color:#f92672>=</span> copy<span style=color:#f92672>.</span>deepcopy(ls)
+</span></span><span style=display:flex><span>    quick_start <span style=color:#f92672>=</span> time<span style=color:#f92672>.</span>time()
+</span></span><span style=display:flex><span>    quick_sort(quick_ls)
+</span></span><span style=display:flex><span>    quick_time <span style=color:#f92672>=</span> time<span style=color:#f92672>.</span>time() <span style=color:#f92672>-</span> quick_start
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    stooge_ls <span style=color:#f92672>=</span> copy<span style=color:#f92672>.</span>deepcopy(ls)
+</span></span><span style=display:flex><span>    stooge_start <span style=color:#f92672>=</span> time<span style=color:#f92672>.</span>time()
+</span></span><span style=display:flex><span>    stooge_sort(stooge_ls)
+</span></span><span style=display:flex><span>    stooge_time <span style=color:#f92672>=</span> time<span style=color:#f92672>.</span>time() <span style=color:#f92672>-</span> stooge_start
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    print(<span style=color:#e6db74>&#34;bubble : </span><span style=color:#e6db74>{}</span><span style=color:#e6db74>&#34;</span><span style=color:#f92672>.</span>format(bubble_time))
+</span></span><span style=display:flex><span>    print(<span style=color:#e6db74>&#34;quick  : </span><span style=color:#e6db74>{}</span><span style=color:#e6db74>&#34;</span><span style=color:#f92672>.</span>format(quick_time))
+</span></span><span style=display:flex><span>    print(<span style=color:#e6db74>&#34;stooge : </span><span style=color:#e6db74>{}</span><span style=color:#e6db74>&#34;</span><span style=color:#f92672>.</span>format(stooge_time))
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e># bubble : 0.0938718318939209</span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e># quick  : 0.0</span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e># stooge : 33.47836709022522</span>
+</span></span></code></pre></div><p>遅い ((((´・ω・`))))</p><div class=blog-tags><a href=https://nekotheshadow.github.io/qiita-backup/tags/python/>Python</a>&nbsp;
 <a href=https://nekotheshadow.github.io/qiita-backup/tags/python3/>Python3</a>&nbsp;</div></article><ul class="pager blog-pager"><li class=previous><a href=https://nekotheshadow.github.io/qiita-backup/blog/324976c7b54623e82b26/ data-toggle=tooltip data-placement=top title=Python3のスクリプトでjsonをPOSTする>&larr; Previous Post</a></li><li class=next><a href=https://nekotheshadow.github.io/qiita-backup/blog/48dc34145361829e22d4/ data-toggle=tooltip data-placement=top title=CodeIQ「『プライム・ホッパー』問題」に挑戦しました。>Next Post &rarr;</a></li></ul></div></div></div><footer><div class=container><div class=row><div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1"><ul class="list-inline text-center footer-links"></ul><p class="credits copyright text-muted">&nbsp;&bull;&nbsp;&copy;
 2022
 &nbsp;&bull;&nbsp;
-<a href=https://nekotheshadow.github.io/qiita-backup>Qiita Backup</a></p><p class="credits theme-by text-muted"><a href=https://gohugo.io>Hugo v0.74.3</a> powered &nbsp;&bull;&nbsp; Theme <a href=https://github.com/halogenica/beautifulhugo>Beautiful Hugo</a> adapted from <a href=https://deanattali.com/beautiful-jekyll/>Beautiful Jekyll</a></p></div></div></div></footer><script src=https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.js integrity=sha384-K3vbOmF2BtaVai+Qk37uypf7VrgBubhQreNQe9aGsz9lB63dIFiQVlJbr92dw2Lx crossorigin=anonymous></script><script src=https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/contrib/auto-render.min.js integrity=sha384-kmZOZB5ObwgQnS/DuDg6TScgOiWWBiVt0plIRkZCmE6rDZGrEOQeHM5PcHi+nyqe crossorigin=anonymous></script><script src=https://code.jquery.com/jquery-1.12.4.min.js integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin=anonymous></script><script src=https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js integrity=sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa crossorigin=anonymous></script><script src=https://nekotheshadow.github.io/qiita-backup/js/main.js></script><script>renderMathInElement(document.body);</script><script src=https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js integrity=sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy crossorigin=anonymous></script><script src=https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js integrity=sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q crossorigin=anonymous></script><script src=https://nekotheshadow.github.io/qiita-backup/js/load-photoswipe.js></script></body></html>
+<a href=https://nekotheshadow.github.io/qiita-backup>Qiita Backup</a></p><p class="credits theme-by text-muted"><a href=https://gohugo.io>Hugo v0.109.0</a> powered &nbsp;&bull;&nbsp; Theme <a href=https://github.com/halogenica/beautifulhugo>Beautiful Hugo</a> adapted from <a href=https://deanattali.com/beautiful-jekyll/>Beautiful Jekyll</a></p></div></div></div></footer><script src=https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.js integrity=sha384-K3vbOmF2BtaVai+Qk37uypf7VrgBubhQreNQe9aGsz9lB63dIFiQVlJbr92dw2Lx crossorigin=anonymous></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/contrib/auto-render.min.js integrity=sha384-kmZOZB5ObwgQnS/DuDg6TScgOiWWBiVt0plIRkZCmE6rDZGrEOQeHM5PcHi+nyqe crossorigin=anonymous></script>
+<script src=https://code.jquery.com/jquery-1.12.4.min.js integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin=anonymous></script>
+<script src=https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js integrity=sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa crossorigin=anonymous></script>
+<script src=https://nekotheshadow.github.io/qiita-backup/js/main.js></script><script>renderMathInElement(document.body)</script><script src=https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js integrity=sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy crossorigin=anonymous></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js integrity=sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q crossorigin=anonymous></script><script src=https://nekotheshadow.github.io/qiita-backup/js/load-photoswipe.js></script></body></html>

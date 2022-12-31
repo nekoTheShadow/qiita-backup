@@ -1,126 +1,133 @@
-<!doctype html><html lang=en itemscope itemtype=http://schema.org/WebPage><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1"><title>数独ソルバーをPython3で実装 - Qiita Backup</title><meta name=description content="先日ネットサーフィン中に次のような記事を見つけました: 「数学のエキスパートが3ヶ月かけて作成した「世界一難しい数独」」。事実かどうかはともか"><script type=application/ld+json>{"@context":"http://schema.org","@type":"WebSite","name":"Qiita Backup","url":"https:\/\/nekotheshadow.github.io\/qiita-backup"}</script><script type=application/ld+json>{"@context":"http://schema.org","@type":"Organization","name":"","url":"https:\/\/nekotheshadow.github.io\/qiita-backup"}</script><script type=application/ld+json>{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https:\/\/nekotheshadow.github.io\/qiita-backup","name":"home"}},{"@type":"ListItem","position":3,"item":{"@id":"https:\/\/nekotheshadow.github.io\/qiita-backup\/blog\/a7b6f1e050627d862591\/","name":"数独ソルバーを python3で実装"}}]}</script><script type=application/ld+json>{"@context":"http://schema.org","@type":"Article","author":{"name":""},"headline":"数独ソルバーをPython3で実装","description":"先日ネットサーフィン中に次のような記事を見つけました: 「数学のエキスパートが3ヶ月かけて作成した「世界一難しい数独」」。事実かどうかはともか","inLanguage":"en","wordCount":718,"datePublished":"2016-07-23T23:06:08","dateModified":"2016-07-23T23:06:08","image":"https:\/\/nekotheshadow.github.io\/qiita-backup","keywords":["Python, Python3"],"mainEntityOfPage":"https:\/\/nekotheshadow.github.io\/qiita-backup\/blog\/a7b6f1e050627d862591\/","publisher":{"@type":"Organization","name":"https:\/\/nekotheshadow.github.io\/qiita-backup","logo":{"@type":"ImageObject","url":"https:\/\/nekotheshadow.github.io\/qiita-backup","height":60,"width":60}}}</script><meta property="og:title" content="数独ソルバーをPython3で実装"><meta property="og:description" content="先日ネットサーフィン中に次のような記事を見つけました: 「数学のエキスパートが3ヶ月かけて作成した「世界一難しい数独」」。事実かどうかはともか"><meta property="og:url" content="https://nekotheshadow.github.io/qiita-backup/blog/a7b6f1e050627d862591/"><meta property="og:type" content="website"><meta property="og:site_name" content="Qiita Backup"><meta name=twitter:title content="数独ソルバーをPython3で実装"><meta name=twitter:description content="先日ネットサーフィン中に次のような記事を見つけました: 「数学のエキスパートが3ヶ月かけて作成した「世界一難しい数独」」。事実かどうかはともか"><meta name=twitter:card content="summary"><meta name=generator content="Hugo 0.74.3"><link rel=alternate href=https://nekotheshadow.github.io/qiita-backup/index.xml type=application/rss+xml title="Qiita Backup"><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css integrity=sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y crossorigin=anonymous><link rel=stylesheet href=https://use.fontawesome.com/releases/v5.5.0/css/all.css integrity=sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU crossorigin=anonymous><link rel=stylesheet href=https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css integrity=sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u crossorigin=anonymous><link rel=stylesheet href=https://nekotheshadow.github.io/qiita-backup/css/main.css><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic"><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800"><link rel=stylesheet href=https://nekotheshadow.github.io/qiita-backup/css/syntax.css><link rel=stylesheet href=https://nekotheshadow.github.io/qiita-backup/css/codeblock.css><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css integrity=sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh crossorigin=anonymous><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css integrity=sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R crossorigin=anonymous></head><body><nav class="navbar navbar-default navbar-fixed-top navbar-custom"><div class=container-fluid><div class=navbar-header><button type=button class=navbar-toggle data-toggle=collapse data-target=#main-navbar>
+<!doctype html><html lang=en itemscope itemtype=http://schema.org/WebPage><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1"><title>数独ソルバーをPython3で実装 - Qiita Backup</title><meta name=description content="先日ネットサーフィン中に次のような記事を見つけました: 「数学のエキスパートが3ヶ月かけて作成した「世界一難しい数独」」。事実かどうかはともか"><script type=application/ld+json>{"@context":"http://schema.org","@type":"WebSite","name":"Qiita Backup","url":"https:\/\/nekotheshadow.github.io\/qiita-backup"}</script><script type=application/ld+json>{"@context":"http://schema.org","@type":"Organization","name":"","url":"https:\/\/nekotheshadow.github.io\/qiita-backup"}</script><script type=application/ld+json>{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https:\/\/nekotheshadow.github.io\/qiita-backup","name":"home"}},{"@type":"ListItem","position":3,"item":{"@id":"https:\/\/nekotheshadow.github.io\/qiita-backup\/blog\/a7b6f1e050627d862591\/","name":"数独ソルバーを python3で実装"}}]}</script><script type=application/ld+json>{"@context":"http://schema.org","@type":"Article","author":{"name":""},"headline":"数独ソルバーをPython3で実装","description":"先日ネットサーフィン中に次のような記事を見つけました: 「数学のエキスパートが3ヶ月かけて作成した「世界一難しい数独」」。事実かどうかはともか","inLanguage":"en","wordCount":718,"datePublished":"2016-07-23T23:06:08","dateModified":"2016-07-23T23:06:08","image":"https:\/\/nekotheshadow.github.io\/qiita-backup","keywords":["Python, Python3"],"mainEntityOfPage":"https:\/\/nekotheshadow.github.io\/qiita-backup\/blog\/a7b6f1e050627d862591\/","publisher":{"@type":"Organization","name":"https:\/\/nekotheshadow.github.io\/qiita-backup","logo":{"@type":"ImageObject","url":"https:\/\/nekotheshadow.github.io\/qiita-backup","height":60,"width":60}}}</script><meta property="og:title" content="数独ソルバーをPython3で実装"><meta property="og:description" content="先日ネットサーフィン中に次のような記事を見つけました: 「数学のエキスパートが3ヶ月かけて作成した「世界一難しい数独」」。事実かどうかはともか"><meta property="og:url" content="https://nekotheshadow.github.io/qiita-backup/blog/a7b6f1e050627d862591/"><meta property="og:type" content="website"><meta property="og:site_name" content="Qiita Backup"><meta name=twitter:title content="数独ソルバーをPython3で実装"><meta name=twitter:description content="先日ネットサーフィン中に次のような記事を見つけました: 「数学のエキスパートが3ヶ月かけて作成した「世界一難しい数独」」。事実かどうかはともか"><meta name=twitter:card content="summary"><meta name=generator content="Hugo 0.109.0"><link rel=alternate href=https://nekotheshadow.github.io/qiita-backup/index.xml type=application/rss+xml title="Qiita Backup"><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css integrity=sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y crossorigin=anonymous><link rel=stylesheet href=https://use.fontawesome.com/releases/v5.5.0/css/all.css integrity=sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU crossorigin=anonymous><link rel=stylesheet href=https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css integrity=sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u crossorigin=anonymous><link rel=stylesheet href=https://nekotheshadow.github.io/qiita-backup/css/main.css><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic"><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800"><link rel=stylesheet href=https://nekotheshadow.github.io/qiita-backup/css/syntax.css><link rel=stylesheet href=https://nekotheshadow.github.io/qiita-backup/css/codeblock.css><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css integrity=sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh crossorigin=anonymous><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css integrity=sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R crossorigin=anonymous></head><body><nav class="navbar navbar-default navbar-fixed-top navbar-custom"><div class=container-fluid><div class=navbar-header><button type=button class=navbar-toggle data-toggle=collapse data-target=#main-navbar>
 <span class=sr-only>Toggle navigation</span>
-<span class=icon-bar></span><span class=icon-bar></span><span class=icon-bar></span></button>
+<span class=icon-bar></span>
+<span class=icon-bar></span>
+<span class=icon-bar></span></button>
 <a class=navbar-brand href=https://nekotheshadow.github.io/qiita-backup>Qiita Backup</a></div><div class="collapse navbar-collapse" id=main-navbar><ul class="nav navbar-nav navbar-right"></ul></div></div></nav><div class=pswp tabindex=-1 role=dialog aria-hidden=true><div class=pswp__bg></div><div class=pswp__scroll-wrap><div class=pswp__container><div class=pswp__item></div><div class=pswp__item></div><div class=pswp__item></div></div><div class="pswp__ui pswp__ui--hidden"><div class=pswp__top-bar><div class=pswp__counter></div><button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
 <button class="pswp__button pswp__button--share" title=Share></button>
 <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
 <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button><div class=pswp__preloader><div class=pswp__preloader__icn><div class=pswp__preloader__cut><div class=pswp__preloader__donut></div></div></div></div></div><div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap"><div class=pswp__share-tooltip></div></div><button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)"></button>
-<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button><div class=pswp__caption><div class=pswp__caption__center></div></div></div></div></div><header class=header-section><div class="intro-header no-img"><div class=container><div class=row><div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1"><div class=blog-heading><h1>数独ソルバーをPython3で実装</h1><hr class=small></div></div></div></div></div></header><div class=container role=main><div class=row><div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1"><article role=main class=blog-post><p>先日ネットサーフィン中に次のような記事を見つけました: <a href=http://gigazine.net/news/20100822_hardest_sudoku/>「数学のエキスパートが3ヶ月かけて作成した「世界一難しい数独」」</a>。事実かどうかはともかく、Python3でこれを解いてみました。なお実装としてはバックトラック法を利用しています。要するに力任せに解いているということですね(´・ω・`)</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-py3 data-lang=py3>
-<span style=color:#f92672>import</span> itertools
-
-<span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Sudoku</span>(object):
-    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>__init__</span>(self):
-        self<span style=color:#f92672>.</span>matrix <span style=color:#f92672>=</span> [[<span style=color:#ae81ff>0</span> <span style=color:#66d9ef>for</span> _ <span style=color:#f92672>in</span> range(<span style=color:#ae81ff>9</span>)] <span style=color:#66d9ef>for</span> _ <span style=color:#f92672>in</span> range(<span style=color:#ae81ff>9</span>)] <span style=color:#75715e># 空白の場合は0</span>
-    
-    <span style=color:#75715e># 与えられた数独パズルを解く</span>
-    <span style=color:#75715e># 空白のマスを次々と埋めていき、すべての空白マスを埋めた場合はTrueを返す(埋められなかった場合はFalse)</span>
-    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>solve</span>(self):
-        <span style=color:#75715e># 消去法: ただひとつに決まるマスを埋めていく</span>
-        <span style=color:#66d9ef>while</span> <span style=color:#66d9ef>True</span>:
-            ls <span style=color:#f92672>=</span> []
-            <span style=color:#66d9ef>for</span> i, j <span style=color:#f92672>in</span> itertools<span style=color:#f92672>.</span>product(range(<span style=color:#ae81ff>9</span>), repeat<span style=color:#f92672>=</span><span style=color:#ae81ff>2</span>):
-                <span style=color:#66d9ef>if</span> self<span style=color:#f92672>.</span>matrix[i][j] <span style=color:#f92672>!=</span> <span style=color:#ae81ff>0</span>: <span style=color:#66d9ef>continue</span>
-
-                numbers <span style=color:#f92672>=</span> self<span style=color:#f92672>.</span>__find_numbers(i, j)
-                <span style=color:#66d9ef>if</span> len(numbers) <span style=color:#f92672>==</span> <span style=color:#ae81ff>1</span>: ls<span style=color:#f92672>.</span>append((i, j, numbers[<span style=color:#ae81ff>0</span>]))
-
-            <span style=color:#66d9ef>if</span> len(ls) <span style=color:#f92672>==</span> <span style=color:#ae81ff>0</span>: <span style=color:#66d9ef>break</span>
-            <span style=color:#66d9ef>for</span> i, j, number <span style=color:#f92672>in</span> ls: self<span style=color:#f92672>.</span>matrix[i][j] <span style=color:#f92672>=</span> number
-
-
-        blanks <span style=color:#f92672>=</span> [(i, j) <span style=color:#66d9ef>for</span> i, j <span style=color:#f92672>in</span> itertools<span style=color:#f92672>.</span>product(range(<span style=color:#ae81ff>9</span>), repeat<span style=color:#f92672>=</span><span style=color:#ae81ff>2</span>) <span style=color:#66d9ef>if</span> self<span style=color:#f92672>.</span>matrix[i][j] <span style=color:#f92672>==</span> <span style=color:#ae81ff>0</span>]
-        <span style=color:#66d9ef>if</span> len(blanks) <span style=color:#f92672>==</span> <span style=color:#ae81ff>0</span>: <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>True</span> <span style=color:#75715e># すでにすべてのマスが埋められている場合</span>
-
-        first_i, first_j <span style=color:#f92672>=</span> blanks[<span style=color:#ae81ff>0</span>]
-        stack <span style=color:#f92672>=</span> [(<span style=color:#ae81ff>0</span>, first_number) <span style=color:#66d9ef>for</span> first_number <span style=color:#f92672>in</span> self<span style=color:#f92672>.</span>__find_numbers(first_i, first_j)]
-
-        <span style=color:#75715e># バックトラック法:</span>
-        <span style=color:#75715e>#     1. 空白のマスに数字を入れる</span>
-        <span style=color:#75715e>#     2. 次の空白のマスに数字が入るかどうかを調べる</span>
-        <span style=color:#75715e>#     3. 2.において、入らない場合はバックトラック</span>
-        <span style=color:#66d9ef>while</span> stack:
-            idx, number <span style=color:#f92672>=</span> stack<span style=color:#f92672>.</span>pop()
-            i, j <span style=color:#f92672>=</span> blanks[idx]
-            self<span style=color:#f92672>.</span>matrix[i][j] <span style=color:#f92672>=</span> number
-
-            <span style=color:#66d9ef>if</span> idx <span style=color:#f92672>==</span> len(blanks) <span style=color:#f92672>-</span> <span style=color:#ae81ff>1</span>: <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>True</span>
-
-            next_i, next_j <span style=color:#f92672>=</span> blanks[idx <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span>]
-            next_numbers <span style=color:#f92672>=</span> self<span style=color:#f92672>.</span>__find_numbers(next_i, next_j)
-
-            <span style=color:#75715e># バックトラック</span>
-            <span style=color:#66d9ef>if</span> len(next_numbers) <span style=color:#f92672>==</span> <span style=color:#ae81ff>0</span>:
-                stack_top_idx <span style=color:#f92672>=</span> stack[<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>][<span style=color:#ae81ff>0</span>]
-                <span style=color:#66d9ef>for</span> temp_idx <span style=color:#f92672>in</span> range(stack_top_idx, idx <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span>):
-                    temp_i, temp_j <span style=color:#f92672>=</span> blanks[temp_idx]
-                    self<span style=color:#f92672>.</span>matrix[temp_i][temp_j] <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>
-
-            stack<span style=color:#f92672>.</span>extend((idx <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span>, next_number) <span style=color:#66d9ef>for</span> next_number <span style=color:#f92672>in</span> next_numbers)
-
-        <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>False</span>
-
-    <span style=color:#75715e># とあるマスに入れることができる数字をsetに格納する</span>
-    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>__find_numbers</span>(self, i, j):
-        used_numbers <span style=color:#f92672>=</span> set()
-        <span style=color:#75715e># 同じ行と同じ列を調べる</span>
-        <span style=color:#66d9ef>for</span> x <span style=color:#f92672>in</span> range(<span style=color:#ae81ff>9</span>): used_numbers <span style=color:#f92672>|=</span> {self<span style=color:#f92672>.</span>matrix[x][j], self<span style=color:#f92672>.</span>matrix[i][x]}
-
-        <span style=color:#75715e># 同じブロックを調べる</span>
-        box_i_min, box_j_min <span style=color:#f92672>=</span> (i <span style=color:#f92672>//</span> <span style=color:#ae81ff>3</span>) <span style=color:#f92672>*</span> <span style=color:#ae81ff>3</span>, (j <span style=color:#f92672>//</span> <span style=color:#ae81ff>3</span>) <span style=color:#f92672>*</span> <span style=color:#ae81ff>3</span>
-        <span style=color:#66d9ef>for</span> box_i, box_j <span style=color:#f92672>in</span> itertools<span style=color:#f92672>.</span>product(range(box_i_min, box_i_min <span style=color:#f92672>+</span> <span style=color:#ae81ff>3</span>), \
-                                              range(box_j_min, box_j_min <span style=color:#f92672>+</span> <span style=color:#ae81ff>3</span>)):
-            used_numbers<span style=color:#f92672>.</span>add(self<span style=color:#f92672>.</span>matrix[box_i][box_j])
-
-        <span style=color:#66d9ef>return</span> set(range(<span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>10</span>)) <span style=color:#f92672>-</span> used_numbers
-
-    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>__str__</span>(self):
-        <span style=color:#66d9ef>return</span> <span style=color:#e6db74>&#34;</span><span style=color:#ae81ff>\n</span><span style=color:#e6db74>&#34;</span><span style=color:#f92672>.</span>join(<span style=color:#e6db74>&#34;&#34;</span><span style=color:#f92672>.</span>join(map(str, row)) <span style=color:#66d9ef>for</span> row <span style=color:#f92672>in</span> self<span style=color:#f92672>.</span>matrix)
-
-<span style=color:#66d9ef>if</span> __name__ <span style=color:#f92672>==</span> <span style=color:#e6db74>&#34;__main__&#34;</span>:
-    matrix <span style=color:#f92672>=</span> <span style=color:#e6db74>&#39;&#39;&#39;
-</span><span style=color:#e6db74>        ..53.....
-</span><span style=color:#e6db74>        8......2.
-</span><span style=color:#e6db74>        .7..1.5..
-</span><span style=color:#e6db74>        4....53..
-</span><span style=color:#e6db74>        .1..7...6
-</span><span style=color:#e6db74>        ..32....8.
-</span><span style=color:#e6db74>        .6.5....9
-</span><span style=color:#e6db74>        ..4....3.
-</span><span style=color:#e6db74>        .....97..
-</span><span style=color:#e6db74>    &#39;&#39;&#39;</span><span style=color:#f92672>.</span>split()
-
-    sudoku <span style=color:#f92672>=</span> Sudoku()
-    <span style=color:#66d9ef>for</span> i, j <span style=color:#f92672>in</span> itertools<span style=color:#f92672>.</span>product(range(<span style=color:#ae81ff>9</span>), repeat<span style=color:#f92672>=</span><span style=color:#ae81ff>2</span>):
-        <span style=color:#66d9ef>if</span> matrix[i][j] <span style=color:#f92672>==</span> <span style=color:#e6db74>&#34;.&#34;</span>: <span style=color:#66d9ef>continue</span>
-        sudoku<span style=color:#f92672>.</span>matrix[i][j] <span style=color:#f92672>=</span> int(matrix[i][j])
-    
-    print(sudoku)
-    sudoku<span style=color:#f92672>.</span>solve()
-    print(<span style=color:#e6db74>&#34;========&#34;</span>)
-    print(sudoku)
-
-
-<span style=color:#75715e># 005300000</span>
-<span style=color:#75715e># 800000020</span>
-<span style=color:#75715e># 070010500</span>
-<span style=color:#75715e># 400005300</span>
-<span style=color:#75715e># 010070006</span>
-<span style=color:#75715e># 003200080</span>
-<span style=color:#75715e># 060500009</span>
-<span style=color:#75715e># 004000030</span>
-<span style=color:#75715e># 000009700</span>
-<span style=color:#75715e># =========</span>
-<span style=color:#75715e># 145327698</span>
-<span style=color:#75715e># 839654127</span>
-<span style=color:#75715e># 672918543</span>
-<span style=color:#75715e># 496185372</span>
-<span style=color:#75715e># 218473956</span>
-<span style=color:#75715e># 753296481</span>
-<span style=color:#75715e># 367542819</span>
-<span style=color:#75715e># 984761235</span>
-<span style=color:#75715e># 521839764</span>
-</code></pre></div><p>GIGAZINEと同じ答えになったので、大丈夫でしょう(｀・ω・´)ｼｬｷｰﾝ</p><div class=blog-tags><a href=https://nekotheshadow.github.io/qiita-backup/tags/python/>Python</a>&nbsp;
+<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button><div class=pswp__caption><div class=pswp__caption__center></div></div></div></div></div><header class=header-section><div class="intro-header no-img"><div class=container><div class=row><div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1"><div class=blog-heading><h1>数独ソルバーをPython3で実装</h1><hr class=small></div></div></div></div></div></header><div class=container role=main><div class=row><div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1"><article role=main class=blog-post><p>先日ネットサーフィン中に次のような記事を見つけました: <a href=http://gigazine.net/news/20100822_hardest_sudoku/>「数学のエキスパートが3ヶ月かけて作成した「世界一難しい数独」」</a>。事実かどうかはともかく、Python3でこれを解いてみました。なお実装としてはバックトラック法を利用しています。要するに力任せに解いているということですね(´・ω・`)</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-py3 data-lang=py3><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#f92672>import</span> itertools
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Sudoku</span>(object):
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> __init__(self):
+</span></span><span style=display:flex><span>        self<span style=color:#f92672>.</span>matrix <span style=color:#f92672>=</span> [[<span style=color:#ae81ff>0</span> <span style=color:#66d9ef>for</span> _ <span style=color:#f92672>in</span> range(<span style=color:#ae81ff>9</span>)] <span style=color:#66d9ef>for</span> _ <span style=color:#f92672>in</span> range(<span style=color:#ae81ff>9</span>)] <span style=color:#75715e># 空白の場合は0</span>
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#75715e># 与えられた数独パズルを解く</span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e># 空白のマスを次々と埋めていき、すべての空白マスを埋めた場合はTrueを返す(埋められなかった場合はFalse)</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>solve</span>(self):
+</span></span><span style=display:flex><span>        <span style=color:#75715e># 消去法: ただひとつに決まるマスを埋めていく</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>while</span> <span style=color:#66d9ef>True</span>:
+</span></span><span style=display:flex><span>            ls <span style=color:#f92672>=</span> []
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>for</span> i, j <span style=color:#f92672>in</span> itertools<span style=color:#f92672>.</span>product(range(<span style=color:#ae81ff>9</span>), repeat<span style=color:#f92672>=</span><span style=color:#ae81ff>2</span>):
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>if</span> self<span style=color:#f92672>.</span>matrix[i][j] <span style=color:#f92672>!=</span> <span style=color:#ae81ff>0</span>: <span style=color:#66d9ef>continue</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>                numbers <span style=color:#f92672>=</span> self<span style=color:#f92672>.</span>__find_numbers(i, j)
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>if</span> len(numbers) <span style=color:#f92672>==</span> <span style=color:#ae81ff>1</span>: ls<span style=color:#f92672>.</span>append((i, j, numbers[<span style=color:#ae81ff>0</span>]))
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>if</span> len(ls) <span style=color:#f92672>==</span> <span style=color:#ae81ff>0</span>: <span style=color:#66d9ef>break</span>
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>for</span> i, j, number <span style=color:#f92672>in</span> ls: self<span style=color:#f92672>.</span>matrix[i][j] <span style=color:#f92672>=</span> number
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        blanks <span style=color:#f92672>=</span> [(i, j) <span style=color:#66d9ef>for</span> i, j <span style=color:#f92672>in</span> itertools<span style=color:#f92672>.</span>product(range(<span style=color:#ae81ff>9</span>), repeat<span style=color:#f92672>=</span><span style=color:#ae81ff>2</span>) <span style=color:#66d9ef>if</span> self<span style=color:#f92672>.</span>matrix[i][j] <span style=color:#f92672>==</span> <span style=color:#ae81ff>0</span>]
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>if</span> len(blanks) <span style=color:#f92672>==</span> <span style=color:#ae81ff>0</span>: <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>True</span> <span style=color:#75715e># すでにすべてのマスが埋められている場合</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        first_i, first_j <span style=color:#f92672>=</span> blanks[<span style=color:#ae81ff>0</span>]
+</span></span><span style=display:flex><span>        stack <span style=color:#f92672>=</span> [(<span style=color:#ae81ff>0</span>, first_number) <span style=color:#66d9ef>for</span> first_number <span style=color:#f92672>in</span> self<span style=color:#f92672>.</span>__find_numbers(first_i, first_j)]
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e># バックトラック法:</span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>#     1. 空白のマスに数字を入れる</span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>#     2. 次の空白のマスに数字が入るかどうかを調べる</span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>#     3. 2.において、入らない場合はバックトラック</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>while</span> stack:
+</span></span><span style=display:flex><span>            idx, number <span style=color:#f92672>=</span> stack<span style=color:#f92672>.</span>pop()
+</span></span><span style=display:flex><span>            i, j <span style=color:#f92672>=</span> blanks[idx]
+</span></span><span style=display:flex><span>            self<span style=color:#f92672>.</span>matrix[i][j] <span style=color:#f92672>=</span> number
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>if</span> idx <span style=color:#f92672>==</span> len(blanks) <span style=color:#f92672>-</span> <span style=color:#ae81ff>1</span>: <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>True</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>            next_i, next_j <span style=color:#f92672>=</span> blanks[idx <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span>]
+</span></span><span style=display:flex><span>            next_numbers <span style=color:#f92672>=</span> self<span style=color:#f92672>.</span>__find_numbers(next_i, next_j)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>            <span style=color:#75715e># バックトラック</span>
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>if</span> len(next_numbers) <span style=color:#f92672>==</span> <span style=color:#ae81ff>0</span>:
+</span></span><span style=display:flex><span>                stack_top_idx <span style=color:#f92672>=</span> stack[<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>][<span style=color:#ae81ff>0</span>]
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>for</span> temp_idx <span style=color:#f92672>in</span> range(stack_top_idx, idx <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span>):
+</span></span><span style=display:flex><span>                    temp_i, temp_j <span style=color:#f92672>=</span> blanks[temp_idx]
+</span></span><span style=display:flex><span>                    self<span style=color:#f92672>.</span>matrix[temp_i][temp_j] <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>            stack<span style=color:#f92672>.</span>extend((idx <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span>, next_number) <span style=color:#66d9ef>for</span> next_number <span style=color:#f92672>in</span> next_numbers)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>False</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e># とあるマスに入れることができる数字をsetに格納する</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>__find_numbers</span>(self, i, j):
+</span></span><span style=display:flex><span>        used_numbers <span style=color:#f92672>=</span> set()
+</span></span><span style=display:flex><span>        <span style=color:#75715e># 同じ行と同じ列を調べる</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>for</span> x <span style=color:#f92672>in</span> range(<span style=color:#ae81ff>9</span>): used_numbers <span style=color:#f92672>|=</span> {self<span style=color:#f92672>.</span>matrix[x][j], self<span style=color:#f92672>.</span>matrix[i][x]}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e># 同じブロックを調べる</span>
+</span></span><span style=display:flex><span>        box_i_min, box_j_min <span style=color:#f92672>=</span> (i <span style=color:#f92672>//</span> <span style=color:#ae81ff>3</span>) <span style=color:#f92672>*</span> <span style=color:#ae81ff>3</span>, (j <span style=color:#f92672>//</span> <span style=color:#ae81ff>3</span>) <span style=color:#f92672>*</span> <span style=color:#ae81ff>3</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>for</span> box_i, box_j <span style=color:#f92672>in</span> itertools<span style=color:#f92672>.</span>product(range(box_i_min, box_i_min <span style=color:#f92672>+</span> <span style=color:#ae81ff>3</span>), \
+</span></span><span style=display:flex><span>                                              range(box_j_min, box_j_min <span style=color:#f92672>+</span> <span style=color:#ae81ff>3</span>)):
+</span></span><span style=display:flex><span>            used_numbers<span style=color:#f92672>.</span>add(self<span style=color:#f92672>.</span>matrix[box_i][box_j])
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> set(range(<span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>10</span>)) <span style=color:#f92672>-</span> used_numbers
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> __str__(self):
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> <span style=color:#e6db74>&#34;</span><span style=color:#ae81ff>\n</span><span style=color:#e6db74>&#34;</span><span style=color:#f92672>.</span>join(<span style=color:#e6db74>&#34;&#34;</span><span style=color:#f92672>.</span>join(map(str, row)) <span style=color:#66d9ef>for</span> row <span style=color:#f92672>in</span> self<span style=color:#f92672>.</span>matrix)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>if</span> __name__ <span style=color:#f92672>==</span> <span style=color:#e6db74>&#34;__main__&#34;</span>:
+</span></span><span style=display:flex><span>    matrix <span style=color:#f92672>=</span> <span style=color:#e6db74>&#39;&#39;&#39;
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>        ..53.....
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>        8......2.
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>        .7..1.5..
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>        4....53..
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>        .1..7...6
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>        ..32....8.
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>        .6.5....9
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>        ..4....3.
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>        .....97..
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>    &#39;&#39;&#39;</span><span style=color:#f92672>.</span>split()
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    sudoku <span style=color:#f92672>=</span> Sudoku()
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>for</span> i, j <span style=color:#f92672>in</span> itertools<span style=color:#f92672>.</span>product(range(<span style=color:#ae81ff>9</span>), repeat<span style=color:#f92672>=</span><span style=color:#ae81ff>2</span>):
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>if</span> matrix[i][j] <span style=color:#f92672>==</span> <span style=color:#e6db74>&#34;.&#34;</span>: <span style=color:#66d9ef>continue</span>
+</span></span><span style=display:flex><span>        sudoku<span style=color:#f92672>.</span>matrix[i][j] <span style=color:#f92672>=</span> int(matrix[i][j])
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    print(sudoku)
+</span></span><span style=display:flex><span>    sudoku<span style=color:#f92672>.</span>solve()
+</span></span><span style=display:flex><span>    print(<span style=color:#e6db74>&#34;========&#34;</span>)
+</span></span><span style=display:flex><span>    print(sudoku)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 005300000</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 800000020</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 070010500</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 400005300</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 010070006</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 003200080</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 060500009</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 004000030</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 000009700</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># =========</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 145327698</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 839654127</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 672918543</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 496185372</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 218473956</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 753296481</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 367542819</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 984761235</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 521839764</span>
+</span></span></code></pre></div><p>GIGAZINEと同じ答えになったので、大丈夫でしょう(｀・ω・´)ｼｬｷｰﾝ</p><div class=blog-tags><a href=https://nekotheshadow.github.io/qiita-backup/tags/python/>Python</a>&nbsp;
 <a href=https://nekotheshadow.github.io/qiita-backup/tags/python3/>Python3</a>&nbsp;</div></article><ul class="pager blog-pager"><li class=previous><a href=https://nekotheshadow.github.io/qiita-backup/blog/27513e31e5ab43484a74/ data-toggle=tooltip data-placement=top title=CodeIQ「『アフター・ドット』問題」に参加しました>&larr; Previous Post</a></li><li class=next><a href=https://nekotheshadow.github.io/qiita-backup/blog/5c68112ce16e459ef72b/ data-toggle=tooltip data-placement=top title=__len__の戻り値に気を付ける>Next Post &rarr;</a></li></ul></div></div></div><footer><div class=container><div class=row><div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1"><ul class="list-inline text-center footer-links"></ul><p class="credits copyright text-muted">&nbsp;&bull;&nbsp;&copy;
 2022
 &nbsp;&bull;&nbsp;
-<a href=https://nekotheshadow.github.io/qiita-backup>Qiita Backup</a></p><p class="credits theme-by text-muted"><a href=https://gohugo.io>Hugo v0.74.3</a> powered &nbsp;&bull;&nbsp; Theme <a href=https://github.com/halogenica/beautifulhugo>Beautiful Hugo</a> adapted from <a href=https://deanattali.com/beautiful-jekyll/>Beautiful Jekyll</a></p></div></div></div></footer><script src=https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.js integrity=sha384-K3vbOmF2BtaVai+Qk37uypf7VrgBubhQreNQe9aGsz9lB63dIFiQVlJbr92dw2Lx crossorigin=anonymous></script><script src=https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/contrib/auto-render.min.js integrity=sha384-kmZOZB5ObwgQnS/DuDg6TScgOiWWBiVt0plIRkZCmE6rDZGrEOQeHM5PcHi+nyqe crossorigin=anonymous></script><script src=https://code.jquery.com/jquery-1.12.4.min.js integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin=anonymous></script><script src=https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js integrity=sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa crossorigin=anonymous></script><script src=https://nekotheshadow.github.io/qiita-backup/js/main.js></script><script>renderMathInElement(document.body);</script><script src=https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js integrity=sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy crossorigin=anonymous></script><script src=https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js integrity=sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q crossorigin=anonymous></script><script src=https://nekotheshadow.github.io/qiita-backup/js/load-photoswipe.js></script></body></html>
+<a href=https://nekotheshadow.github.io/qiita-backup>Qiita Backup</a></p><p class="credits theme-by text-muted"><a href=https://gohugo.io>Hugo v0.109.0</a> powered &nbsp;&bull;&nbsp; Theme <a href=https://github.com/halogenica/beautifulhugo>Beautiful Hugo</a> adapted from <a href=https://deanattali.com/beautiful-jekyll/>Beautiful Jekyll</a></p></div></div></div></footer><script src=https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.js integrity=sha384-K3vbOmF2BtaVai+Qk37uypf7VrgBubhQreNQe9aGsz9lB63dIFiQVlJbr92dw2Lx crossorigin=anonymous></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/contrib/auto-render.min.js integrity=sha384-kmZOZB5ObwgQnS/DuDg6TScgOiWWBiVt0plIRkZCmE6rDZGrEOQeHM5PcHi+nyqe crossorigin=anonymous></script>
+<script src=https://code.jquery.com/jquery-1.12.4.min.js integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin=anonymous></script>
+<script src=https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js integrity=sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa crossorigin=anonymous></script>
+<script src=https://nekotheshadow.github.io/qiita-backup/js/main.js></script><script>renderMathInElement(document.body)</script><script src=https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js integrity=sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy crossorigin=anonymous></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js integrity=sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q crossorigin=anonymous></script><script src=https://nekotheshadow.github.io/qiita-backup/js/load-photoswipe.js></script></body></html>
