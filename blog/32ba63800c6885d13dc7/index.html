@@ -1,0 +1,333 @@
+<!doctype html><html lang=en itemscope itemtype=http://schema.org/WebPage><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1"><title>ソースコード上のクラスとメソッドを一覧化したい & メソッドが呼び出しているメソッドを一覧化したい (Java Parser) - Qiita Backup</title><meta name=description content="お仕事の話ですが、次のような要求をJava Parserを用いて実現したので、メモとして残しておきます。 javaファイルに定義されているクラス"><script type=application/ld+json>{"@context":"http://schema.org","@type":"WebSite","name":"Qiita Backup","url":"https:\/\/nekotheshadow.github.io\/qiita-backup"}</script><script type=application/ld+json>{"@context":"http://schema.org","@type":"Organization","name":"","url":"https:\/\/nekotheshadow.github.io\/qiita-backup"}</script><script type=application/ld+json>{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https:\/\/nekotheshadow.github.io\/qiita-backup","name":"home"}},{"@type":"ListItem","position":3,"item":{"@id":"https:\/\/nekotheshadow.github.io\/qiita-backup\/blog\/32ba63800c6885d13dc7\/","name":"ソースコード上のクラスとメソッドを一覧化したい \u0026 メソッドが呼び出しているメソッドを一覧化したい ( java parser)"}}]}</script><script type=application/ld+json>{"@context":"http://schema.org","@type":"Article","author":{"name":""},"headline":"ソースコード上のクラスとメソッドを一覧化したい \u0026 メソッドが呼び出しているメソッドを一覧化したい (Java Parser)","description":"お仕事の話ですが、次のような要求をJava Parserを用いて実現したので、メモとして残しておきます。 javaファイルに定義されているクラス","inLanguage":"en","wordCount":1254,"datePublished":"2023-08-17T22:38:40","dateModified":"2023-08-17T22:38:40","image":"https:\/\/nekotheshadow.github.io\/qiita-backup","keywords":["Java"],"mainEntityOfPage":"https:\/\/nekotheshadow.github.io\/qiita-backup\/blog\/32ba63800c6885d13dc7\/","publisher":{"@type":"Organization","name":"https:\/\/nekotheshadow.github.io\/qiita-backup","logo":{"@type":"ImageObject","url":"https:\/\/nekotheshadow.github.io\/qiita-backup","height":60,"width":60}}}</script><meta property="og:title" content="ソースコード上のクラスとメソッドを一覧化したい & メソッドが呼び出しているメソッドを一覧化したい (Java Parser)"><meta property="og:description" content="お仕事の話ですが、次のような要求をJava Parserを用いて実現したので、メモとして残しておきます。 javaファイルに定義されているクラス"><meta property="og:url" content="https://nekotheshadow.github.io/qiita-backup/blog/32ba63800c6885d13dc7/"><meta property="og:type" content="website"><meta property="og:site_name" content="Qiita Backup"><meta name=twitter:title content="ソースコード上のクラスとメソッドを一覧化したい & メソッドが呼び出しているメソッドを一覧化したい (Java Parser)"><meta name=twitter:description content="お仕事の話ですが、次のような要求をJava Parserを用いて実現したので、メモとして残しておきます。 javaファイルに定義されているクラス"><meta name=twitter:card content="summary"><meta name=generator content="Hugo 0.117.0"><link rel=alternate href=https://nekotheshadow.github.io/qiita-backup/index.xml type=application/rss+xml title="Qiita Backup"><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css integrity=sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y crossorigin=anonymous><link rel=stylesheet href=https://use.fontawesome.com/releases/v5.5.0/css/all.css integrity=sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU crossorigin=anonymous><link rel=stylesheet href=https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css integrity=sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u crossorigin=anonymous><link rel=stylesheet href=https://nekotheshadow.github.io/qiita-backup/css/main.css><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic"><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800"><link rel=stylesheet href=https://nekotheshadow.github.io/qiita-backup/css/syntax.css><link rel=stylesheet href=https://nekotheshadow.github.io/qiita-backup/css/codeblock.css><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css integrity=sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh crossorigin=anonymous><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css integrity=sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R crossorigin=anonymous></head><body><nav class="navbar navbar-default navbar-fixed-top navbar-custom"><div class=container-fluid><div class=navbar-header><button type=button class=navbar-toggle data-toggle=collapse data-target=#main-navbar>
+<span class=sr-only>Toggle navigation</span>
+<span class=icon-bar></span>
+<span class=icon-bar></span>
+<span class=icon-bar></span></button>
+<a class=navbar-brand href=https://nekotheshadow.github.io/qiita-backup>Qiita Backup</a></div><div class="collapse navbar-collapse" id=main-navbar><ul class="nav navbar-nav navbar-right"></ul></div></div></nav><div class=pswp tabindex=-1 role=dialog aria-hidden=true><div class=pswp__bg></div><div class=pswp__scroll-wrap><div class=pswp__container><div class=pswp__item></div><div class=pswp__item></div><div class=pswp__item></div></div><div class="pswp__ui pswp__ui--hidden"><div class=pswp__top-bar><div class=pswp__counter></div><button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+<button class="pswp__button pswp__button--share" title=Share></button>
+<button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+<button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button><div class=pswp__preloader><div class=pswp__preloader__icn><div class=pswp__preloader__cut><div class=pswp__preloader__donut></div></div></div></div></div><div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap"><div class=pswp__share-tooltip></div></div><button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)"></button>
+<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button><div class=pswp__caption><div class=pswp__caption__center></div></div></div></div></div><header class=header-section><div class="intro-header no-img"><div class=container><div class=row><div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1"><div class=blog-heading><h1>ソースコード上のクラスとメソッドを一覧化したい & メソッドが呼び出しているメソッドを一覧化したい (Java Parser)</h1><hr class=small></div></div></div></div></div></header><div class=container role=main><div class=row><div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1"><article role=main class=blog-post><p>お仕事の話ですが、次のような要求をJava Parserを用いて実現したので、メモとして残しておきます。</p><ul><li>javaファイルに定義されているクラスとメソッドを一覧化したい</li><li>あわせてそのメソッドが呼び出しているメソッドをメソッドごとに一覧化したい</li></ul><p>以下はjava.util.Properties.javaを対象のソースコードとして、上記の要求を満たすサンプルプログラムです。<a href=https://github.com/AdoptOpenJDK/openjdk-jdk11/blob/master/src/java.base/share/classes/java/util/Properties.java>なお、Properties.javaはopenjdk-jdk11より拝借しています。</a></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=display:flex><span><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>main</span><span style=color:#f92672>(</span>String<span style=color:#f92672>[]</span> args<span style=color:#f92672>)</span> <span style=color:#66d9ef>throws</span> IOException <span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>	CompilationUnit compilationUnit <span style=color:#f92672>=</span> StaticJavaParser<span style=color:#f92672>.</span><span style=color:#a6e22e>parse</span><span style=color:#f92672>(</span>Paths<span style=color:#f92672>.</span><span style=color:#a6e22e>get</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;Properties.java&#34;</span><span style=color:#f92672>));</span>
+</span></span><span style=display:flex><span>	compilationUnit<span style=color:#f92672>.</span><span style=color:#a6e22e>accept</span><span style=color:#f92672>(</span><span style=color:#66d9ef>new</span> ClassOrInterfaceDeclarationVisitor<span style=color:#f92672>(),</span> <span style=color:#66d9ef>null</span><span style=color:#f92672>);</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>}</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>static</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>ClassOrInterfaceDeclarationVisitor</span> <span style=color:#66d9ef>extends</span> VoidVisitorAdapter<span style=color:#f92672>&lt;</span>Void<span style=color:#f92672>&gt;</span> <span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>@Override</span>
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>public</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>visit</span><span style=color:#f92672>(</span>ClassOrInterfaceDeclaration n<span style=color:#f92672>,</span> Void arg<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>		System<span style=color:#f92672>.</span><span style=color:#a6e22e>out</span><span style=color:#f92672>.</span><span style=color:#a6e22e>println</span><span style=color:#f92672>(</span>n<span style=color:#f92672>.</span><span style=color:#a6e22e>getFullyQualifiedName</span><span style=color:#f92672>().</span><span style=color:#a6e22e>get</span><span style=color:#f92672>());</span>
+</span></span><span style=display:flex><span>		<span style=color:#66d9ef>for</span> <span style=color:#f92672>(</span>MethodDeclaration md <span style=color:#f92672>:</span> n<span style=color:#f92672>.</span><span style=color:#a6e22e>getMethods</span><span style=color:#f92672>())</span> <span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>			System<span style=color:#f92672>.</span><span style=color:#a6e22e>out</span><span style=color:#f92672>.</span><span style=color:#a6e22e>println</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;\t&#34;</span> <span style=color:#f92672>+</span> md<span style=color:#f92672>.</span><span style=color:#a6e22e>getDeclarationAsString</span><span style=color:#f92672>(</span><span style=color:#66d9ef>true</span><span style=color:#f92672>,</span> <span style=color:#66d9ef>true</span><span style=color:#f92672>,</span> <span style=color:#66d9ef>true</span><span style=color:#f92672>));</span>
+</span></span><span style=display:flex><span>			md<span style=color:#f92672>.</span><span style=color:#a6e22e>accept</span><span style=color:#f92672>(</span><span style=color:#66d9ef>new</span> MethodCallExprVisitor<span style=color:#f92672>(),</span> <span style=color:#66d9ef>null</span><span style=color:#f92672>);</span>
+</span></span><span style=display:flex><span>		<span style=color:#f92672>}</span>
+</span></span><span style=display:flex><span>		<span style=color:#66d9ef>super</span><span style=color:#f92672>.</span><span style=color:#a6e22e>visit</span><span style=color:#f92672>(</span>n<span style=color:#f92672>,</span> arg<span style=color:#f92672>);</span>
+</span></span><span style=display:flex><span>	<span style=color:#f92672>}</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>}</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>static</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>MethodCallExprVisitor</span> <span style=color:#66d9ef>extends</span> VoidVisitorAdapter<span style=color:#f92672>&lt;</span>Void<span style=color:#f92672>&gt;</span> <span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>@Override</span>
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>public</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>visit</span><span style=color:#f92672>(</span>MethodCallExpr n<span style=color:#f92672>,</span> Void arg<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>		System<span style=color:#f92672>.</span><span style=color:#a6e22e>out</span><span style=color:#f92672>.</span><span style=color:#a6e22e>println</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;\t\t&#34;</span> <span style=color:#f92672>+</span> n<span style=color:#f92672>);</span>
+</span></span><span style=display:flex><span>		<span style=color:#66d9ef>super</span><span style=color:#f92672>.</span><span style=color:#a6e22e>visit</span><span style=color:#f92672>(</span>n<span style=color:#f92672>,</span> arg<span style=color:#f92672>);</span>
+</span></span><span style=display:flex><span>	<span style=color:#f92672>}</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>}</span>
+</span></span></code></pre></div><p>これを実行すると、以下のような結果がコンソールに出力されるはずです。</p><pre tabindex=0><code>java.util.Properties
+	public synchronized Object setProperty(String key, String value)
+		put(key, value)
+	public synchronized void load(Reader reader) throws IOException
+		Objects.requireNonNull(reader, &#34;reader parameter is null&#34;)
+		load0(new LineReader(reader))
+	public synchronized void load(InputStream inStream) throws IOException
+		Objects.requireNonNull(inStream, &#34;inStream parameter is null&#34;)
+		load0(new LineReader(inStream))
+	private void load0(LineReader lr) throws IOException
+		loadConvert(lr.lineBuf, 0, keyLen, convtBuf)
+		loadConvert(lr.lineBuf, valueStart, limit - valueStart, convtBuf)
+		put(key, value)
+		lr.readLine()
+	private String loadConvert(char[] in, int off, int len, char[] convtBuf)
+	private String saveConvert(String theString, boolean escapeSpace, boolean escapeUnicode)
+		theString.length()
+		theString.charAt(x)
+		outBuffer.append(&#39;\\&#39;)
+		outBuffer.append(&#39;\\&#39;)
+		outBuffer.append(aChar)
+		outBuffer.append(&#39;\\&#39;)
+		outBuffer.append(&#39; &#39;)
+		outBuffer.append(&#39;\\&#39;)
+		outBuffer.append(&#39;t&#39;)
+		outBuffer.append(&#39;\\&#39;)
+		outBuffer.append(&#39;n&#39;)
+		outBuffer.append(&#39;\\&#39;)
+		outBuffer.append(&#39;r&#39;)
+		outBuffer.append(&#39;\\&#39;)
+		outBuffer.append(&#39;f&#39;)
+		outBuffer.append(&#39;\\&#39;)
+		outBuffer.append(aChar)
+		outBuffer.append(aChar)
+		outBuffer.append(&#39;\\&#39;)
+		outBuffer.append(&#39;u&#39;)
+		outBuffer.append(toHex((aChar &gt;&gt; 12) &amp; 0xF))
+		toHex((aChar &gt;&gt; 12) &amp; 0xF)
+		outBuffer.append(toHex((aChar &gt;&gt; 8) &amp; 0xF))
+		toHex((aChar &gt;&gt; 8) &amp; 0xF)
+		outBuffer.append(toHex((aChar &gt;&gt; 4) &amp; 0xF))
+		toHex((aChar &gt;&gt; 4) &amp; 0xF)
+		outBuffer.append(toHex(aChar &amp; 0xF))
+		toHex(aChar &amp; 0xF)
+		outBuffer.toString()
+	private static void writeComments(BufferedWriter bw, String comments) throws IOException
+		bw.write(&#34;#&#34;)
+		comments.length()
+		comments.charAt(current)
+		bw.write(comments.substring(last, current))
+		comments.substring(last, current)
+		bw.newLine()
+		comments.charAt(current + 1)
+		comments.charAt(current + 1)
+		comments.charAt(current + 1)
+		bw.write(&#34;#&#34;)
+		toHex((c &gt;&gt; 12) &amp; 0xf)
+		toHex((c &gt;&gt; 8) &amp; 0xf)
+		toHex((c &gt;&gt; 4) &amp; 0xf)
+		toHex(c &amp; 0xf)
+		bw.write(new String(uu))
+		bw.write(comments.substring(last, current))
+		comments.substring(last, current)
+		bw.newLine()
+	public void save(OutputStream out, String comments)
+		store(out, comments)
+	public void store(Writer writer, String comments) throws IOException
+		store0((writer instanceof BufferedWriter) ? (BufferedWriter) writer : new BufferedWriter(writer), comments, false)
+	public void store(OutputStream out, String comments) throws IOException
+		store0(new BufferedWriter(new OutputStreamWriter(out, &#34;8859_1&#34;)), comments, true)
+	private void store0(BufferedWriter bw, String comments, boolean escUnicode) throws IOException
+		writeComments(bw, comments)
+		bw.write(&#34;#&#34; + new Date().toString())
+		new Date().toString()
+		bw.newLine()
+		e.getKey()
+		e.getValue()
+		saveConvert(key, true, escUnicode)
+		saveConvert(val, false, escUnicode)
+		bw.write(key + &#34;=&#34; + val)
+		bw.newLine()
+		entrySet()
+		bw.flush()
+	public synchronized void loadFromXML(InputStream in) throws IOException, InvalidPropertiesFormatException
+		Objects.requireNonNull(in)
+		handler.load(this, in)
+		in.close()
+	public void storeToXML(OutputStream os, String comment) throws IOException
+		storeToXML(os, comment, &#34;UTF-8&#34;)
+	public void storeToXML(OutputStream os, String comment, String encoding) throws IOException
+		Objects.requireNonNull(os)
+		Objects.requireNonNull(encoding)
+		Charset.forName(encoding)
+		storeToXML(os, comment, charset)
+	public void storeToXML(OutputStream os, String comment, Charset charset) throws IOException
+		Objects.requireNonNull(os, &#34;OutputStream&#34;)
+		Objects.requireNonNull(charset, &#34;Charset&#34;)
+		handler.store(this, os, comment, charset)
+	public String getProperty(String key)
+		map.get(key)
+		defaults.getProperty(key)
+	public String getProperty(String key, String defaultValue)
+		getProperty(key)
+	public Enumeration&lt;?&gt; propertyNames()
+		enumerate(h)
+		h.keys()
+	public Set&lt;String&gt; stringPropertyNames()
+		enumerateStringProperties(h)
+		Collections.unmodifiableSet(h.keySet())
+		h.keySet()
+	public void list(PrintStream out)
+		out.println(&#34;-- listing properties --&#34;)
+		enumerate(h)
+		e.getKey()
+		e.getValue()
+		val.length()
+		val.substring(0, 37)
+		out.println(key + &#34;=&#34; + val)
+		h.entrySet()
+	public void list(PrintWriter out)
+		out.println(&#34;-- listing properties --&#34;)
+		enumerate(h)
+		e.getKey()
+		e.getValue()
+		val.length()
+		val.substring(0, 37)
+		out.println(key + &#34;=&#34; + val)
+		h.entrySet()
+	private void enumerate(Map&lt;String, Object&gt; h)
+		defaults.enumerate(h)
+		e.getKey()
+		h.put(key, e.getValue())
+		e.getValue()
+		entrySet()
+	private void enumerateStringProperties(Map&lt;String, String&gt; h)
+		defaults.enumerateStringProperties(h)
+		e.getKey()
+		e.getValue()
+		h.put((String) k, (String) v)
+		entrySet()
+	private static char toHex(int nibble)
+	public int size()
+		map.size()
+	public boolean isEmpty()
+		map.isEmpty()
+	public Enumeration&lt;Object&gt; keys()
+		Collections.enumeration(map.keySet())
+		map.keySet()
+	public Enumeration&lt;Object&gt; elements()
+		Collections.enumeration(map.values())
+		map.values()
+	public boolean contains(Object value)
+		map.contains(value)
+	public boolean containsValue(Object value)
+		map.containsValue(value)
+	public boolean containsKey(Object key)
+		map.containsKey(key)
+	public Object get(Object key)
+		map.get(key)
+	public synchronized Object put(Object key, Object value)
+		map.put(key, value)
+	public synchronized Object remove(Object key)
+		map.remove(key)
+	public synchronized void putAll(Map&lt;?, ?&gt; t)
+		map.putAll(t)
+	public synchronized void clear()
+		map.clear()
+	public synchronized String toString()
+		map.toString()
+	public Set&lt;Object&gt; keySet()
+		Collections.synchronizedSet(map.keySet(), this)
+		map.keySet()
+	public Collection&lt;Object&gt; values()
+		Collections.synchronizedCollection(map.values(), this)
+		map.values()
+	public Set&lt;Map.Entry&lt;Object, Object&gt;&gt; entrySet()
+		Collections.synchronizedSet(new EntrySet(map.entrySet()), this)
+		map.entrySet()
+	public synchronized boolean equals(Object o)
+		map.equals(o)
+	public synchronized int hashCode()
+		map.hashCode()
+	public Object getOrDefault(Object key, Object defaultValue)
+		map.getOrDefault(key, defaultValue)
+	public synchronized void forEach(BiConsumer&lt;? super Object, ? super Object&gt; action)
+		map.forEach(action)
+	public synchronized void replaceAll(BiFunction&lt;? super Object, ? super Object, ?&gt; function)
+		map.replaceAll(function)
+	public synchronized Object putIfAbsent(Object key, Object value)
+		map.putIfAbsent(key, value)
+	public synchronized boolean remove(Object key, Object value)
+		map.remove(key, value)
+	public synchronized boolean replace(Object key, Object oldValue, Object newValue)
+		map.replace(key, oldValue, newValue)
+	public synchronized Object replace(Object key, Object value)
+		map.replace(key, value)
+	public synchronized Object computeIfAbsent(Object key, Function&lt;? super Object, ?&gt; mappingFunction)
+		map.computeIfAbsent(key, mappingFunction)
+	public synchronized Object computeIfPresent(Object key, BiFunction&lt;? super Object, ? super Object, ?&gt; remappingFunction)
+		map.computeIfPresent(key, remappingFunction)
+	public synchronized Object compute(Object key, BiFunction&lt;? super Object, ? super Object, ?&gt; remappingFunction)
+		map.compute(key, remappingFunction)
+	public synchronized Object merge(Object key, Object value, BiFunction&lt;? super Object, ? super Object, ?&gt; remappingFunction)
+		map.merge(key, value, remappingFunction)
+	protected void rehash()
+	public synchronized Object clone()
+		cloneHashtable()
+	 void writeHashtable(ObjectOutputStream s) throws IOException
+		map.size()
+		entryStack.add(entry.getValue())
+		entry.getValue()
+		entryStack.add(entry.getKey())
+		entry.getKey()
+		map.entrySet()
+		entryStack.size()
+		defaultWriteHashtable(s, length, loadFactor)
+		s.writeInt(length)
+		s.writeInt(count)
+		s.writeObject(entryStack.get(i))
+		entryStack.get(i)
+		entryStack.size()
+	 void readHashtable(ObjectInputStream s) throws IOException, ClassNotFoundException
+		s.defaultReadObject()
+		s.readInt()
+		s.readInt()
+		SharedSecrets.getJavaObjectInputStreamAccess().checkArray(s, Map.Entry[].class, HashMap.tableSizeFor((int) (elements / 0.75)))
+		HashMap.tableSizeFor((int) (elements / 0.75))
+		SharedSecrets.getJavaObjectInputStreamAccess()
+		s.readObject()
+		s.readObject()
+		map.put(key, value)
+java.util.Properties.LineReader
+	 int readLine() throws IOException
+		inStream.read(inByteBuf)
+		reader.read(inCharBuf)
+		inStream.read(inByteBuf)
+		reader.read(inCharBuf)
+		System.arraycopy(lineBuf, 0, buf, 0, lineBuf.length)
+java.util.Properties.EntrySet
+	public int size()
+		entrySet.size()
+	public boolean isEmpty()
+		entrySet.isEmpty()
+	public boolean contains(Object o)
+		entrySet.contains(o)
+	public Object[] toArray()
+		entrySet.toArray()
+	public T[] toArray(T[] a)
+		entrySet.toArray(a)
+	public void clear()
+		entrySet.clear()
+	public boolean remove(Object o)
+		entrySet.remove(o)
+	public boolean add(Map.Entry&lt;Object, Object&gt; e)
+	public boolean addAll(Collection&lt;? extends Map.Entry&lt;Object, Object&gt;&gt; c)
+	public boolean containsAll(Collection&lt;?&gt; c)
+		entrySet.containsAll(c)
+	public boolean removeAll(Collection&lt;?&gt; c)
+		entrySet.removeAll(c)
+	public boolean retainAll(Collection&lt;?&gt; c)
+		entrySet.retainAll(c)
+	public Iterator&lt;Map.Entry&lt;Object, Object&gt;&gt; iterator()
+		entrySet.iterator()
+</code></pre><p>サンプリングでチェックしてみましょう。storeToXMLメソッドの実装は以下の通りです。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=display:flex><span><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>storeToXML</span><span style=color:#f92672>(</span>OutputStream os<span style=color:#f92672>,</span> String comment<span style=color:#f92672>,</span> String encoding<span style=color:#f92672>)</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>throws</span> IOException <span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>    Objects<span style=color:#f92672>.</span><span style=color:#a6e22e>requireNonNull</span><span style=color:#f92672>(</span>os<span style=color:#f92672>);</span>
+</span></span><span style=display:flex><span>    Objects<span style=color:#f92672>.</span><span style=color:#a6e22e>requireNonNull</span><span style=color:#f92672>(</span>encoding<span style=color:#f92672>);</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>try</span> <span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>        Charset charset <span style=color:#f92672>=</span> Charset<span style=color:#f92672>.</span><span style=color:#a6e22e>forName</span><span style=color:#f92672>(</span>encoding<span style=color:#f92672>);</span>
+</span></span><span style=display:flex><span>        storeToXML<span style=color:#f92672>(</span>os<span style=color:#f92672>,</span> comment<span style=color:#f92672>,</span> charset<span style=color:#f92672>);</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>}</span> <span style=color:#66d9ef>catch</span> <span style=color:#f92672>(</span>IllegalCharsetNameException <span style=color:#f92672>|</span> UnsupportedCharsetException e<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>throw</span> <span style=color:#66d9ef>new</span> UnsupportedEncodingException<span style=color:#f92672>(</span>encoding<span style=color:#f92672>);</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>}</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>}</span>
+</span></span></code></pre></div><p>これに対応する解析結果は以下の通りです。</p><pre tabindex=0><code>public void storeToXML(OutputStream os, String comment, String encoding) throws IOException
+	Objects.requireNonNull(os)
+	Objects.requireNonNull(encoding)
+	Charset.forName(encoding)
+	storeToXML(os, comment, charset)
+</code></pre><p>ただしく解析できていそうですね。</p><p><strong>環境 : pom.xml抜粋</strong></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-xml data-lang=xml><span style=display:flex><span><span style=color:#f92672>&lt;properties&gt;</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&lt;maven.compiler.target&gt;</span>11<span style=color:#f92672>&lt;/maven.compiler.target&gt;</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&lt;maven.compiler.source&gt;</span>11<span style=color:#f92672>&lt;/maven.compiler.source&gt;</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>&lt;/properties&gt;</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>&lt;dependencies&gt;</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&lt;dependency&gt;</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&lt;groupId&gt;</span>com.github.javaparser<span style=color:#f92672>&lt;/groupId&gt;</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&lt;artifactId&gt;</span>javaparser-core<span style=color:#f92672>&lt;/artifactId&gt;</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&lt;version&gt;</span>3.25.4<span style=color:#f92672>&lt;/version&gt;</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&lt;/dependency&gt;</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>&lt;/dependencies&gt;</span>
+</span></span></code></pre></div><div class=blog-tags><a href=https://nekotheshadow.github.io/qiita-backup/tags/java/>Java</a>&nbsp;</div></article><ul class="pager blog-pager"><li class=previous><a href=https://nekotheshadow.github.io/qiita-backup/blog/4325f57737c1f65eef62/ data-toggle=tooltip data-placement=top title=外部エンティティを含むxmlファイルを読み込みたい>&larr; Previous Post</a></li></ul></div></div></div><footer><div class=container><div class=row><div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1"><ul class="list-inline text-center footer-links"></ul><p class="credits copyright text-muted">&nbsp;&bull;&nbsp;&copy;
+2023
+&nbsp;&bull;&nbsp;
+<a href=https://nekotheshadow.github.io/qiita-backup>Qiita Backup</a></p><p class="credits theme-by text-muted"><a href=https://gohugo.io>Hugo v0.117.0</a> powered &nbsp;&bull;&nbsp; Theme <a href=https://github.com/halogenica/beautifulhugo>Beautiful Hugo</a> adapted from <a href=https://deanattali.com/beautiful-jekyll/>Beautiful Jekyll</a></p></div></div></div></footer><script src=https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.js integrity=sha384-K3vbOmF2BtaVai+Qk37uypf7VrgBubhQreNQe9aGsz9lB63dIFiQVlJbr92dw2Lx crossorigin=anonymous></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/contrib/auto-render.min.js integrity=sha384-kmZOZB5ObwgQnS/DuDg6TScgOiWWBiVt0plIRkZCmE6rDZGrEOQeHM5PcHi+nyqe crossorigin=anonymous></script>
+<script src=https://code.jquery.com/jquery-1.12.4.min.js integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin=anonymous></script>
+<script src=https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js integrity=sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa crossorigin=anonymous></script>
+<script src=https://nekotheshadow.github.io/qiita-backup/js/main.js></script><script>renderMathInElement(document.body)</script><script src=https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js integrity=sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy crossorigin=anonymous></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js integrity=sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q crossorigin=anonymous></script><script src=https://nekotheshadow.github.io/qiita-backup/js/load-photoswipe.js></script></body></html>
