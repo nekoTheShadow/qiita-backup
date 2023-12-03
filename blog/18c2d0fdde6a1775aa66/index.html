@@ -1,0 +1,61 @@
+<!doctype html><html lang=en itemscope itemtype=http://schema.org/WebPage><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1"><title>Linuxコマンドのワンライナーで連続した日付を生成したい - Qiita Backup</title>
+<meta name=description content="Linuxコマンドで連続した日付を生成したいことがたまにあるので、自分用のメモとして残しておきます。たとえば2023/09/07から15日連"><script type=application/ld+json>{"@context":"http://schema.org","@type":"WebSite","name":"Qiita Backup","url":"https:\/\/nekotheshadow.github.io\/qiita-backup"}</script><script type=application/ld+json>{"@context":"http://schema.org","@type":"Organization","name":"","url":"https:\/\/nekotheshadow.github.io\/qiita-backup"}</script><script type=application/ld+json>{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https:\/\/nekotheshadow.github.io\/qiita-backup","name":"home"}},{"@type":"ListItem","position":3,"item":{"@id":"https:\/\/nekotheshadow.github.io\/qiita-backup\/blog\/18c2d0fdde6a1775aa66\/","name":"Linuxコマンドのワンライナーで連続した日付を生成したい"}}]}</script><script type=application/ld+json>{"@context":"http://schema.org","@type":"Article","author":{"name":""},"headline":"Linuxコマンドのワンライナーで連続した日付を生成したい ","description":"Linuxコマンドで連続した日付を生成したいことがたまにあるので、自分用のメモとして残しておきます。たとえば2023\/09\/07から15日連","inLanguage":"en","wordCount":314,"datePublished":"2023-10-22T01:41:59","dateModified":"2023-10-22T01:41:59","image":"https:\/\/nekotheshadow.github.io\/qiita-backup","keywords":["Bash, Linux"],"mainEntityOfPage":"https:\/\/nekotheshadow.github.io\/qiita-backup\/blog\/18c2d0fdde6a1775aa66\/","publisher":{"@type":"Organization","name":"https:\/\/nekotheshadow.github.io\/qiita-backup","logo":{"@type":"ImageObject","url":"https:\/\/nekotheshadow.github.io\/qiita-backup","height":60,"width":60}}}</script><meta property="og:title" content="Linuxコマンドのワンライナーで連続した日付を生成したい "><meta property="og:description" content="Linuxコマンドで連続した日付を生成したいことがたまにあるので、自分用のメモとして残しておきます。たとえば2023/09/07から15日連"><meta property="og:url" content="https://nekotheshadow.github.io/qiita-backup/blog/18c2d0fdde6a1775aa66/"><meta property="og:type" content="website"><meta property="og:site_name" content="Qiita Backup"><meta name=twitter:title content="Linuxコマンドのワンライナーで連続した日付を生成したい "><meta name=twitter:description content="Linuxコマンドで連続した日付を生成したいことがたまにあるので、自分用のメモとして残しておきます。たとえば2023/09/07から15日連"><meta name=twitter:card content="summary"><meta name=generator content="Hugo 0.120.4"><link rel=alternate href=https://nekotheshadow.github.io/qiita-backup/index.xml type=application/rss+xml title="Qiita Backup"><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css integrity=sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y crossorigin=anonymous><link rel=stylesheet href=https://use.fontawesome.com/releases/v5.5.0/css/all.css integrity=sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU crossorigin=anonymous><link rel=stylesheet href=https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css integrity=sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u crossorigin=anonymous><link rel=stylesheet href=https://nekotheshadow.github.io/qiita-backup/css/main.css><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic"><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800"><link rel=stylesheet href=https://nekotheshadow.github.io/qiita-backup/css/syntax.css><link rel=stylesheet href=https://nekotheshadow.github.io/qiita-backup/css/codeblock.css><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css integrity=sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh crossorigin=anonymous><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css integrity=sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R crossorigin=anonymous></head><body><nav class="navbar navbar-default navbar-fixed-top navbar-custom"><div class=container-fluid><div class=navbar-header><button type=button class=navbar-toggle data-toggle=collapse data-target=#main-navbar>
+<span class=sr-only>Toggle navigation</span>
+<span class=icon-bar></span>
+<span class=icon-bar></span>
+<span class=icon-bar></span>
+</button>
+<a class=navbar-brand href=https://nekotheshadow.github.io/qiita-backup>Qiita Backup</a></div><div class="collapse navbar-collapse" id=main-navbar><ul class="nav navbar-nav navbar-right"></ul></div></div></nav><div class=pswp tabindex=-1 role=dialog aria-hidden=true><div class=pswp__bg></div><div class=pswp__scroll-wrap><div class=pswp__container><div class=pswp__item></div><div class=pswp__item></div><div class=pswp__item></div></div><div class="pswp__ui pswp__ui--hidden"><div class=pswp__top-bar><div class=pswp__counter></div><button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+<button class="pswp__button pswp__button--share" title=Share></button>
+<button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+<button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button><div class=pswp__preloader><div class=pswp__preloader__icn><div class=pswp__preloader__cut><div class=pswp__preloader__donut></div></div></div></div></div><div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap"><div class=pswp__share-tooltip></div></div><button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+</button>
+<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button><div class=pswp__caption><div class=pswp__caption__center></div></div></div></div></div><header class=header-section><div class="intro-header no-img"><div class=container><div class=row><div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1"><div class=blog-heading><h1>Linuxコマンドのワンライナーで連続した日付を生成したい</h1><hr class=small></div></div></div></div></div></header><div class=container role=main><div class=row><div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1"><article role=main class=blog-post><p>Linuxコマンドで連続した日付を生成したいことがたまにあるので、自分用のメモとして残しておきます。たとえば2023/09/07から15日連続した日付を生成したい場合、次のようなワンライナーで実現可能です。</p><pre tabindex=0><code>seq 0 14 | xargs -I{} date -d 2023/09/07+{}days +%Y/%m/%d
+</code></pre><p>実行結果は以下の通りです。</p><pre tabindex=0><code>2023/09/07
+2023/09/08
+2023/09/09
+2023/09/10
+2023/09/11
+2023/09/12
+2023/09/13
+2023/09/14
+2023/09/15
+2023/09/16
+2023/09/17
+2023/09/18
+2023/09/19
+2023/09/20
+2023/09/21
+</code></pre><p><strong>環境情報</strong></p><pre tabindex=0><code>$ seq --version
+seq (GNU coreutils) 8.30
+Copyright (C) 2018 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later &lt;https://gnu.org/licenses/gpl.html&gt;.
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+
+作者 Ulrich Drepper。
+
+
+$ xargs --version
+xargs (GNU findutils) 4.7.0
+Copyright (C) 2019 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later &lt;https://gnu.org/licenses/gpl.html&gt;.
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+
+Written by Eric B. Decker, James Youngman, and Kevin Dalley.
+
+
+$ date --version
+date (GNU coreutils) 8.30
+Copyright (C) 2018 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later &lt;https://gnu.org/licenses/gpl.html&gt;.
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+
+作者 David MacKenzie。
+</code></pre><div class=blog-tags><a href=https://nekotheshadow.github.io/qiita-backup/tags/bash/>Bash</a>&nbsp;
+<a href=https://nekotheshadow.github.io/qiita-backup/tags/linux/>Linux</a>&nbsp;</div></article><ul class="pager blog-pager"><li class=previous><a href=https://nekotheshadow.github.io/qiita-backup/blog/a07b12a0b5683867eff2/ data-toggle=tooltip data-placement=top title=EclipseのMavenプロジェクトで、Javaのバージョンを設定したい>&larr; Previous Post</a></li><li class=next><a href=https://nekotheshadow.github.io/qiita-backup/blog/90f3e73dbd7b190a1c67/ data-toggle=tooltip data-placement=top title=checkstyleをコマンドラインから実行し、循環的複雑度のレポートをXML形式で作成する>Next Post &rarr;</a></li></ul></div></div></div><footer><div class=container><div class=row><div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1"><ul class="list-inline text-center footer-links"></ul><p class="credits copyright text-muted">&nbsp;&bull;&nbsp;&copy;
+2023
+&nbsp;&bull;&nbsp;
+<a href=https://nekotheshadow.github.io/qiita-backup>Qiita Backup</a></p><p class="credits theme-by text-muted"><a href=https://gohugo.io>Hugo v0.120.4</a> powered &nbsp;&bull;&nbsp; Theme <a href=https://github.com/halogenica/beautifulhugo>Beautiful Hugo</a> adapted from <a href=https://deanattali.com/beautiful-jekyll/>Beautiful Jekyll</a></p></div></div></div></footer><script src=https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.js integrity=sha384-K3vbOmF2BtaVai+Qk37uypf7VrgBubhQreNQe9aGsz9lB63dIFiQVlJbr92dw2Lx crossorigin=anonymous></script><script src=https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/contrib/auto-render.min.js integrity=sha384-kmZOZB5ObwgQnS/DuDg6TScgOiWWBiVt0plIRkZCmE6rDZGrEOQeHM5PcHi+nyqe crossorigin=anonymous></script><script src=https://code.jquery.com/jquery-1.12.4.min.js integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin=anonymous></script><script src=https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js integrity=sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa crossorigin=anonymous></script><script src=https://nekotheshadow.github.io/qiita-backup/js/main.js></script><script>renderMathInElement(document.body)</script><script src=https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js integrity=sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy crossorigin=anonymous></script><script src=https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js integrity=sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q crossorigin=anonymous></script><script src=https://nekotheshadow.github.io/qiita-backup/js/load-photoswipe.js></script></body></html>
